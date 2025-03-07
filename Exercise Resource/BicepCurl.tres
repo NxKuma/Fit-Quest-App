@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://dil0toc5o54cv"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_83r8s"]
+
+[resource]
+script = ExtResource("1_83r8s")
+exercise_name = "Bicep Curls"
+sets = 3
+repetitions = 12
+exercise_description = "Curl dumbbells to build biceps."

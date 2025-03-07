@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://b6cuidgb4byfu"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_c5a5s"]
+
+[resource]
+script = ExtResource("1_c5a5s")
+exercise_name = "Deadlift"
+sets = 1
+repetitions = 5
+exercise_description = "Hinge at the hips, grip the bar outside your knees, and lift it while keeping your back straight."
