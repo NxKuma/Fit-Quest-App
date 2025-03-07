@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dghtag0kp8owr"]
 
-[node name="Home View" type="Control"]
+[node name="Profile View" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

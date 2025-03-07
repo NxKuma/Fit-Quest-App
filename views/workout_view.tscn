@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://6xmlyob2ti21"]
 
-[node name="Home View" type="Control"]
+[node name="Workout View" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
