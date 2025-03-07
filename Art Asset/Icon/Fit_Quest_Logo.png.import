@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg6bhu3j3bb4s"
-path="res://.godot/imported/gym-selected.png-9bf51db6e6440e011d285afc6cf172ec.ctex"
+uid="uid://dnj87su7c3rhk"
+path="res://.godot/imported/Fit_Quest_Logo.png-abc23e9237b0818baf120c64b4d35383.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art Asset/Icon_Selected/gym-selected.png"
-dest_files=["res://.godot/imported/gym-selected.png-9bf51db6e6440e011d285afc6cf172ec.ctex"]
+source_file="res://Art Asset/Icon/Fit_Quest_Logo.png"
+dest_files=["res://.godot/imported/Fit_Quest_Logo.png-abc23e9237b0818baf120c64b4d35383.ctex"]
 
 [params]
 
