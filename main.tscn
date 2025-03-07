@@ -47,7 +47,7 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[node name="Home View" parent="VBoxContainer/Views" instance=ExtResource("2_s1anr")]
+[node name="Home View2" parent="VBoxContainer/Views" instance=ExtResource("2_s1anr")]
 layout_mode = 2
 
 [node name="Guilds View" parent="VBoxContainer/Views" instance=ExtResource("4_pypkf")]
@@ -97,6 +97,7 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("7_5q58h")
 texture_pressed = ExtResource("8_wr7a4")
+texture_hover = ExtResource("8_wr7a4")
 ignore_texture_size = true
 stretch_mode = 3
 
@@ -105,6 +106,7 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("9_xh8nf")
 texture_pressed = ExtResource("10_j3046")
+texture_hover = ExtResource("10_j3046")
 ignore_texture_size = true
 stretch_mode = 3
 
@@ -113,6 +115,7 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("11_obs4w")
 texture_pressed = ExtResource("12_eht0t")
+texture_hover = ExtResource("12_eht0t")
 ignore_texture_size = true
 stretch_mode = 3
 
@@ -121,6 +124,7 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("13_4po7v")
 texture_pressed = ExtResource("14_p3k7d")
+texture_hover = ExtResource("14_p3k7d")
 ignore_texture_size = true
 stretch_mode = 3
 
@@ -129,5 +133,6 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("15_q5vhq")
 texture_pressed = ExtResource("16_p6t4e")
+texture_hover = ExtResource("16_p6t4e")
 ignore_texture_size = true
 stretch_mode = 3
