@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg2sqvy51d0c3"]
+
+[ext_resource type="Script" path="res://navigation_bar.gd" id="1_5isps"]
+[ext_resource type="PackedScene" uid="uid://hksd5fbuiqlu" path="res://views/home_view.tscn" id="2_i6ur2"]
+
+[node name="Navigation Bar" type="MarginContainer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -198.5
+offset_top = -81.0
+offset_right = 198.5
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_bottom = 25
+script = ExtResource("1_5isps")
+home_view = ExtResource("2_i6ur2")
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 50
+
+[node name="Workout Button" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Workout"
+
+[node name="Tutorial Button" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="Home Button" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Home"
+
+[node name="Guilds Button" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Guilds"
+
+[node name="Profile Button" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Profile"
+
+[connection signal="pressed" from="Buttons/Workout Button" to="." method="_on_workout_button_pressed"]
+[connection signal="pressed" from="Buttons/Tutorial Button" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="Buttons/Home Button" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="Buttons/Guilds Button" to="." method="_on_guilds_button_pressed"]
+[connection signal="pressed" from="Buttons/Profile Button" to="." method="_on_profile_button_pressed"]
