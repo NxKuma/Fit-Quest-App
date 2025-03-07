@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://bl4y6jd2d3nrt"]
+[gd_scene load_steps=7 format=3 uid="uid://bl4y6jd2d3nrt"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_bhc7n"]
 [ext_resource type="PackedScene" uid="uid://hksd5fbuiqlu" path="res://views/home_view.tscn" id="2_s1anr"]
 [ext_resource type="PackedScene" uid="uid://bdcc8ok0c48ne" path="res://views/tutorial_view.tscn" id="3_blyws"]
 [ext_resource type="PackedScene" uid="uid://6xmlyob2ti21" path="res://views/workout_view.tscn" id="3_wvkul"]
@@ -15,7 +14,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bhc7n")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -26,40 +24,27 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Views" type="MarginContainer" parent="VBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 3
 
 [node name="Workout View" parent="VBoxContainer/Views" instance=ExtResource("3_wvkul")]
-visible = false
 layout_mode = 2
 
 [node name="Tutorial View" parent="VBoxContainer/Views" instance=ExtResource("3_blyws")]
-visible = false
 layout_mode = 2
 
 [node name="Home View" parent="VBoxContainer/Views" instance=ExtResource("2_s1anr")]
-visible = false
 layout_mode = 2
 
 [node name="Guilds View" parent="VBoxContainer/Views" instance=ExtResource("4_pypkf")]
-visible = false
 layout_mode = 2
 
 [node name="Profile View" parent="VBoxContainer/Views" instance=ExtResource("5_wrjgc")]
-visible = false
 layout_mode = 2
 
-[node name="Navigation Bar" parent="." instance=ExtResource("7_af8cx")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 397.0
-offset_bottom = 81.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Navigation Bar" parent="VBoxContainer/PanelContainer" instance=ExtResource("7_af8cx")]
+layout_mode = 2
+size_flags_vertical = 1
