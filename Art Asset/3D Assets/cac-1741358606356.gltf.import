@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dfcg2edr3ax1k"
-path="res://.godot/imported/cac-1741358606356.gltf-684db0950344a88dc8b435e2234c330d.scn"
+path="res://.godot/imported/cac-1741358606356.gltf-bc20435c5897d9baa644a4be5bd8aece.scn"
 
 [deps]
 
-source_file="res://cac-1741358606356.gltf"
-dest_files=["res://.godot/imported/cac-1741358606356.gltf-684db0950344a88dc8b435e2234c330d.scn"]
+source_file="res://Art Asset/3D Assets/cac-1741358606356.gltf"
+dest_files=["res://.godot/imported/cac-1741358606356.gltf-bc20435c5897d9baa644a4be5bd8aece.scn"]
 
 [params]
 
@@ -17,6 +17,7 @@ nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
@@ -28,6 +29,7 @@ animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
 gltf/naming_version=1

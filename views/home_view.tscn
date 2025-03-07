@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://hksd5fbuiqlu"]
+[gd_scene load_steps=3 format=3 uid="uid://hksd5fbuiqlu"]
 
 [ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
+[ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://Scenes/3d_avatar.tscn" id="1_ngulp"]
 
 [node name="Home View" type="Control"]
 layout_mode = 3
@@ -43,7 +44,24 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "Home"
 
+[node name="3D Avatar" parent="." instance=ExtResource("1_ngulp")]
+layout_mode = 1
+offset_left = -82.0
+offset_top = 222.0
+offset_right = -82.0
+offset_bottom = 222.0
+
+[node name="SubViewport" parent="3D Avatar" index="0"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" parent="3D Avatar/SubViewport" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.994926, 0.100605, 0, -0.100605, 0.994926, 0, 24.5498, 128.22)
+
 [node name="Man" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(162, 509)
 scale = Vector2(0.411, 0.36)
 texture = ExtResource("1_ngc2x")
+
+[editable path="3D Avatar"]
