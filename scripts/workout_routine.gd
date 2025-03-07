@@ -3,6 +3,7 @@ class_name workout_routine
 
 @export var exercises: Array[Exercise]
 @export var routine_name: String
+@export_multiline var routine_description: String
 
 var current_exercises: Array[Exercise] = exercises
 signal workout_finished

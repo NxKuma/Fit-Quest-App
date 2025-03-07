@@ -4,6 +4,7 @@ class_name Exercise
 @export var exercise_name: String
 @export var sets: int
 @export var repetitions: int
+@export_multiline var exercise_description: String
 
 var is_done: bool
 var current_reps: int = repetitions
