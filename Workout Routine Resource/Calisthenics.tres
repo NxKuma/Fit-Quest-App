@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="workout_routine" load_steps=10 format=3 uid="uid://cyvq3a1i0pvvi"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_mr4pj"]
+[ext_resource type="Resource" uid="uid://bs55a7kjmuiki" path="res://Exercise Resource/PushUp.tres" id="2_afa7h"]
+[ext_resource type="Script" path="res://scripts/workout_routine.gd" id="2_qivqr"]
+[ext_resource type="Resource" uid="uid://ehduk6b0ghhc" path="res://Exercise Resource/PullUp.tres" id="3_8r0bw"]
+[ext_resource type="Resource" uid="uid://myg6hpk6c8ra" path="res://Exercise Resource/Squat.tres" id="4_ivj4i"]
+[ext_resource type="Resource" uid="uid://bjyuelu7fd26l" path="res://Exercise Resource/Lunge.tres" id="5_v17sm"]
+[ext_resource type="Resource" uid="uid://bpdhg1c1o7drh" path="res://Exercise Resource/Plank.tres" id="6_dd70j"]
+[ext_resource type="Resource" uid="uid://df4vi3emojcd5" path="res://Exercise Resource/Dip.tres" id="7_sugin"]
+[ext_resource type="Resource" uid="uid://cyrq1e0uxigjt" path="res://Exercise Resource/Burpees.tres" id="8_ek3xb"]
+
+[resource]
+script = ExtResource("2_qivqr")
+exercises = Array[ExtResource("1_mr4pj")]([ExtResource("2_afa7h"), ExtResource("3_8r0bw"), ExtResource("4_ivj4i"), ExtResource("5_v17sm"), ExtResource("6_dd70j"), ExtResource("7_sugin"), ExtResource("8_ek3xb")])
+routine_name = "Calisthenics"
+routine_description = "A form of bodyweight training that builds strength, endurance, and mobility without the need for equipment. It is great for functional fitness and can be performed anywhere.
+"
