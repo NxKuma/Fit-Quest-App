@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://b32sisnksd24r"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_sfclb"]
+
+[resource]
+script = ExtResource("1_sfclb")
+exercise_name = "Barbell Bench Press"
+sets = 3
+repetitions = 8
+exercise_description = "Lie on a bench, lower the bar to your chest, then press up."
