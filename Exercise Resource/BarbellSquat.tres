@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://bh0aiqgio1rya"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_i6anr"]
+
+[resource]
+script = ExtResource("1_i6anr")
+exercise_name = "Barbell Squat"
+sets = 3
+repetitions = 18
+exercise_description = "Stand with feet shoulder-width apart, barbell resting on your upper back. Lower yourself until your thighs are parallel to the ground, then push up."

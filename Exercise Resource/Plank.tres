@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://bpdhg1c1o7drh"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_hghra"]
+
+[resource]
+script = ExtResource("1_hghra")
+exercise_name = "Plank"
+sets = 3
+repetitions = 45
+exercise_description = "Core stability exercise. Hold a static position on forearms."
