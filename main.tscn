@@ -58,6 +58,7 @@ visible = false
 layout_mode = 1
 
 [node name="Top" type="ColorRect" parent="."]
+visible = false
 layout_direction = 1
 layout_mode = 0
 offset_left = -2.0

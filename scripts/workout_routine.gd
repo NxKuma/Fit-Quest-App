@@ -14,7 +14,6 @@ func finish_workout() -> void:
 	emit_signal("workout_finished")
 	if exercises.size() == 0:
 		finish_routine()
-		
 
 func finish_routine() -> void:
 	emit_signal("routine_finished")

@@ -13,16 +13,31 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_we8sx")
 
+[node name="Top" type="ColorRect" parent="."]
+layout_direction = 1
+offset_left = -2.0
+offset_right = 538.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.670588, 0.890196, 0.886275, 1)
+
 [node name="Header" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 23.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_right = 105.0
+offset_bottom = 69.0
 grow_horizontal = 2
+theme_override_constants/separation = 5
 
 [node name="Workout Title" type="Label" parent="Header"]
 layout_mode = 2
 size_flags_horizontal = 6
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
 text = "Workout"
 
 [node name="Exercise Container" type="VBoxContainer" parent="."]
@@ -82,6 +97,22 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Start Set
 "
+
+[node name="Countdown" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -41.5
+offset_right = 20.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "3"
 
 [connection signal="pressed" from="Exercise Container/StartOrFinish" to="." method="_on_start_or_finish_pressed"]
 
