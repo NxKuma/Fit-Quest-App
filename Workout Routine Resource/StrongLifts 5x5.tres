@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="workout_routine" load_steps=6 format=3 uid="uid://confwohga3mro"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_sjbm5"]
+[ext_resource type="Resource" uid="uid://bh0aiqgio1rya" path="res://Exercise Resource/BarbellSquat.tres" id="2_7gxt3"]
+[ext_resource type="Script" path="res://scripts/workout_routine.gd" id="2_aakj6"]
+[ext_resource type="Resource" uid="uid://b32sisnksd24r" path="res://Exercise Resource/BarbellBenchPress.tres" id="3_5vkk0"]
+[ext_resource type="Resource" uid="uid://b6cuidgb4byfu" path="res://Exercise Resource/Deadlift.tres" id="4_ug5el"]
+
+[resource]
+script = ExtResource("2_aakj6")
+exercises = Array[ExtResource("1_sjbm5")]([ExtResource("2_7gxt3"), ExtResource("3_5vkk0"), ExtResource("4_ug5el")])
+routine_name = "StrongLifts 5x5"
+routine_description = "A full-body strength training program focused on compound lifts. It follows a progressive overload system where weights are increased each session, making it ideal for beginners and intermediates looking to build strength efficiently.
+"

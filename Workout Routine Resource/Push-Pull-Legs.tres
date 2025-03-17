@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="workout_routine" load_steps=11 format=3 uid="uid://02khvhlbg8r6"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_ktqwb"]
+[ext_resource type="Script" path="res://scripts/workout_routine.gd" id="2_b431p"]
+[ext_resource type="Resource" uid="uid://b32sisnksd24r" path="res://Exercise Resource/BarbellBenchPress.tres" id="2_ffxop"]
+[ext_resource type="Resource" uid="uid://df4vi3emojcd5" path="res://Exercise Resource/Dip.tres" id="3_47hy7"]
+[ext_resource type="Resource" uid="uid://ehduk6b0ghhc" path="res://Exercise Resource/PullUp.tres" id="4_vc8t6"]
+[ext_resource type="Resource" uid="uid://dil0toc5o54cv" path="res://Exercise Resource/BicepCurl.tres" id="5_mdhck"]
+[ext_resource type="Resource" uid="uid://myg6hpk6c8ra" path="res://Exercise Resource/Squat.tres" id="6_sh7h6"]
+[ext_resource type="Resource" uid="uid://tprmdsapr6bb" path="res://Exercise Resource/RomanianDeadlift.tres" id="7_0kyec"]
+[ext_resource type="Resource" uid="uid://bjyuelu7fd26l" path="res://Exercise Resource/Lunge.tres" id="8_jlntm"]
+[ext_resource type="Resource" uid="uid://b01803kdfn76b" path="res://Exercise Resource/CalfRaise.tres" id="9_31gqq"]
+
+[resource]
+script = ExtResource("2_b431p")
+exercises = Array[ExtResource("1_ktqwb")]([ExtResource("2_ffxop"), ExtResource("3_47hy7"), ExtResource("4_vc8t6"), ExtResource("5_mdhck"), ExtResource("6_sh7h6"), ExtResource("7_0kyec"), ExtResource("8_jlntm"), ExtResource("9_31gqq")])
+routine_name = "Push-Pull-Legs"
+routine_description = "The Push-Pull-Legs (PPL) split is designed to target different muscle groups on separate days, allowing for focused training and proper recovery. It is commonly used for muscle hypertrophy (growth)."

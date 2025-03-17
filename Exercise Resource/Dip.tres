@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://df4vi3emojcd5"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_sssqh"]
+
+[resource]
+script = ExtResource("1_sssqh")
+exercise_name = "Dip"
+sets = 3
+repetitions = 15
+exercise_description = "Engages chest, triceps, and shoulders. Can be performed on parallel bars or a bench."
