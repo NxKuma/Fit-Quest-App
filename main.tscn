@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://htcuxqktgiyx" path="res://Art Asset/Icon_Selected/trophy-selected.png" id="14_p3k7d"]
 [ext_resource type="Texture2D" uid="uid://b75a50fxh5bmi" path="res://Art Asset/Icon/analytics.png" id="15_q5vhq"]
 [ext_resource type="Texture2D" uid="uid://dnm8o7ceswivk" path="res://Art Asset/Icon_Selected/analytics-selected.png" id="16_p6t4e"]
-[ext_resource type="Script" path="res://SQL Files/sql_manager.cs" id="17_d67ll"]
+[ext_resource type="Script" path="res://SQL/sql_manager.cs" id="17_d67ll"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -148,3 +148,7 @@ stretch_mode = 3
 
 [node name="SQL Manager" type="Node" parent="."]
 script = ExtResource("17_d67ll")
+host_string = "localhost"
+username_string = "postgres"
+password_string = "thanie"
+database_string = "fitquest"

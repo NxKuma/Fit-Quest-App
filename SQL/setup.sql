@@ -10,8 +10,6 @@ DROP TABLE badges;
 DROP TABLE experience;
 DROP TABLE rewards;
 
-
-
 CREATE TABLE person (
     person_id SERIAL PRIMARY KEY,
     person_height_m REAL NOT NULL,
