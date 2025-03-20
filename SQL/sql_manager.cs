@@ -2,6 +2,9 @@ using Godot;
 using System;
 using Npgsql;
 using Godot.NativeInterop;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.Intrinsics.Arm;
 
 public partial class sql_manager : Node
 {
@@ -45,36 +48,78 @@ public partial class sql_manager : Node
 		connectionString += "Password=" + password_string + ";";
 		connectionString += "Database=" + database_string;
 		setup_sql_string = LoadFromFile("res://SQL//setup.SQL");
-		GD.Print(setup_sql_string);
+		//GD.Print(setup_sql_string);
  		runSql();
 	}
 	
 	static public void runSql()
 	{
-		var dataSource = NpgsqlDataSource.Create(connectionString);
-		var check_exists = dataSource.CreateCommand("SELECT EXISTS(SELECT FROM pg_tables WHERE tablename = 'car');");
-		var bool_reader = check_exists.ExecuteReader();
-		bool does_exist = false;
-		while (bool_reader.Read()) {
-			does_exist = bool_reader.GetBoolean(0);
+		var data_source = NpgsqlDataSource.Create(connectionString);
+
+		List<String> sql_commands = new List<string>();
+		string current_string = "";
+		// Gets the entire string until the semicolon
+		for (int i = 0; i < setup_sql_string.Length; i++) {
+			char c = setup_sql_string[i];
+			if (c == ';') {
+				current_string += c;
+				sql_commands.Add(current_string);
+				current_string = "";
+			} else if (c == '\r' || c == '\n') {
+				continue;
+			} else {
+				current_string += c;
+			}
 		}
 
+		for (int i = 0; i < sql_commands.Count; i++) {
+			String current_command = sql_commands[i];
+			List<String> words = new List<string>();
+			String current_word = "";
 
-		if (does_exist) {
-			var test1 = dataSource.CreateCommand(clear_string);
-			test1.ExecuteReader();
-		}
-		
-		
-		var test2 = dataSource.CreateCommand(setup_string);
-		test2.ExecuteReader();
+			// Does not include the semicolon
+			for (int j = 0; j < current_command.Length; j++) {
+				char c = current_command[j];
+				if (c == ' ' || c == ';') {
+					words.Add(current_word);
+					current_word = "";
+				} else if (c == '\r' || c == '\n') {
+					continue;
+				} else {
+					current_word += c;
+				}
+			}
 
-		var test3 = dataSource.CreateCommand("SELECT * FROM car");
-		var reader = test3.ExecuteReader();
-		while (reader.Read())
-		{
-			//GD.Print(reader.GetInt32(0));
-			//GD.Print(reader.GetInt32(1));
+			bool can_run = true;
+
+			GD.Print("Current Words:");
+			for (int j = 0; j < words.Count; j++) {
+				GD.Print("Word Num " + j + ": " + words[j]);
+			}
+			GD.Print("Check Condition: "+ (words[0] == "DROP"));
+
+			if (words[0] == "DROP") {
+				GD.Print("CONTINUED!");
+				String select_string = "SELECT EXISTS(SELECT FROM pg_tables WHERE tablename = \'"+  words[words.Count-1] + "\');";
+				GD.Print("Current Select String: " + select_string);
+				var bool_command = data_source.CreateCommand(select_string);
+				var bool_reader = bool_command.ExecuteReader();
+				bool does_exist = false;
+				while (bool_reader.Read()) {
+					does_exist = bool_reader.GetBoolean(0);
+				}
+
+				if (!does_exist) {
+					can_run = false;
+				}
+			}
+			GD.Print("Can run? " + current_command);
+			GD.Print("Answer: " + can_run);
+			if (can_run) {
+				GD.Print("Current Command being run: " + current_command);
+				var command = data_source.CreateCommand(current_command);
+				var command_reader = command.ExecuteNonQuery();
+			}
 		}
 	}
 }
