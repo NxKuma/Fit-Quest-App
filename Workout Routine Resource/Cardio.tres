@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WorkoutRoutine" load_steps=4 format=3 uid="uid://bfndoqse3vnau"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_w5wg1"]
+[ext_resource type="Resource" uid="uid://by52152nwbk82" path="res://Exercise Resource/Jogging.tres" id="2_7o6r0"]
+[ext_resource type="Script" path="res://scripts/workout_routine.gd" id="2_hvei8"]
+
+[resource]
+script = ExtResource("2_hvei8")
+exercises = Array[ExtResource("1_w5wg1")]([ExtResource("2_7o6r0")])
+routine_name = "Cardio"
+routine_description = "Targets: Cardiovascular health and Stamina"
