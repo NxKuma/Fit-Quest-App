@@ -1,4 +1,37 @@
-[gd_scene format=3 uid="uid://cijrlny8tsjia"]
+[gd_scene load_steps=6 format=3 uid="uid://babfi7v2dnino"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7qmr"]
+bg_color = Color(0.541176, 0.847059, 0.878431, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.117647, 0.521569, 0.737255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbmn1"]
+bg_color = Color(0.254902, 0.788235, 0.886275, 1)
+border_width_right = 2
+border_color = Color(0.117647, 0.521569, 0.737255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klhxk"]
+bg_color = Color(0.541176, 0.847059, 0.878431, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gbfjj"]
+color = Color(0.117647, 0.521569, 0.737255, 1)
+thickness = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28jp8"]
+bg_color = Color(0.254902, 0.788235, 0.886275, 1)
 
 [node name="Tutorial View" type="Control"]
 layout_mode = 3
@@ -8,6 +41,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.968627, 0.933333, 0.866667, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -21,3 +63,132 @@ grow_horizontal = 2
 text = "Tutorial
 
 "
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 400
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 50
+
+[node name="PanelContainer" type="PanelContainer" parent="VSplitContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a7qmr")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+split_offset = 250
+dragger_visibility = 2
+
+[node name="Panel" type="Panel" parent="VSplitContainer/MarginContainer/PanelContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kbmn1")
+
+[node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer/PanelContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_klhxk")
+
+[node name="PanelContainer" type="PanelContainer" parent="VSplitContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_gbfjj")
+
+[node name="ColorRect" type="ColorRect" parent="VSplitContainer/PanelContainer"]
+layout_mode = 2
+color = Color(0.67451, 0.886275, 0.882353, 1)
+
+[node name="VBoxContainer" type="ScrollContainer" parent="VSplitContainer/PanelContainer"]
+layout_mode = 2
+follow_focus = true
+scroll_vertical_custom_step = 500.0
+horizontal_scroll_mode = 0
+scroll_deadzone = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 350
+
+[node name="Panel" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="Panel2" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 350
+
+[node name="Panel" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="Panel2" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 350
+
+[node name="Panel" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="Panel2" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="HSplitContainer4" type="HSplitContainer" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 350
+
+[node name="Panel" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="Panel2" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="HSplitContainer5" type="HSplitContainer" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 350
+
+[node name="Panel" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="Panel2" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
