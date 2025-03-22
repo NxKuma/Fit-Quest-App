@@ -15,6 +15,7 @@ script = ExtResource("1_we8sx")
 
 [node name="Top" type="ColorRect" parent="."]
 layout_direction = 1
+layout_mode = 0
 offset_left = -2.0
 offset_right = 538.0
 offset_bottom = 90.0
