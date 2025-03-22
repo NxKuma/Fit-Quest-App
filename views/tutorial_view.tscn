@@ -1,5 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://babfi7v2dnino"]
 
+[ext_resource type="StyleBox" uid="uid://b6m7qf77ehn5e" path="res://views/panel_style.tres" id="1_3ptij"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7qmr"]
 bg_color = Color(0.541176, 0.847059, 0.878431, 1)
 border_width_left = 2
@@ -25,10 +27,6 @@ corner_radius_bottom_left = 10
 bg_color = Color(0.541176, 0.847059, 0.878431, 1)
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_gbfjj"]
-color = Color(0.117647, 0.521569, 0.737255, 1)
-thickness = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28jp8"]
 bg_color = Color(0.254902, 0.788235, 0.886275, 1)
@@ -99,7 +97,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_klhxk")
 
 [node name="PanelContainer" type="PanelContainer" parent="VSplitContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxLine_gbfjj")
+theme_override_styles/panel = ExtResource("1_3ptij")
 
 [node name="ColorRect" type="ColorRect" parent="VSplitContainer/PanelContainer"]
 layout_mode = 2
