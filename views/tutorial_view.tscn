@@ -131,98 +131,163 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.453848, 0.453848)
 
-[node name="PanelContainer" type="PanelContainer" parent="VSplitContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="VSplitContainer/MarginContainer2"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("1_3ptij")
 
-[node name="ColorRect" type="ColorRect" parent="VSplitContainer/PanelContainer"]
+[node name="ColorRect" type="ColorRect" parent="VSplitContainer/MarginContainer2/PanelContainer"]
 layout_mode = 2
 color = Color(0.67451, 0.886275, 0.882353, 1)
 
-[node name="VBoxContainer" type="ScrollContainer" parent="VSplitContainer/PanelContainer"]
+[node name="VBoxContainer" type="ScrollContainer" parent="VSplitContainer/MarginContainer2/PanelContainer"]
 layout_mode = 2
 follow_focus = true
 scroll_vertical_custom_step = 500.0
 horizontal_scroll_mode = 0
 scroll_deadzone = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer/PanelContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 5
 
-[node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 103)
 layout_mode = 2
-size_flags_vertical = 3
 split_offset = 350
 
-[node name="Panel" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer"]
+[node name="Panel" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
 
-[node name="Panel2" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer"]
+[node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
 
-[node name="HSplitContainer2" type="HSplitContainer" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="HSplitContainer2" type="HSplitContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 103)
 layout_mode = 2
-size_flags_vertical = 3
 split_offset = 350
 
-[node name="Panel" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer2"]
+[node name="Panel" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
 
-[node name="Panel2" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer2"]
+[node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
 
-[node name="HSplitContainer3" type="HSplitContainer" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="HSplitContainer3" type="HSplitContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 103)
 layout_mode = 2
-size_flags_vertical = 3
 split_offset = 350
 
-[node name="Panel" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer3"]
+[node name="Panel" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
 
-[node name="Panel2" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer3"]
+[node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
 
-[node name="HSplitContainer4" type="HSplitContainer" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="HSplitContainer4" type="HSplitContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 103)
 layout_mode = 2
-size_flags_vertical = 3
 split_offset = 350
 
-[node name="Panel" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer4"]
+[node name="Panel" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer4"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
 
-[node name="Panel2" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer4"]
+[node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer4"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
 
-[node name="HSplitContainer5" type="HSplitContainer" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="HSplitContainer5" type="HSplitContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 103)
 layout_mode = 2
-size_flags_vertical = 3
 split_offset = 350
 
-[node name="Panel" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer5"]
+[node name="Panel" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer5"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
 
-[node name="Panel2" type="Panel" parent="VSplitContainer/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer5"]
+[node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="HSplitContainer6" type="HSplitContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 103)
+layout_mode = 2
+split_offset = 350
+
+[node name="Panel" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="HSplitContainer7" type="HSplitContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 103)
+layout_mode = 2
+split_offset = 350
+
+[node name="Panel" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="HSplitContainer8" type="HSplitContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 103)
+layout_mode = 2
+split_offset = 350
+
+[node name="Panel" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="HSplitContainer9" type="HSplitContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 103)
+layout_mode = 2
+split_offset = 350
+
+[node name="Panel" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")
+
+[node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VBoxContainer/VBoxContainer/HSplitContainer9"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_28jp8")

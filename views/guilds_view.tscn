@@ -1,4 +1,32 @@
-[gd_scene format=3 uid="uid://c0nggtkx5i15l"]
+[gd_scene load_steps=11 format=3 uid="uid://c0nggtkx5i15l"]
+
+[ext_resource type="Texture2D" uid="uid://ycjauwqa65gl" path="res://Art Asset/Icon/account.png" id="1_que34"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1j4l"]
+bg_color = Color(0.117647, 0.521569, 0.737255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fy5rm"]
+bg_color = Color(0.117647, 0.521569, 0.737255, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bc8b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2m3u7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_atw8v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sn1w0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1pcqd"]
+
+[sub_resource type="Theme" id="Theme_4pgxj"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_4bc8b")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_2m3u7")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_atw8v")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_sn1w0")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_1pcqd")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42ehg"]
+bg_color = Color(0.254902, 0.788235, 0.886275, 1)
 
 [node name="Guilds View" type="Control"]
 layout_mode = 3
@@ -9,14 +37,181 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -24.5
-offset_right = 24.5
-offset_bottom = 23.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-text = "Guilds
-"
+grow_vertical = 2
+color = Color(0.968627, 0.933333, 0.866667, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+offset_left = 270.0
+offset_right = 743.0
+offset_bottom = 473.0
+rotation = 0.785398
+color = Color(0.254902, 0.788235, 0.886275, 1)
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 100
+
+[node name="MarginContainer2" type="MarginContainer" parent="VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="VSplitContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_l1j4l")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+split_offset = -120
+
+[node name="Top" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fy5rm")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_4pgxj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 97)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_42ehg")
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -35.0
+offset_right = 70.0
+offset_bottom = 35.0
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel2/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_que34")
+
+[node name="Panel3" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 97)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_42ehg")
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -35.0
+offset_right = 70.0
+offset_bottom = 35.0
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel3/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_que34")
+
+[node name="Panel4" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 97)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_42ehg")
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel4"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -35.0
+offset_right = 70.0
+offset_bottom = 35.0
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel4/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_que34")
+
+[node name="Panel5" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 97)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_42ehg")
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel5"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -35.0
+offset_right = 70.0
+offset_bottom = 35.0
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel5/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_que34")
+
+[node name="Panel6" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 97)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_42ehg")
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel6"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -35.0
+offset_right = 70.0
+offset_bottom = 35.0
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel6/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_que34")
+
+[node name="Panel7" type="Panel" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 97)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_42ehg")
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel7"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -35.0
+offset_right = 70.0
+offset_bottom = 35.0
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel7/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_que34")

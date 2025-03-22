@@ -65,9 +65,9 @@ text = "Home"
 
 [node name="Shadow" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = -4.0
+offset_left = 23.0
 offset_top = 720.0
-offset_right = 36.0
+offset_right = 56.0
 offset_bottom = 760.0
 scale = Vector2(7.47572, 3.13738)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_doyt0")
@@ -79,13 +79,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_py31l")
 [node name="3D Avatar" parent="." instance=ExtResource("1_ngulp")]
 layout_mode = 1
 offset_left = -54.0
-offset_top = 122.0
+offset_top = 182.0
 offset_right = -188.0
 offset_bottom = -116.0
-stretch = true
 
 [node name="SubViewport" parent="3D Avatar" index="0"]
-size = Vector2i(406, 722)
+size = Vector2i(406, 662)
 
 [node name="Camera3D" parent="3D Avatar/SubViewport" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.994926, 0.100605, 0, -0.100605, 0.994926, 0, 24.5498, 128.22)
@@ -95,8 +94,6 @@ fov = 85.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2198, 116.623, 74.7181)
 visible = false
 light_energy = 400.0
-omni_range = 100.0
-omni_shadow_mode = 0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D Avatar/SubViewport" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 156.459, 156.053)
@@ -113,10 +110,10 @@ texture = ExtResource("1_ngc2x")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 199.0
+offset_bottom = 257.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 60
+theme_override_constants/margin_top = 120
 theme_override_constants/margin_right = 10
 
 [node name="PanelContainer" type="PanelContainer" parent="Streak Counter"]
@@ -303,7 +300,7 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -266.0
-offset_top = -267.0
+offset_top = -215.0
 offset_bottom = 354.0
 grow_horizontal = 0
 grow_vertical = 2
