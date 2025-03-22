@@ -1,18 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://babfi7v2dnino"]
+[gd_scene load_steps=9 format=3 uid="uid://babfi7v2dnino"]
 
 [ext_resource type="StyleBox" uid="uid://b6m7qf77ehn5e" path="res://views/panel_style.tres" id="1_3ptij"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7qmr"]
-bg_color = Color(0.541176, 0.847059, 0.878431, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.117647, 0.521569, 0.737255, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[ext_resource type="StyleBox" uid="uid://b4tcgvd4x43cm" path="res://views/panel_box.tres" id="1_cbgjs"]
+[ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://Scenes/3d_avatar.tscn" id="2_idpuw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbmn1"]
 bg_color = Color(0.254902, 0.788235, 0.886275, 1)
@@ -22,6 +12,11 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_fhy1t"]
+outline_size = 1
+
+[sub_resource type="SystemFont" id="SystemFont_i4rfy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klhxk"]
 bg_color = Color(0.541176, 0.847059, 0.878431, 1)
@@ -80,7 +75,7 @@ theme_override_constants/margin_bottom = 50
 
 [node name="PanelContainer" type="PanelContainer" parent="VSplitContainer/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_a7qmr")
+theme_override_styles/panel = ExtResource("1_cbgjs")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer/MarginContainer/PanelContainer"]
 layout_mode = 2
@@ -91,9 +86,50 @@ dragger_visibility = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kbmn1")
 
+[node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer/MarginContainer/PanelContainer/HSplitContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer/MarginContainer/PanelContainer/HSplitContainer/Panel/VSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="Label" type="Label" parent="VSplitContainer/MarginContainer/PanelContainer/HSplitContainer/Panel/VSplitContainer/MarginContainer"]
+layout_mode = 2
+text = "Work Out Name"
+label_settings = SubResource("LabelSettings_fhy1t")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VSplitContainer/MarginContainer/PanelContainer/HSplitContainer/Panel/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VSplitContainer/MarginContainer/PanelContainer/HSplitContainer/Panel/VSplitContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("SystemFont_i4rfy")
+theme_override_font_sizes/normal_font_size = 14
+text = "This is where you put the discription of the workout"
+
 [node name="Panel2" type="Panel" parent="VSplitContainer/MarginContainer/PanelContainer/HSplitContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_klhxk")
+
+[node name="3D Avatar" parent="VSplitContainer/MarginContainer/PanelContainer/HSplitContainer/Panel2" instance=ExtResource("2_idpuw")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 540.0
+offset_bottom = 538.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.453848, 0.453848)
 
 [node name="PanelContainer" type="PanelContainer" parent="VSplitContainer"]
 layout_mode = 2

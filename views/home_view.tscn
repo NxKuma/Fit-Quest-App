@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://hksd5fbuiqlu"]
+[gd_scene load_steps=10 format=3 uid="uid://hksd5fbuiqlu"]
 
 [ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
 [ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://Scenes/3d_avatar.tscn" id="1_ngulp"]
@@ -19,6 +19,8 @@ corner_radius_bottom_left = 50
 [sub_resource type="LabelSettings" id="LabelSettings_4tgua"]
 font_size = 30
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ekono"]
 
 [node name="Home View" type="Control"]
 layout_mode = 3
@@ -107,48 +109,29 @@ position = Vector2(162, 509)
 scale = Vector2(0.411, 0.36)
 texture = ExtResource("1_ngc2x")
 
-[node name="Side Panels" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -246.0
-offset_top = -261.0
-offset_right = 2.0
-offset_bottom = 146.0
-grow_horizontal = 0
-grow_vertical = 2
-scale = Vector2(0.991959, 1.52667)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Side Panels"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="Side Panels/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Streak Counter" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 138.0
+offset_bottom = 199.0
 grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Streak Counter"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_q8ahr")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Streak Counter/PanelContainer"]
 layout_mode = 2
 
-[node name="Sunday" type="Panel" parent="MarginContainer/PanelContainer/HBoxContainer"]
+[node name="Sunday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/HBoxContainer/Sunday"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Sunday"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -156,23 +139,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/Sunday/VSplitContainer"]
+[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Sunday/VSplitContainer"]
 layout_mode = 2
 text = "S"
 label_settings = SubResource("LabelSettings_4tgua")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/HBoxContainer/Sunday/VSplitContainer"]
+[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Sunday/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 texture = ExtResource("4_mkfff")
 
-[node name="Monday" type="Panel" parent="MarginContainer/PanelContainer/HBoxContainer"]
+[node name="Monday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/HBoxContainer/Monday"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Monday"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -180,23 +163,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/Monday/VSplitContainer"]
+[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Monday/VSplitContainer"]
 layout_mode = 2
 text = "M"
 label_settings = SubResource("LabelSettings_4tgua")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/HBoxContainer/Monday/VSplitContainer"]
+[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Monday/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 texture = ExtResource("4_mkfff")
 
-[node name="Tuesday" type="Panel" parent="MarginContainer/PanelContainer/HBoxContainer"]
+[node name="Tuesday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/HBoxContainer/Tuesday"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Tuesday"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,23 +187,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/Tuesday/VSplitContainer"]
+[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Tuesday/VSplitContainer"]
 layout_mode = 2
 text = "T"
 label_settings = SubResource("LabelSettings_4tgua")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/HBoxContainer/Tuesday/VSplitContainer"]
+[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Tuesday/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 texture = ExtResource("4_mkfff")
 
-[node name="Wednesday" type="Panel" parent="MarginContainer/PanelContainer/HBoxContainer"]
+[node name="Wednesday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/HBoxContainer/Wednesday"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Wednesday"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -228,23 +211,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/Wednesday/VSplitContainer"]
+[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Wednesday/VSplitContainer"]
 layout_mode = 2
 text = "W"
 label_settings = SubResource("LabelSettings_4tgua")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/HBoxContainer/Wednesday/VSplitContainer"]
+[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Wednesday/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 texture = ExtResource("4_mkfff")
 
-[node name="Thursday" type="Panel" parent="MarginContainer/PanelContainer/HBoxContainer"]
+[node name="Thursday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/HBoxContainer/Thursday"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Thursday"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -252,23 +235,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/Thursday/VSplitContainer"]
+[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Thursday/VSplitContainer"]
 layout_mode = 2
 text = "TH"
 label_settings = SubResource("LabelSettings_4tgua")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/HBoxContainer/Thursday/VSplitContainer"]
+[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Thursday/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 texture = ExtResource("4_mkfff")
 
-[node name="Friday" type="Panel" parent="MarginContainer/PanelContainer/HBoxContainer"]
+[node name="Friday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/HBoxContainer/Friday"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Friday"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -276,23 +259,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/Friday/VSplitContainer"]
+[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Friday/VSplitContainer"]
 layout_mode = 2
 text = "F"
 label_settings = SubResource("LabelSettings_4tgua")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/HBoxContainer/Friday/VSplitContainer"]
+[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Friday/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 texture = ExtResource("4_mkfff")
 
-[node name="Saturday" type="Panel" parent="MarginContainer/PanelContainer/HBoxContainer"]
+[node name="Saturday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/HBoxContainer/Saturday"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Saturday"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -300,16 +283,57 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/Saturday/VSplitContainer"]
+[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Saturday/VSplitContainer"]
 layout_mode = 2
 text = "S
 "
 label_settings = SubResource("LabelSettings_4tgua")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/HBoxContainer/Saturday/VSplitContainer"]
+[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Saturday/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 texture = ExtResource("4_mkfff")
+
+[node name="Side Panel Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -266.0
+offset_top = -267.0
+offset_bottom = 354.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 10
+
+[node name="Side Panels" type="PanelContainer" parent="Side Panel Margin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ekono")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Side Panel Margin/Side Panels"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_q8ahr")
+
+[node name="Panel2" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_q8ahr")
+
+[node name="Panel3" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_q8ahr")
+
+[node name="Panel4" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_q8ahr")
 
 [editable path="3D Avatar"]
