@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://hksd5fbuiqlu"]
+[gd_scene load_steps=11 format=3 uid="uid://hksd5fbuiqlu"]
 
+[ext_resource type="Script" path="res://scripts/home_view.gd" id="1_m3tji"]
 [ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
 [ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://Scenes/3d_avatar.tscn" id="1_ngulp"]
 [ext_resource type="StyleBox" uid="uid://b4tcgvd4x43cm" path="res://views/panel_box.tres" id="3_q8ahr"]
@@ -30,6 +31,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("1_m3tji")
 
 [node name="Background-Top" type="ColorRect" parent="."]
 layout_mode = 1

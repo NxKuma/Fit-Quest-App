@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0nggtkx5i15l"]
+[gd_scene load_steps=12 format=3 uid="uid://c0nggtkx5i15l"]
 
 [ext_resource type="Texture2D" uid="uid://ycjauwqa65gl" path="res://Art Asset/Icon/account.png" id="1_que34"]
+[ext_resource type="Script" path="res://scripts/guilds_view.gd" id="1_vk10f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1j4l"]
 bg_color = Color(0.117647, 0.521569, 0.737255, 1)
@@ -36,6 +37,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("1_vk10f")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
