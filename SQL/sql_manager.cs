@@ -20,10 +20,10 @@ public partial class sql_manager : Node
 	[Export]
 	public string database_string {get; set;} = "";
 
-	static string connectionString = "";
-	static string setup_string = "CREATE TABLE car (car_id serial PRIMARY KEY,wheel_cnt int NOT NULL);\r\n\r\nINSERT INTO car (wheel_cnt) VALUES (10);";
-	static string clear_string = "DROP TABLE car;";
-	static string setup_sql_string = "";
+	public static string connectionString = "";
+	public static string setup_string = "CREATE TABLE car (car_id serial PRIMARY KEY,wheel_cnt int NOT NULL);\r\n\r\nINSERT INTO car (wheel_cnt) VALUES (10);";
+	public static string clear_string = "DROP TABLE car;";
+	public static string setup_sql_string = "";
 	
 	string setup = "";
 
@@ -52,7 +52,7 @@ public partial class sql_manager : Node
  		runSql();
 	}
 	
-	static public void runSql()
+	public void runSql()
 	{
 		var data_source = NpgsqlDataSource.Create(connectionString);
 
@@ -102,12 +102,8 @@ public partial class sql_manager : Node
 				GD.Print("CONTINUED!");
 				String select_string = "SELECT EXISTS(SELECT FROM pg_tables WHERE tablename = \'"+  words[words.Count-1] + "\');";
 				GD.Print("Current Select String: " + select_string);
-				var bool_command = data_source.CreateCommand(select_string);
-				var bool_reader = bool_command.ExecuteReader();
-				bool does_exist = false;
-				while (bool_reader.Read()) {
-					does_exist = bool_reader.GetBoolean(0);
-				}
+
+				bool does_exist = check_if_table_exists(words[words.Count-1]);
 
 				if (!does_exist) {
 					can_run = false;
@@ -121,5 +117,36 @@ public partial class sql_manager : Node
 				var command_reader = command.ExecuteNonQuery();
 			}
 		}
+	}
+
+	public bool check_if_table_exists(String table) {
+		var data_source = NpgsqlDataSource.Create(connectionString);
+		String select_string = "SELECT EXISTS(SELECT FROM pg_tables WHERE tablename = \'"+  table + "\');";
+
+		var bool_command = data_source.CreateCommand(select_string);
+		var bool_reader = bool_command.ExecuteReader();
+
+		bool does_exist = false;
+		while (bool_reader.Read()) {
+			does_exist = bool_reader.GetBoolean(0);
+		}
+		return does_exist;
+	}
+
+	public int get_entry_count(String table) {
+		var data_source = NpgsqlDataSource.Create(connectionString);
+
+		if (!check_if_table_exists(table)) {
+			return 0;
+		}
+
+		String count_string = "SELECT COUNT (*) FROM " + table + ";";
+		var count_cmd = data_source.CreateCommand(count_string);
+		var count_reader = count_cmd.ExecuteReader();
+		int entry_count = 0;
+		while (count_reader.Read()) {
+			entry_count = count_reader.GetInt32(0);
+		}
+		return entry_count;
 	}
 }
