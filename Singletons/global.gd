@@ -1,12 +1,23 @@
 extends Node
+class_name SceneSwitcher
 
 var current_scene = null
+var user_id: int = -1
+var shoulders: float
+var arms: float
+var breasts: float
+var torso: float
+var belly: float
+var hips: float
+var legs: float
 
 func _ready():
 	var root = get_tree().root
 	
 	# Get the child at the end
 	current_scene = root.get_child(-1)
+func _process(delta):
+	print(user_id);
 	
 func _goto_scene(path):
 	# Used in signal callback, or functions in current scene.
