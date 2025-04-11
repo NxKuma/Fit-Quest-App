@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://br2yd2wbq1thg"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_jrw53"]
+
+[resource]
+script = ExtResource("1_jrw53")
+exercise_name = "Overhead Shoulder Press"
+sets = 3
+repetitions = 10
+exercise_description = "Stand or sit with a barbell or dumbbells at shoulder height. Press them overhead until arms are fully extended, then slowly lower back to the starting position."

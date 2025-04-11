@@ -1,5 +1,5 @@
 extends Resource
-class_name workout_routine
+class_name WorkoutRoutine
 
 @export var exercises: Array[Exercise]
 @export var routine_name: String

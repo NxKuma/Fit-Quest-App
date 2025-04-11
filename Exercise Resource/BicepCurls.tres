@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://bpwiwsb7hr4vu"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_lglp0"]
+
+[resource]
+script = ExtResource("1_lglp0")
+exercise_name = "Bicep Curls"
+sets = 3
+repetitions = 12
+exercise_description = "Hold dumbbells with palms facing forward. Curl the weights toward your shoulders, keeping elbows close to your torso, then lower them slowly."
