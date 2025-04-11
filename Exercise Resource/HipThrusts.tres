@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://cgylyodhbirbh"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_ep4xr"]
+
+[resource]
+script = ExtResource("1_ep4xr")
+exercise_name = "Hip Thrusts"
+sets = 3
+repetitions = 12
+exercise_description = "Sit with your upper back against a bench, feet flat on the ground, and a barbell (or just body weight) resting on your hips. Drive your hips up, squeezing your glutes, then lower slowly."

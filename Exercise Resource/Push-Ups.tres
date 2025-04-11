@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://bpq57tlxa64cg"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_xy7na"]
+
+[resource]
+script = ExtResource("1_xy7na")
+exercise_name = "Push-Ups"
+sets = 3
+repetitions = 8
+exercise_description = "Start in a plank position. Lower your body by bending your elbows until your chest almost touches the ground, then push yourself back up."

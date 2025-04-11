@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://6xmlyob2ti21"]
+[gd_scene load_steps=3 format=3 uid="uid://6xmlyob2ti21"]
+
+[ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://Scenes/3d_avatar.tscn" id="1_iq61l"]
+[ext_resource type="Script" path="res://views/workout_session.gd" id="1_we8sx"]
 
 [node name="Workout View" type="Control"]
 layout_mode = 3
@@ -8,14 +11,110 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("1_we8sx")
 
-[node name="Label" type="Label" parent="."]
+[node name="Top" type="ColorRect" parent="."]
+layout_direction = 1
+layout_mode = 0
+offset_left = -2.0
+offset_right = 538.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.670588, 0.890196, 0.886275, 1)
+
+[node name="Header" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -34.0
-offset_right = 34.0
-offset_bottom = 23.0
+offset_left = -105.0
+offset_right = 105.0
+offset_bottom = 69.0
 grow_horizontal = 2
+theme_override_constants/separation = 5
+
+[node name="Workout Title" type="Label" parent="Header"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
 text = "Workout"
+
+[node name="Exercise Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -343.5
+offset_right = 256.0
+offset_bottom = 343.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Exercise Label" type="Label" parent="Exercise Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Current Exercise
+"
+horizontal_alignment = 1
+
+[node name="3D Avatar" parent="Exercise Container" instance=ExtResource("1_iq61l")]
+layout_mode = 2
+
+[node name="Camera3D" parent="Exercise Container/3D Avatar/SubViewport" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.994926, 0.100605, 0, -0.100605, 0.994926, 0, 24.5498, 128.22)
+fov = 85.0
+
+[node name="OmniLight3D" parent="Exercise Container/3D Avatar/SubViewport" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2198, 116.623, 74.7181)
+visible = false
+light_energy = 400.0
+omni_range = 100.0
+omni_shadow_mode = 0
+
+[node name="Stopwatch" type="HBoxContainer" parent="Exercise Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = -1
+
+[node name="Minutes" type="Label" parent="Exercise Container/Stopwatch"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "00:"
+horizontal_alignment = 1
+
+[node name="Seconds" type="Label" parent="Exercise Container/Stopwatch"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "00"
+
+[node name="StartOrFinish" type="Button" parent="Exercise Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Start Set
+"
+
+[node name="Countdown" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -41.5
+offset_right = 20.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "3"
+
+[connection signal="pressed" from="Exercise Container/StartOrFinish" to="." method="_on_start_or_finish_pressed"]
+
+[editable path="Exercise Container/3D Avatar"]

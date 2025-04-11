@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://cox5l8my5ww7v"]
+
+[ext_resource type="Script" path="res://scripts/login_view.gd" id="1_i3wvy"]
+[ext_resource type="Texture2D" uid="uid://dnj87su7c3rhk" path="res://Art Asset/Icon/Fit_Quest_Logo.png" id="1_x3b3o"]
+
+[node name="Login View" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i3wvy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.67451, 0.886275, 0.882353, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 160
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="UserName" type="LineEdit" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+placeholder_text = "UserName"
+alignment = 1
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="Password" type="LineEdit" parent="MarginContainer/VSplitContainer/VSplitContainer"]
+layout_mode = 2
+placeholder_text = "Password"
+alignment = 1
+max_length = 50
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/VSplitContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="LogIn" type="Button" parent="MarginContainer/VSplitContainer/VSplitContainer/VSplitContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Log In"
+
+[node name="Signup" type="Button" parent="MarginContainer/VSplitContainer/VSplitContainer/VSplitContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Sign Up"
+
+[node name="FitQuestLogo" type="Sprite2D" parent="."]
+position = Vector2(279, 336)
+texture = ExtResource("1_x3b3o")

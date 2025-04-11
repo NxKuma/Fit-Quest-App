@@ -21,7 +21,7 @@ func do_rep() -> void:
 	if repetitions == 0:
 		do_set()
 	
-func do_set():
+func do_set() -> void:
 	current_sets -= 1
 	emit_signal("did_set")
 	
