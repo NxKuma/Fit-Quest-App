@@ -24,11 +24,16 @@ Global="*res://Singletons/global.gd"
 window/size/viewport_width=540
 window/size/viewport_height=960
 window/size/resizable=false
+window/stretch/mode="viewport"
 window/handheld/orientation=1
 
 [dotnet]
 
 project/assembly_name="Fit-Quest"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
