@@ -16,6 +16,7 @@ func _ready():
 	
 	# Get the child at the end
 	current_scene = root.get_child(-1)
+	
 func _process(delta):
 	print(user_id);
 	
