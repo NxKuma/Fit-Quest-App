@@ -72,7 +72,7 @@ theme_override_constants/margin_top = 100
 [node name="MarginContainer2" type="MarginContainer" parent="VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_bottom = 80
 
 [node name="PanelContainer" type="PanelContainer" parent="VSplitContainer/MarginContainer2"]
 layout_mode = 2

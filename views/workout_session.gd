@@ -2,7 +2,7 @@ extends Control
 
 # Routine logic
 var exerciseLabel: Label
-var routine: workout_routine
+var routine: WorkoutRoutine
 var currentExercise: int = 0
 var button: Button
 var isWorking: bool = false
@@ -18,7 +18,7 @@ var seconds: int = 0
 var maxTime: int = 3
 
 func _ready() -> void:
-	exerciseLabel = $"Exercise Container/Exercise Label"
+	exerciseLabel = $"Exercise Container/PanelContainer/Exercise Label"
 	minutesLabel = $"Exercise Container/Stopwatch/Minutes"
 	secondsLabel = $"Exercise Container/Stopwatch/Seconds"
 	countdown = $Countdown
@@ -26,10 +26,10 @@ func _ready() -> void:
 	exerciseLabel = $"Exercise Container/Exercise Label"
 	
 	# Loading the routine resource for now
-	routine = preload("res://Workout Routine Resource/Push-Pull-Legs.tres")
+	routine = preload("res://Workout Routine Resource/LowerBodyandCore.tres")
 	
 	# Setting up scene
-	exerciseLabel.text = routine.exercises[currentExercise].exercise_name
+	exerciseLabel.set_text(routine.exercises[currentExercise].exercise_name) 
 	countdown.visible = false
 	
 	# _physics_process right now is to handle stopwatch. Can migrate to physics_process later
