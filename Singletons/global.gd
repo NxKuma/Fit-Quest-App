@@ -11,6 +11,8 @@ var belly: float
 var hips: float
 var legs: float
 
+
+
 func _ready():
 	var root = get_tree().root
 	
