@@ -20,10 +20,8 @@ var seconds: int = 0
 var mseconds: int = 0
 var maxTime: int = 3
 
-# Loading the routine resource for now
 func load_routine():
-	routine = preload("res://Workout Routine Resource/LowerBodyandCore.tres")
-	
+	routine = Global.get_routine_today()
 
 func _ready() -> void:
 	routineTitle = $"Header/Routine Title"
@@ -37,11 +35,21 @@ func _ready() -> void:
 	
 	load_routine()
 	
+	routineTitle.text = routine.routine_name
+	if (routine.routine_name == "Rest"):
+		set_process(false)
+		countdown.visible = true
+		countdown.text = "Rest day\ntoday!"
+		button.disabled = true
+		exerciseLabel.text = ""
+	else:
+		exerciseLabel.text = routine.exercises[currentExercise].exercise_name
+		countdown.visible = false
+		
+		
+	
 	# Setting up scene
 	# For label
-	routineTitle.text = routine.routine_name
-	exerciseLabel.text = routine.exercises[currentExercise].exercise_name
-	countdown.visible = false
 	
 	# _physics_process right now is to handle stopwatch. Can migrate to physics_process later
 	# if _physics_process is needed for workout session logic 
@@ -53,6 +61,7 @@ func _process(delta: float) -> void:
 		countdown.text = "Done!"
 		button.disabled = true
 		return
+	
 	exerciseLabel.text = routine.exercises[currentExercise].exercise_name
 
 func _physics_process(delta: float) -> void:
@@ -90,7 +99,6 @@ func play_countdown() -> void:
 		countdown.visible = false
 		button.disabled = false
 		time = 0
-		print("countdown done")
 		exerciseDone = true
 		return
 	if (maxTime - seconds <= 0):

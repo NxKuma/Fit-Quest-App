@@ -191,6 +191,8 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 text = "3"
 label_settings = SubResource("LabelSettings_ji8qd")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Exercise Container/StartOrFinish" to="." method="_on_start_or_finish_pressed"]
 
