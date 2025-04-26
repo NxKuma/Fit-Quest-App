@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://by52152nwbk82"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_ijgcp"]
+
+[resource]
+script = ExtResource("1_ijgcp")
+exercise_name = "Jogging"
+sets = 1
+repetitions = 30
+exercise_description = "Run at a steady, moderate pace while maintaining a relaxed posture. Keep your breathing controlled and stride natural to improve cardiovascular health and stamina."

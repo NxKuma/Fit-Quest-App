@@ -11,11 +11,14 @@ var belly: float
 var hips: float
 var legs: float
 
+
+
 func _ready():
 	var root = get_tree().root
 	
 	# Get the child at the end
 	current_scene = root.get_child(-1)
+	
 func _process(delta):
 	print(user_id);
 	

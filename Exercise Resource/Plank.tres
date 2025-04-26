@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://bpdhg1c1o7drh"]
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://nf18q1pi46i5"]
 
-[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_hghra"]
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_5dgl6"]
 
 [resource]
-script = ExtResource("1_hghra")
+script = ExtResource("1_5dgl6")
 exercise_name = "Plank"
 sets = 3
-repetitions = 45
-exercise_description = "Core stability exercise. Hold a static position on forearms."
+repetitions = 30
+exercise_description = "Get into a forearm plank position, keeping your body straight. Hold the position while engaging your core muscles."

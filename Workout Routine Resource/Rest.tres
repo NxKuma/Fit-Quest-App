@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WorkoutRoutine" load_steps=3 format=3 uid="uid://i7l4jlox7q86"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_oue5f"]
+[ext_resource type="Script" path="res://scripts/workout_routine.gd" id="2_ca8x2"]
+
+[resource]
+script = ExtResource("2_ca8x2")
+exercises = Array[ExtResource("1_oue5f")]([])
+routine_name = "Rest"
+routine_description = "Made for rest day."
