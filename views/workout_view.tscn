@@ -81,10 +81,14 @@ color = Color(0.117647, 0.521569, 0.737255, 1)
 
 [node name="Top" type="ColorRect" parent="."]
 layout_direction = 1
-layout_mode = 0
-offset_left = -2.0
-offset_right = 538.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_right = 270.0
 offset_bottom = 90.0
+grow_horizontal = 2
 mouse_filter = 2
 color = Color(0.670588, 0.890196, 0.886275, 1)
 
@@ -114,13 +118,16 @@ offset_bottom = 69.0
 grow_horizontal = 2
 theme_override_constants/separation = 5
 
-[node name="Workout Title" type="Label" parent="Header"]
+[node name="Routine Title" type="Label" parent="Header"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Workout"
+label_settings = SubResource("LabelSettings_jaia5")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Exercise Container" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -146,7 +153,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Current Exercise"
 label_settings = SubResource("LabelSettings_utmcw")
-horizontal_alignment = 1
 
 [node name="3D Avatar" parent="Exercise Container" instance=ExtResource("1_iq61l")]
 layout_mode = 2
@@ -155,6 +161,9 @@ stretch = false
 
 [node name="SubViewport" parent="Exercise Container/3D Avatar" index="0"]
 size = Vector2i(540, 600)
+
+[node name="SubViewport" parent="Exercise Container/3D Avatar" index="0"]
+size = Vector2i(512, 2)
 
 [node name="Camera3D" parent="Exercise Container/3D Avatar/SubViewport" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.994926, 0.100605, 0, -0.100605, 0.994926, 0, 24.5498, 128.22)
@@ -183,11 +192,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "00:"
 label_settings = SubResource("LabelSettings_u1w7u")
-horizontal_alignment = 1
+
 
 [node name="Seconds" type="Label" parent="Exercise Container/PanelContainer2/Stopwatch"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
+
 text = "00"
 label_settings = SubResource("LabelSettings_u1w7u")
 
@@ -200,8 +210,7 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/hover = ExtResource("4_4kcje")
 theme_override_styles/pressed = ExtResource("5_ua2a6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_w682d")
-text = "Start Set
-"
+text = "Start Set"
 
 [node name="Countdown" type="Label" parent="."]
 layout_mode = 1
@@ -218,6 +227,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 text = "3"
+label_settings = SubResource("LabelSettings_ji8qd")
 
 [connection signal="pressed" from="Exercise Container/StartOrFinish" to="." method="_on_start_or_finish_pressed"]
 
