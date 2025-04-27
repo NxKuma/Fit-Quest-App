@@ -137,7 +137,7 @@ scale = Vector2(0.453848, 0.453848)
 [node name="MarginContainer2" type="MarginContainer" parent="VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_bottom = 60
 
 [node name="PanelContainer" type="PanelContainer" parent="VSplitContainer/MarginContainer2"]
 layout_mode = 2
