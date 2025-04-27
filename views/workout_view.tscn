@@ -1,7 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://6xmlyob2ti21"]
+[gd_scene load_steps=9 format=3 uid="uid://6xmlyob2ti21"]
 
 [ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://Scenes/3d_avatar.tscn" id="1_iq61l"]
 [ext_resource type="Script" path="res://views/workout_session.gd" id="1_we8sx"]
+[ext_resource type="StyleBox" uid="uid://b4tcgvd4x43cm" path="res://views/panel_box.tres" id="3_t54aq"]
+[ext_resource type="StyleBox" uid="uid://b6m7qf77ehn5e" path="res://views/panel_style.tres" id="4_6skc0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jaia5"]
+font_size = 32
+font_color = Color(0.117647, 0.521569, 0.737255, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_autka"]
+font_size = 32
+font_color = Color(0.117647, 0.521569, 0.737255, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ro6dg"]
+font_size = 48
+font_color = Color(0.117647, 0.521569, 0.737255, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ji8qd"]
+font_size = 72
+font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
 [node name="Workout View" type="Control"]
 layout_mode = 3
@@ -13,12 +31,48 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_we8sx")
 
+[node name="Background-Top" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.239216, 0.745098, 0.839216, 1)
+
+[node name="Background-Bot" type="ColorRect" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -320.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.968627, 0.933333, 0.866667, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -23.5
+offset_right = 23.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Home"
+
 [node name="Top" type="ColorRect" parent="."]
 layout_direction = 1
-layout_mode = 0
-offset_left = -2.0
-offset_right = 538.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_right = 270.0
 offset_bottom = 90.0
+grow_horizontal = 2
 mouse_filter = 2
 color = Color(0.670588, 0.890196, 0.886275, 1)
 
@@ -33,13 +87,16 @@ offset_bottom = 69.0
 grow_horizontal = 2
 theme_override_constants/separation = 5
 
-[node name="Workout Title" type="Label" parent="Header"]
+[node name="Routine Title" type="Label" parent="Header"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Workout"
+label_settings = SubResource("LabelSettings_jaia5")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Exercise Container" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -61,10 +118,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Current Exercise
 "
+label_settings = SubResource("LabelSettings_autka")
 horizontal_alignment = 1
 
 [node name="3D Avatar" parent="Exercise Container" instance=ExtResource("1_iq61l")]
 layout_mode = 2
+
+[node name="SubViewport" parent="Exercise Container/3D Avatar" index="0"]
+size = Vector2i(512, 2)
 
 [node name="Camera3D" parent="Exercise Container/3D Avatar/SubViewport" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.994926, 0.100605, 0, -0.100605, 0.994926, 0, 24.5498, 128.22)
@@ -74,8 +135,6 @@ fov = 85.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2198, 116.623, 74.7181)
 visible = false
 light_energy = 400.0
-omni_range = 100.0
-omni_shadow_mode = 0
 
 [node name="Stopwatch" type="HBoxContainer" parent="Exercise Container"]
 layout_mode = 2
@@ -86,16 +145,33 @@ theme_override_constants/separation = -1
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "00:"
+label_settings = SubResource("LabelSettings_ro6dg")
 horizontal_alignment = 1
 
 [node name="Seconds" type="Label" parent="Exercise Container/Stopwatch"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "00"
+text = "00."
+label_settings = SubResource("LabelSettings_ro6dg")
+
+[node name="Milliseconds" type="Label" parent="Exercise Container/Stopwatch"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "00
+"
+label_settings = SubResource("LabelSettings_ro6dg")
 
 [node name="StartOrFinish" type="Button" parent="Exercise Container"]
 layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.117647, 0.521569, 0.737255, 1)
+theme_override_colors/font_focus_color = Color(0.117647, 0.521569, 0.737255, 1)
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+theme_override_colors/icon_normal_color = Color(0.117647, 0.521569, 0.737255, 1)
 theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled = ExtResource("3_t54aq")
+theme_override_styles/hover = ExtResource("4_6skc0")
+theme_override_styles/pressed = ExtResource("3_t54aq")
+theme_override_styles/normal = ExtResource("3_t54aq")
 text = "Start Set
 "
 
@@ -114,6 +190,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 text = "3"
+label_settings = SubResource("LabelSettings_ji8qd")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Exercise Container/StartOrFinish" to="." method="_on_start_or_finish_pressed"]
 
