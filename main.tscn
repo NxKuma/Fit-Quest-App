@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bl4y6jd2d3nrt"]
+[gd_scene load_steps=20 format=3 uid="uid://bl4y6jd2d3nrt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_bhc7n"]
 [ext_resource type="PackedScene" uid="uid://hksd5fbuiqlu" path="res://views/home_view.tscn" id="2_s1anr"]
@@ -16,8 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://htcuxqktgiyx" path="res://Art Asset/Icon_Selected/trophy-selected.png" id="14_p3k7d"]
 [ext_resource type="Texture2D" uid="uid://b75a50fxh5bmi" path="res://Art Asset/Icon/analytics.png" id="15_q5vhq"]
 [ext_resource type="Texture2D" uid="uid://dnm8o7ceswivk" path="res://Art Asset/Icon_Selected/analytics-selected.png" id="16_p6t4e"]
-[ext_resource type="Script" path="res://SQL/sql_manager.cs" id="17_d67ll"]
-[ext_resource type="Script" path="res://SQL/login_info_manager.cs" id="18_44l6l"]
+[ext_resource type="Script" path="res://SQL/sql_manager.cs" id="17_fbvr2"]
+[ext_resource type="Script" path="res://SQL/login_info_manager.cs" id="18_d06fr"]
+[ext_resource type="Script" path="res://SQL/data_transporter.gd" id="19_7624g"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -148,12 +149,18 @@ texture_pressed = ExtResource("16_p6t4e")
 texture_hover = ExtResource("16_p6t4e")
 stretch_mode = 3
 
-[node name="SQL Manager" type="Node" parent="."]
-script = ExtResource("17_d67ll")
+[node name="SQL Manager" type="Node" parent="." node_paths=PackedStringArray("DataTransporter")]
+script = ExtResource("17_fbvr2")
 host_string = "localhost"
 username_string = "postgres"
 password_string = "thanie"
 database_string = "fitquest"
+DataTransporter = NodePath("../Data Transporter")
 
-[node name="Login Manager" type="Node" parent="."]
-script = ExtResource("18_44l6l")
+[node name="Login Info Manager" type="Node" parent="." node_paths=PackedStringArray("sql_Manager", "DataTransporter")]
+script = ExtResource("18_d06fr")
+sql_Manager = NodePath("../SQL Manager")
+DataTransporter = NodePath("../Data Transporter")
+
+[node name="Data Transporter" type="Node" parent="."]
+script = ExtResource("19_7624g")
