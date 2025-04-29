@@ -1,7 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://cox5l8my5ww7v"]
+[gd_scene load_steps=7 format=3 uid="uid://cox5l8my5ww7v"]
 
 [ext_resource type="Script" path="res://scripts/login_view.gd" id="1_i3wvy"]
 [ext_resource type="Texture2D" uid="uid://dnj87su7c3rhk" path="res://Art Asset/Icon/Fit_Quest_Logo.png" id="1_x3b3o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8leue"]
+bg_color = Color(0.968627, 0.933333, 0.866667, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.117647, 0.521569, 0.737255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pv3nc"]
+content_margin_left = 30.0
+content_margin_top = 10.0
+content_margin_right = 30.0
+content_margin_bottom = 10.0
+bg_color = Color(0.117647, 0.521569, 0.737255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.117647, 0.521569, 0.737255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="SystemFont" id="SystemFont_cljig"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0ifn"]
+content_margin_left = 100.0
+content_margin_top = 10.0
+content_margin_right = 100.0
+content_margin_bottom = 10.0
+bg_color = Color(0.254902, 0.788235, 0.886275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.117647, 0.521569, 0.737255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Login View" type="Control"]
 layout_mode = 3
@@ -37,6 +83,12 @@ layout_mode = 2
 
 [node name="UserName" type="LineEdit" parent="MarginContainer/VSplitContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_placeholder_color = Color(0.1876, 0.49312, 0.67, 1)
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+theme_override_constants/minimum_character_width = 13
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_8leue")
 placeholder_text = "UserName"
 alignment = 1
 
@@ -44,23 +96,40 @@ alignment = 1
 layout_mode = 2
 
 [node name="Password" type="LineEdit" parent="MarginContainer/VSplitContainer/VSplitContainer"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_placeholder_color = Color(0.1876, 0.49312, 0.67, 1)
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+theme_override_constants/minimum_character_width = 13
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_8leue")
 placeholder_text = "Password"
 alignment = 1
-max_length = 50
+max_length = 80
 
-[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/VSplitContainer/VSplitContainer"]
+[node name="VSplitContainer" type="HSplitContainer" parent="MarginContainer/VSplitContainer/VSplitContainer"]
 layout_mode = 2
-
-[node name="LogIn" type="Button" parent="MarginContainer/VSplitContainer/VSplitContainer/VSplitContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "Log In"
+size_flags_horizontal = 4
 
 [node name="Signup" type="Button" parent="MarginContainer/VSplitContainer/VSplitContainer/VSplitContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.968627, 0.933333, 0.866667, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_pv3nc")
 text = "Sign Up"
+
+[node name="LogIn" type="Button" parent="MarginContainer/VSplitContainer/VSplitContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+theme_override_fonts/font = SubResource("SystemFont_cljig")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_i0ifn")
+text = "Log In"
 
 [node name="FitQuestLogo" type="Sprite2D" parent="."]
 position = Vector2(279, 336)
