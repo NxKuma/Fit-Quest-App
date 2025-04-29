@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://6xmlyob2ti21"]
+[gd_scene load_steps=11 format=3 uid="uid://6xmlyob2ti21"]
 
 [ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://Scenes/3d_avatar.tscn" id="1_iq61l"]
 [ext_resource type="Script" path="res://views/workout_session.gd" id="1_we8sx"]
-[ext_resource type="StyleBox" uid="uid://b4tcgvd4x43cm" path="res://views/panel_box.tres" id="3_t54aq"]
-[ext_resource type="StyleBox" uid="uid://b6m7qf77ehn5e" path="res://views/panel_style.tres" id="4_6skc0"]
+[ext_resource type="StyleBox" uid="uid://mfdqnkmggf3c" path="res://views/button_light.tres" id="3_3tff7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jaia5"]
 font_size = 32
@@ -13,13 +12,49 @@ font_color = Color(0.117647, 0.521569, 0.737255, 1)
 font_size = 32
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ro6dg"]
-font_size = 48
+[sub_resource type="LabelSettings" id="LabelSettings_ji8qd"]
+font_size = 90
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ji8qd"]
-font_size = 72
-font_color = Color(0.117647, 0.521569, 0.737255, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjeff"]
+bg_color = Color(0.352941, 0.709804, 0.815686, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3526, 0.71094, 0.82, 0.623529)
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_ro6dg"]
+font_size = 80
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81a8g"]
+bg_color = Color(0.126, 0.5796, 0.63, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.12549, 0.580392, 0.631373, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44088"]
+bg_color = Color(1, 0.25, 0.25, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.25098, 0.25098, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [node name="Workout View" type="Control"]
 layout_mode = 3
@@ -31,52 +66,28 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_we8sx")
 
-[node name="Background-Top" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.239216, 0.745098, 0.839216, 1)
-
-[node name="Background-Bot" type="ColorRect" parent="."]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -320.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 color = Color(0.968627, 0.933333, 0.866667, 1)
 
-[node name="Top" type="ColorRect" parent="."]
-layout_direction = 1
+[node name="Header" type="VBoxContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -270.0
-offset_right = 270.0
-offset_bottom = 90.0
+offset_left = -127.0
+offset_top = 20.0
+offset_right = 127.0
+offset_bottom = 114.0
 grow_horizontal = 2
-mouse_filter = 2
-color = Color(0.670588, 0.890196, 0.886275, 1)
 
-[node name="Header" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.0
-offset_right = 105.0
-offset_bottom = 69.0
-grow_horizontal = 2
-theme_override_constants/separation = 5
-
-[node name="Routine Title" type="Label" parent="Header"]
+[node name="Title" type="Label" parent="Header"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 1
@@ -87,81 +98,35 @@ label_settings = SubResource("LabelSettings_jaia5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Exercise Container" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -343.5
-offset_right = 256.0
-offset_bottom = 343.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="Exercise Label" type="Label" parent="Exercise Container"]
+[node name="Exercise Label" type="Label" parent="Header"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "Current Exercise
 "
 label_settings = SubResource("LabelSettings_autka")
 horizontal_alignment = 1
 
-[node name="3D Avatar" parent="Exercise Container" instance=ExtResource("1_iq61l")]
+[node name="3D Avatar" parent="." instance=ExtResource("1_iq61l")]
 layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 14.0
+offset_right = 526.0
+offset_bottom = 687.0
+size_flags_vertical = 3
 
-[node name="SubViewport" parent="Exercise Container/3D Avatar" index="0"]
+[node name="SubViewport" parent="3D Avatar" index="0"]
 size = Vector2i(512, 687)
 
-[node name="Camera3D" parent="Exercise Container/3D Avatar/SubViewport" index="1"]
+[node name="Camera3D" parent="3D Avatar/SubViewport" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.994926, 0.100605, 0, -0.100605, 0.994926, 0, 24.5498, 128.22)
 fov = 85.0
 
-[node name="OmniLight3D" parent="Exercise Container/3D Avatar/SubViewport" index="2"]
+[node name="OmniLight3D" parent="3D Avatar/SubViewport" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2198, 116.623, 74.7181)
 light_energy = 400.0
-
-[node name="Stopwatch" type="HBoxContainer" parent="Exercise Container"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = -1
-
-[node name="Minutes" type="Label" parent="Exercise Container/Stopwatch"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "00:"
-label_settings = SubResource("LabelSettings_ro6dg")
-horizontal_alignment = 1
-
-[node name="Seconds" type="Label" parent="Exercise Container/Stopwatch"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "00."
-label_settings = SubResource("LabelSettings_ro6dg")
-
-[node name="Milliseconds" type="Label" parent="Exercise Container/Stopwatch"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "00
-"
-label_settings = SubResource("LabelSettings_ro6dg")
-
-[node name="StartOrFinish" type="Button" parent="Exercise Container"]
-layout_mode = 2
-theme_override_colors/font_pressed_color = Color(0.117647, 0.521569, 0.737255, 1)
-theme_override_colors/font_focus_color = Color(0.117647, 0.521569, 0.737255, 1)
-theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
-theme_override_colors/icon_normal_color = Color(0.117647, 0.521569, 0.737255, 1)
-theme_override_font_sizes/font_size = 50
-theme_override_styles/disabled = ExtResource("3_t54aq")
-theme_override_styles/hover = ExtResource("4_6skc0")
-theme_override_styles/pressed = ExtResource("3_t54aq")
-theme_override_styles/normal = ExtResource("3_t54aq")
-text = "Start Set
-"
 
 [node name="Countdown" type="Label" parent="."]
 layout_mode = 1
@@ -170,10 +135,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -41.5
-offset_right = 20.0
-offset_bottom = 41.5
+offset_left = -25.5
+offset_top = -80.0
+offset_right = 25.5
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 100
@@ -182,7 +147,142 @@ label_settings = SubResource("LabelSettings_ji8qd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -217.5
+offset_top = -360.0
+offset_right = 217.5
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hjeff")
+
+[node name="Stopwatch" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -157.5
+offset_top = 20.0
+offset_right = 157.5
+offset_bottom = 130.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = -1
+
+[node name="Minutes" type="Label" parent="Panel/Stopwatch"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "00:"
+label_settings = SubResource("LabelSettings_ro6dg")
+horizontal_alignment = 1
+
+[node name="Seconds" type="Label" parent="Panel/Stopwatch"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "00."
+label_settings = SubResource("LabelSettings_ro6dg")
+
+[node name="Milliseconds" type="Label" parent="Panel/Stopwatch"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "00
+"
+label_settings = SubResource("LabelSettings_ro6dg")
+
+[node name="Buttons" type="Control" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 39.0
+offset_right = 20.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="Panel/Buttons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -38.5
+offset_right = 100.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("3_3tff7")
+text = "Start
+"
+
+[node name="Pause" type="Button" parent="Panel/Buttons"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -38.5
+offset_right = 100.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_81a8g")
+text = "Pause
+"
+
+[node name="Secondary Buttons" type="HBoxContainer" parent="Panel/Buttons"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -38.5
+offset_right = 190.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Resume" type="Button" parent="Panel/Buttons/Secondary Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("3_3tff7")
+text = "Resume"
+
+[node name="Finish" type="Button" parent="Panel/Buttons/Secondary Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_44088")
+text = "Finish"
+
 [node name="Workout Done" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -206,6 +306,9 @@ offset_bottom = 343.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="pressed" from="Exercise Container/StartOrFinish" to="." method="_on_start_or_finish_pressed"]
+[connection signal="pressed" from="Panel/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Panel/Buttons/Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="Panel/Buttons/Secondary Buttons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Panel/Buttons/Secondary Buttons/Finish" to="." method="_on_finish_pressed"]
 
-[editable path="Exercise Container/3D Avatar"]
+[editable path="3D Avatar"]

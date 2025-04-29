@@ -2,11 +2,11 @@ extends Resource
 class_name WeeklyWorkoutPlan
 
 @export var monday_workout_plan: WorkoutRoutine
-@export var tuesday_workout_pan: WorkoutRoutine
+@export var tuesday_workout_plan: WorkoutRoutine
 @export var wednesday_workout_plan: WorkoutRoutine
-@export var thursday_workout_pan: WorkoutRoutine
+@export var thursday_workout_plan: WorkoutRoutine
 @export var friday_workout_plan: WorkoutRoutine
-@export var saturday_workout_pan: WorkoutRoutine
+@export var saturday_workout_plan: WorkoutRoutine
 @export var sunday_workout_plan: WorkoutRoutine
 @export_multiline var routine_description: String
 
@@ -17,6 +17,24 @@ signal thursday_workout_finshed
 signal friday_workout_finished
 signal saturday_workout_finshed
 signal sunday_workout_finished
+
+func get_workout_today(i: int) -> WorkoutRoutine:
+	match i:
+		0:
+			return sunday_workout_plan
+		1:
+			return monday_workout_plan
+		2:
+			return tuesday_workout_plan
+		3:
+			return wednesday_workout_plan
+		4:
+			return thursday_workout_plan
+		5:
+			return friday_workout_plan
+		6:
+			return saturday_workout_plan
+	return
 
 func finish_monday_workout() -> void:
 	emit_signal("monday_workout_finished")

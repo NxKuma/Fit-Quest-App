@@ -11,14 +11,28 @@ var belly: float
 var hips: float
 var legs: float
 
+var day: int
+var workout_plan: WeeklyWorkoutPlan
+var routine_today: WorkoutRoutine
+
 func _ready():
 	var root = get_tree().root
 	
 	# Get the child at the end
 	current_scene = root.get_child(-1)
-func _process(delta):
-	print(user_id);
 	
+	# For workout plan logic
+	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
+	day = Time.get_datetime_dict_from_system()["weekday"]
+	routine_today = workout_plan.get_workout_today(day)
+
+func get_routine_today():
+	return routine_today
+
+func _process(delta):
+	#print(user_id);
+	pass
+
 func _goto_scene(path):
 	# Used in signal callback, or functions in current scene.
 	
