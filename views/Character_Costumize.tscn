@@ -88,7 +88,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer2"]
 layout_mode = 2
-text = "Arms"
+text = "Neck"
 label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer2"]
@@ -103,7 +103,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer"]
 layout_mode = 2
-text = "Text"
+text = "Shoulders"
 label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer"]
@@ -119,7 +119,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer2"]
 layout_mode = 2
-text = "Text"
+text = "Arms"
 label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer2"]
@@ -131,7 +131,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer"]
 layout_mode = 2
-text = "Text"
+text = "Chest"
 label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer"]
@@ -147,7 +147,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer2"]
 layout_mode = 2
-text = "Text"
+text = "Hips"
 label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer2"]
@@ -159,7 +159,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer"]
 layout_mode = 2
-text = "Text"
+text = "Legs"
 label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer"]
@@ -175,7 +175,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer2"]
 layout_mode = 2
-text = "Text"
+text = "Torso"
 label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer2"]
@@ -187,7 +187,8 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer"]
 layout_mode = 2
-text = "Text"
+text = "Belly
+"
 label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer"]
