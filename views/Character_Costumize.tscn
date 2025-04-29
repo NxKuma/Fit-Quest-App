@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c814ewm2b44dl"]
+[gd_scene load_steps=5 format=3 uid="uid://c814ewm2b44dl"]
 
 [ext_resource type="PackedScene" uid="uid://eirga8x8moyx" path="res://character.tscn" id="1_t7v03"]
+[ext_resource type="Script" path="res://views/character_costumize.gd" id="1_uiwjs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ll0g0"]
 bg_color = Color(0.67451, 0.886275, 0.882353, 1)
@@ -14,6 +15,10 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="LabelSettings" id="LabelSettings_c8pat"]
+font_size = 24
+font_color = Color(0.329412, 0.415686, 0.411765, 1)
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -21,6 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_uiwjs")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -82,10 +88,14 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer2"]
 layout_mode = 2
-text = "Text"
+text = "Arms"
+label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer2"]
 layout_mode = 2
+max_value = 1.0
+step = 0.1
+rounded = true
 
 [node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3"]
 layout_mode = 2
@@ -94,6 +104,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer"]
 layout_mode = 2
 text = "Text"
+label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer"]
 layout_mode = 2
@@ -109,6 +120,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer2"]
 layout_mode = 2
 text = "Text"
+label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer2"]
 layout_mode = 2
@@ -120,6 +132,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer"]
 layout_mode = 2
 text = "Text"
+label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer"]
 layout_mode = 2
@@ -135,6 +148,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer2"]
 layout_mode = 2
 text = "Text"
+label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer2"]
 layout_mode = 2
@@ -146,6 +160,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer"]
 layout_mode = 2
 text = "Text"
+label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer"]
 layout_mode = 2
@@ -161,6 +176,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer2"]
 layout_mode = 2
 text = "Text"
+label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer2"]
 layout_mode = 2
@@ -172,6 +188,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer"]
 layout_mode = 2
 text = "Text"
+label_settings = SubResource("LabelSettings_c8pat")
 
 [node name="HSlider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer"]
 layout_mode = 2
