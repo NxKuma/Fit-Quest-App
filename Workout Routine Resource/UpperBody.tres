@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WorkoutRoutine" load_steps=7 format=3 uid="uid://m7l7uue1hbh4"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_btm0p"]
+[ext_resource type="Script" path="res://scripts/workout_routine.gd" id="2_6l080"]
+[ext_resource type="Resource" uid="uid://br2yd2wbq1thg" path="res://Exercise Resource/OverheadShoulderPress.tres" id="2_g2xmo"]
+[ext_resource type="Resource" uid="uid://bpwiwsb7hr4vu" path="res://Exercise Resource/BicepCurls.tres" id="3_2ytr4"]
+[ext_resource type="Resource" uid="uid://bpq57tlxa64cg" path="res://Exercise Resource/Push-Ups.tres" id="4_tbi06"]
+[ext_resource type="Resource" uid="uid://dounrak2lhn36" path="res://Exercise Resource/LatPulldown.tres" id="5_8pwdk"]
+
+[resource]
+script = ExtResource("2_6l080")
+exercises = Array[ExtResource("1_btm0p")]([ExtResource("2_g2xmo"), ExtResource("3_2ytr4"), ExtResource("4_tbi06"), ExtResource("5_8pwdk")])
+routine_name = "Upper Body"
+routine_description = "Targets: Shoulders, Arms, Breasts and Torso"

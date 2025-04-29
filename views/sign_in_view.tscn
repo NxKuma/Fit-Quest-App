@@ -1,0 +1,169 @@
+[gd_scene load_steps=6 format=3 uid="uid://lp6hxt0j5ikc"]
+
+[ext_resource type="Script" path="res://scripts/sign_in_view.gd" id="1_csfkp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hlr18"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.67451, 0.886275, 0.882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.117647, 0.521569, 0.737255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yn5te"]
+content_margin_left = 20.0
+content_margin_top = 8.0
+content_margin_right = 20.0
+content_margin_bottom = 8.0
+bg_color = Color(0.67451, 0.886275, 0.882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.117647, 0.521569, 0.737255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcar4"]
+content_margin_left = 170.0
+content_margin_top = 10.0
+content_margin_right = 170.0
+content_margin_bottom = 10.0
+bg_color = Color(0.254902, 0.788235, 0.886275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.117647, 0.521569, 0.737255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_xsywa"]
+font_size = 60
+font_color = Color(0.117647, 0.521569, 0.737255, 1)
+
+[node name="SignIn View" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_csfkp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.990096, 1.00869)
+color = Color(0.67451, 0.886275, 0.882353, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 300
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Name" type="LineEdit" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_placeholder_color = Color(0.517647, 0.780392, 0.839216, 1)
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+theme_override_constants/minimum_character_width = 20
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_hlr18")
+placeholder_text = "Username"
+alignment = 1
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="MarginContainer/VSplitContainer/VSplitContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Password" type="LineEdit" parent="MarginContainer/VSplitContainer/VSplitContainer/VSplitContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_placeholder_color = Color(0.517647, 0.780392, 0.839216, 1)
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+theme_override_constants/minimum_character_width = 20
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_hlr18")
+placeholder_text = "Password"
+alignment = 1
+
+[node name="VSplitContainer" type="HSplitContainer" parent="MarginContainer/VSplitContainer/VSplitContainer/VSplitContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+split_offset = 20
+
+[node name="Weight" type="LineEdit" parent="MarginContainer/VSplitContainer/VSplitContainer/VSplitContainer2/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_placeholder_color = Color(0.517647, 0.780392, 0.839216, 1)
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+theme_override_constants/minimum_character_width = 8
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_yn5te")
+placeholder_text = "Height (cm)"
+alignment = 1
+
+[node name="Height" type="LineEdit" parent="MarginContainer/VSplitContainer/VSplitContainer/VSplitContainer2/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_placeholder_color = Color(0.517647, 0.780392, 0.839216, 1)
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+theme_override_constants/minimum_character_width = 8
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_yn5te")
+placeholder_text = "Weight (kg)"
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_vcar4")
+text = "Submit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -249.0
+offset_right = 1.0
+offset_bottom = -166.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SIGN UP"
+label_settings = SubResource("LabelSettings_xsywa")
+horizontal_alignment = 1

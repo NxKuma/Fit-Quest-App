@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://nf18q1pi46i5"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_5dgl6"]
+
+[resource]
+script = ExtResource("1_5dgl6")
+exercise_name = "Plank"
+sets = 3
+repetitions = 30
+exercise_description = "Get into a forearm plank position, keeping your body straight. Hold the position while engaging your core muscles."

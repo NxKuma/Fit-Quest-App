@@ -12,17 +12,31 @@ config_version=5
 
 config/name="Fit-Quest"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Singletons/global.gd"
 
 [display]
 
 window/size/viewport_width=540
 window/size/viewport_height=960
 window/size/resizable=false
+window/stretch/mode="viewport"
 window/handheld/orientation=1
+
+[dotnet]
+
+project/assembly_name="Fit-Quest"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
