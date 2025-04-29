@@ -64,7 +64,10 @@ public partial class login_info_manager : Node
 		if (!alr_run) {
 			GD.Print("testing");
 			alr_run = set_current_user("thanie", "thanie");
-			bool test = transfer_avatar_info(global.Get("user_id").As<int>());
+			int userinfo_id = global.Get("info_id").As<int>();
+			bool test = transfer_avatar_info(userinfo_id);
+			GD.Print("did this one run? ", test);
+			test = transfer_person_info(userinfo_id);
 			GD.Print("did this one run? ", test);
 		}
 	}
@@ -90,15 +93,15 @@ public partial class login_info_manager : Node
 		}
 
 		Node global =  GetNode("/root/Global");
-		global.Set("user_id", current_id.ToString());
+		global.Set("info_id", current_id.ToString());
 
 		
 		return true;
 	}
 
-	public bool transfer_avatar_info(int user_id) {
+	public bool transfer_avatar_info(int info_id) {
 		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
-		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + user_id  + "\' );";
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + info_id  + "\' );";
 		var search_person = data_source.CreateCommand(select_string_person);
 		bool does_exist = false;
 		var person_reader = search_person.ExecuteReader();
@@ -109,7 +112,7 @@ public partial class login_info_manager : Node
 		if (!does_exist) return false;
 
 		int avatar_id = -1;
-		String get_person_string = "SELECT avatar_id FROM person WHERE logininfo_id = \'" + user_id  + "\' ";
+		String get_person_string = "SELECT avatar_id FROM person WHERE logininfo_id = \'" + info_id  + "\' ";
 		var get_person = data_source.CreateCommand(get_person_string);
 		var get_person_reader = get_person.ExecuteReader();
 
@@ -159,6 +162,53 @@ public partial class login_info_manager : Node
 		// GD.Print(legs);
 		// GD.Print(neck);
 		DataTransporter.Call("_process_avatar_data");
+
+		return true;
+	}
+
+	public bool transfer_person_info(int info_id) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + info_id  + "\' );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+
+		if (!does_exist) return false;
+
+		int person_id = -1;
+		float height = -1;
+		float weight = -1;
+		float bmi = -1;
+
+		String get_person_string = "SELECT * FROM person WHERE logininfo_id = \'" + info_id  + "\' ";
+		var get_person = data_source.CreateCommand(get_person_string);
+		var get_person_reader = get_person.ExecuteReader();
+
+		while (get_person_reader.Read()) {
+			person_id = get_person_reader.GetInt32(get_person_reader.GetOrdinal("person_id"));
+			height = get_person_reader.GetFloat(get_person_reader.GetOrdinal("person_height_m"));
+			weight = get_person_reader.GetFloat(get_person_reader.GetOrdinal("person_weight_kg"));
+			bmi = get_person_reader.GetFloat(get_person_reader.GetOrdinal("person_bmi"));
+		}
+
+		if (person_id == -1) {
+			return false;
+		}
+
+		DataTransporter.Set("person_id", person_id);
+		DataTransporter.Set("height", height);
+		DataTransporter.Set("weight", weight);
+		DataTransporter.Set("person_data.bmi", bmi);
+		
+		DataTransporter.Call("_process_person_data");
+
+		return true;
+	}
+
+	public bool add_user(string username, string password){
 
 		return true;
 	}
