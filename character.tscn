@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://p2jua8ufk448"]
+[gd_scene load_steps=3 format=3 uid="uid://p2jua8ufk448"]
 
 [ext_resource type="PackedScene" uid="uid://cnd6ahpbxxwev" path="res://test3.glb" id="1_wuhal"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0qkg"]
+albedo_color = Color(0.667454, 0.562131, 0.487106, 1)
 
 [node name="test3" instance=ExtResource("1_wuhal")]
 
@@ -130,3 +133,7 @@ bones/62/rotation = Quaternion(0.5055, -0.0626612, 0.0150382, 0.860417)
 bones/62/scale = Vector3(1, 1, 1)
 bones/63/rotation = Quaternion(0.282477, -0.0262232, 0.00772494, 0.958884)
 bones/64/position = Vector3(8.65326e-08, 5.10774, -5.53972e-09)
+
+[node name="Adjustable Mannequin Mesh_001" parent="Armature/Skeleton3D" index="0"]
+"blend_shapes/Head Style" = 1.0
+surface_material_override/0 = SubResource("StandardMaterial3D_j0qkg")
