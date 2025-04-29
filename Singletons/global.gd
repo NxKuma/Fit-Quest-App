@@ -3,21 +3,41 @@ class_name SceneSwitcher
 
 var current_scene = null
 var user_id: int = -1
-var shoulders: float
-var arms: float
-var breasts: float
-var torso: float
-var belly: float
-var hips: float
-var legs: float
+
+@export var databaseManager: Node
+@export var loginManager: Node
+
+class AvatarParams:
+	var shoulders: float
+	var arms: float
+	var breasts: float
+	var torso: float
+	var belly: float
+	var hips: float
+	var legs: float
+	var neck: float
+	
+var avatar_params: AvatarParams
 
 func _ready():
 	var root = get_tree().root
 	
 	# Get the child at the end
 	current_scene = root.get_child(-1)
+	avatar_params = AvatarParams.new()
+	
+	
 func _process(delta):
 	print(user_id);
+	print("Shoulders: ", avatar_params.shoulders)
+	print("Arms: ", avatar_params.arms)
+	print("Breasts: ", avatar_params.breasts)
+	print("Torso: ", avatar_params.torso)
+	print("Belly: ", avatar_params.belly)
+	print("Hips: ", avatar_params.hips)
+	print("Legs: ", avatar_params.legs)
+	print("Neck: ", avatar_params.neck)
+	# pass
 	
 func _goto_scene(path):
 	# Used in signal callback, or functions in current scene.
