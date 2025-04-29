@@ -2,7 +2,7 @@ extends Control
 
 # Routine logic
 var exerciseLabel: Label
-var routine: workout_routine
+var routine: WorkoutRoutine
 var currentExercise: int = 0
 var button: Button
 var isWorking: bool = false
@@ -26,7 +26,7 @@ func _ready() -> void:
 	exerciseLabel = $"Exercise Container/Exercise Label"
 	
 	# Loading the routine resource for now
-	routine = preload("res://Workout Routine Resource/Push-Pull-Legs.tres")
+	routine = preload("res://Workout Routine Resource/Cardio.tres")
 	
 	# Setting up scene
 	exerciseLabel.text = routine.exercises[currentExercise].exercise_name

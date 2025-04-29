@@ -151,10 +151,6 @@ stretch_mode = 3
 
 [node name="SQL Manager" type="Node" parent="." node_paths=PackedStringArray("DataTransporter")]
 script = ExtResource("17_fbvr2")
-host_string = "localhost"
-username_string = "postgres"
-password_string = "thanie"
-database_string = "fitquest"
 DataTransporter = NodePath("../Data Transporter")
 
 [node name="Login Info Manager" type="Node" parent="." node_paths=PackedStringArray("sql_Manager", "DataTransporter")]
