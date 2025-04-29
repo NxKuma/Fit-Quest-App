@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://hksd5fbuiqlu"]
+[gd_scene load_steps=15 format=3 uid="uid://hksd5fbuiqlu"]
 
 [ext_resource type="Script" path="res://scripts/home_view.gd" id="1_m3tji"]
 [ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
 [ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://Scenes/3d_avatar.tscn" id="1_ngulp"]
 [ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="4_r56lf"]
+[ext_resource type="FontFile" uid="uid://bdaq1i7wekyk3" path="res://Fonts/Mollen Personal Use-BoldCondensed.otf" id="5_n0ivl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doyt0"]
 
@@ -22,7 +23,34 @@ font_size = 120
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_147ja"]
+color = Color(0.592157, 0.929412, 0.976471, 1)
 thickness = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u74vy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pkwtc"]
+font = ExtResource("5_n0ivl")
+font_size = 30
+font_color = Color(0.117647, 0.521569, 0.737255, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m2ljw"]
+font = ExtResource("5_n0ivl")
+font_size = 30
+font_color = Color(0.968627, 0.933333, 0.866667, 1)
+outline_size = 15
+outline_color = Color(0.117647, 0.521569, 0.737255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jar2x"]
+bg_color = Color(0.67451, 0.886275, 0.882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.117647, 0.521569, 0.737255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Home View" type="Control"]
 layout_mode = 3
@@ -116,7 +144,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -284.5
 offset_right = 266.0
-offset_bottom = 284.5
+offset_bottom = 274.5
 grow_vertical = 2
 
 [node name="Side Panels" type="PanelContainer" parent="Side Panel Margin"]
@@ -128,11 +156,12 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
 theme_override_constants/margin_left = 25
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer"]
 layout_mode = 2
+dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
 layout_mode = 2
@@ -143,16 +172,108 @@ label_settings = SubResource("LabelSettings_0h30n")
 [node name="Label2" type="RichTextLabel" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_constants/line_separation = -22
 bbcode_enabled = true
-text = "[color=#3dbed6 ] x 4 [img]res://Art Asset/Icon/propane_icon.png[/img]"
+text = "[color=#3dbed6] [font_size=24px] [outline_size=16] [outline_color=1e85bc]   36 [img]res://Art Asset/Icon/propane_icon.png[/img]"
 fit_content = true
-
-[node name="Panel" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="HSeparator" type="HSeparator" parent="Side Panel Margin/Side Panels/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_147ja")
+
+[node name="Panel" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u74vy")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -78.5
+offset_right = 110.5
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 15
+
+[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "WORKOUT ROUTINE 
+OF THE DAY"
+label_settings = SubResource("LabelSettings_pkwtc")
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "UPPER BODY"
+label_settings = SubResource("LabelSettings_m2ljw")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_147ja")
+
+[node name="Panel2" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_jar2x")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -78.5
+offset_right = 110.5
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 15
+
+[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "WORKOUT ROUTINE 
+OF THE DAY"
+label_settings = SubResource("LabelSettings_pkwtc")
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "WORKOUT ROUTINE 
+OF THE DAY"
+label_settings = SubResource("LabelSettings_m2ljw")
+horizontal_alignment = 1
 
 [editable path="3D Avatar"]
