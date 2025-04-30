@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeeklyWorkoutPlan" load_steps=8 format=3 uid="uid://cmp1jmq5sbkuf"]
+
+[ext_resource type="Script" path="res://scripts/weekly_workout_plan.gd" id="1_3hoql"]
+[ext_resource type="Resource" uid="uid://d4ago5kyndxj5" path="res://Workout Routine Resource/Legs.tres" id="1_g5mb1"]
+[ext_resource type="Resource" uid="uid://ggntb645xvxw" path="res://Workout Routine Resource/Chest_and_Shoulder.tres" id="2_18f81"]
+[ext_resource type="Resource" uid="uid://i7l4jlox7q86" path="res://Workout Routine Resource/Rest.tres" id="3_noaad"]
+[ext_resource type="Resource" uid="uid://m7l7uue1hbh4" path="res://Workout Routine Resource/UpperBody.tres" id="5_gqpt5"]
+[ext_resource type="Resource" uid="uid://cyrxt46dfntot" path="res://Workout Routine Resource/Core_and_Hips.tres" id="6_anu76"]
+[ext_resource type="Resource" uid="uid://ehrlcwf17f6l" path="res://Workout Routine Resource/Back_and_Arm.tres" id="7_t2dli"]
+
+[resource]
+script = ExtResource("1_3hoql")
+monday_workout_plan = ExtResource("2_18f81")
+tuesday_workout_pan = ExtResource("7_t2dli")
+wednesday_workout_plan = ExtResource("3_noaad")
+thursday_workout_pan = ExtResource("6_anu76")
+friday_workout_plan = ExtResource("1_g5mb1")
+saturday_workout_pan = ExtResource("3_noaad")
+sunday_workout_plan = ExtResource("5_gqpt5")
+routine_description = "A form of exercises that focuses on individual muscle groups (Chest, Back, Arms, etc.) while still incorporating rest and cardio for balanced recovery and endurance"

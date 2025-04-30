@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WorkoutRoutine" load_steps=6 format=3 uid="uid://cyrxt46dfntot"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_7nbwt"]
+[ext_resource type="Script" path="res://scripts/workout_routine.gd" id="2_2yusf"]
+[ext_resource type="Resource" uid="uid://nf18q1pi46i5" path="res://Exercise Resource/Plank.tres" id="2_74101"]
+[ext_resource type="Resource" uid="uid://cgylyodhbirbh" path="res://Exercise Resource/HipThrusts.tres" id="3_36pgh"]
+[ext_resource type="Resource" uid="uid://cmbmm5h73fmrx" path="res://Exercise Resource/Squats.tres" id="4_4eu0v"]
+
+[resource]
+script = ExtResource("2_2yusf")
+exercises = Array[ExtResource("1_7nbwt")]([ExtResource("2_74101"), ExtResource("3_36pgh"), ExtResource("4_4eu0v")])
+routine_name = "Core and Hips"
+routine_description = "Targets Belly, Hips and Torso"

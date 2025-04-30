@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WorkoutRoutine" load_steps=6 format=3 uid="uid://d4ago5kyndxj5"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_75wgw"]
+[ext_resource type="Resource" uid="uid://cmbmm5h73fmrx" path="res://Exercise Resource/Squats.tres" id="2_fxey6"]
+[ext_resource type="Script" path="res://scripts/workout_routine.gd" id="2_omm8u"]
+[ext_resource type="Resource" uid="uid://by52152nwbk82" path="res://Exercise Resource/Jogging.tres" id="3_nkurc"]
+[ext_resource type="Resource" uid="uid://nf18q1pi46i5" path="res://Exercise Resource/Plank.tres" id="4_2trrb"]
+
+[resource]
+script = ExtResource("2_omm8u")
+exercises = Array[ExtResource("1_75wgw")]([ExtResource("2_fxey6"), ExtResource("3_nkurc"), ExtResource("4_2trrb")])
+routine_name = "Legs"
+routine_description = "Targets Legs"
