@@ -19,26 +19,28 @@ class AvatarParams:
 	
 var avatar_params: AvatarParams
 
+var day: int
+var workout_plan: WeeklyWorkoutPlan
+var routine_today: WorkoutRoutine
+
 func _ready():
 	var root = get_tree().root
 	
 	# Get the child at the end
 	current_scene = root.get_child(-1)
-	avatar_params = AvatarParams.new()
 	
-	
+	# For workout plan logic
+	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
+	day = Time.get_datetime_dict_from_system()["weekday"]
+	routine_today = workout_plan.get_workout_today(1)
+
+func get_routine_today():
+	return routine_today
+
 func _process(delta):
-	print(user_id);
-	print("Shoulders: ", avatar_params.shoulders)
-	print("Arms: ", avatar_params.arms)
-	print("Breasts: ", avatar_params.breasts)
-	print("Torso: ", avatar_params.torso)
-	print("Belly: ", avatar_params.belly)
-	print("Hips: ", avatar_params.hips)
-	print("Legs: ", avatar_params.legs)
-	print("Neck: ", avatar_params.neck)
-	# pass
-	
+	#print(user_id);
+	pass
+
 func _goto_scene(path):
 	# Used in signal callback, or functions in current scene.
 	
