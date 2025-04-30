@@ -40,14 +40,14 @@ CREATE TABLE person (
     person_bmi REAL GENERATED ALWAYS AS (person_weight_kg / (person_height_m * person_height_m)) STORED,
     logininfo_id SERIAL REFERENCES logininfo(info_id),
     avatar_id SERIAL REFERENCES avatar(avatar_id),
-    guild_id SERIAL REFERENCES guild(guild_id)
+    guild_id INT REFERENCES guild(guild_id)
 );
 
 
 INSERT INTO logininfo (username, pass) VALUES ('thanie', 'thanie');
 INSERT INTO avatar (shoulder_param, arms_param, breasts_param, torso_param, belly_param, hips_param, legs_param, neck_param) VALUES (1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7);
 INSERT INTO guild (guild_name) VALUES ('default');
-INSERT INTO person (person_height_m, person_weight_kg, logininfo_id, avatar_id, guild_id) VALUES (1.69, 70, 1, 1, 1);
+INSERT INTO person (person_height_m, person_weight_kg, logininfo_id, avatar_id, guild_id) VALUES (1.69, 70, 1, 1, NULL);
 
 -- CREATE TABLE streak(
 --     streak_id SERIAL NOT NULL,

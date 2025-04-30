@@ -1,13 +1,15 @@
-
-[gd_scene load_steps=14 format=3 uid="uid://bl4y6jd2d3nrt"]
+[gd_scene load_steps=20 format=3 uid="uid://bl4y6jd2d3nrt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_bhc7n"]
 [ext_resource type="PackedScene" uid="uid://hksd5fbuiqlu" path="res://views/home_view.tscn" id="2_s1anr"]
+[ext_resource type="PackedScene" uid="uid://babfi7v2dnino" path="res://views/tutorial_view.tscn" id="3_blyws"]
 [ext_resource type="PackedScene" uid="uid://6xmlyob2ti21" path="res://views/workout_view.tscn" id="3_wvkul"]
 [ext_resource type="PackedScene" uid="uid://c0nggtkx5i15l" path="res://views/guilds_view.tscn" id="4_pypkf"]
 [ext_resource type="PackedScene" uid="uid://dghtag0kp8owr" path="res://views/profile_view.tscn" id="5_wrjgc"]
 [ext_resource type="Texture2D" uid="uid://dq7v710s7mqgh" path="res://Art Asset/Icon/gym.png" id="7_5q58h"]
 [ext_resource type="Texture2D" uid="uid://cg6bhu3j3bb4s" path="res://Art Asset/Icon_Selected/gym-selected.png" id="8_wr7a4"]
+[ext_resource type="Texture2D" uid="uid://x84eq3buvvoe" path="res://Art Asset/Icon/books.png" id="9_xh8nf"]
+[ext_resource type="Texture2D" uid="uid://0pe5md3tf47v" path="res://Art Asset/Icon_Selected/books-selected.png" id="10_j3046"]
 [ext_resource type="Texture2D" uid="uid://dadcmpu8tpuy7" path="res://Art Asset/Icon/house.png" id="11_obs4w"]
 [ext_resource type="Texture2D" uid="uid://bm7007a3wm0f0" path="res://Art Asset/Icon_Selected/house-select.png" id="12_eht0t"]
 [ext_resource type="Texture2D" uid="uid://4t8kn6s3gk47" path="res://Art Asset/Icon/trophy.png" id="13_4po7v"]
@@ -23,8 +25,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -3.0
-offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -41,6 +41,10 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Workout View" parent="Views" instance=ExtResource("3_wvkul")]
+visible = false
+layout_mode = 1
+
+[node name="Tutorial View" parent="Views" instance=ExtResource("3_blyws")]
 visible = false
 layout_mode = 1
 
@@ -68,17 +72,10 @@ color = Color(0.670588, 0.890196, 0.886275, 1)
 
 [node name="Bottom" type="ColorRect" parent="."]
 layout_direction = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -270.0
-offset_top = -60.0
-offset_right = 270.0
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 2
+offset_top = 870.0
+offset_right = 540.0
+offset_bottom = 960.0
 mouse_filter = 2
 color = Color(0.670588, 0.890196, 0.886275, 1)
 
@@ -96,14 +93,15 @@ grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
-theme_override_constants/margin_top = 35
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="Buttons" type="HBoxContainer" parent="Navigation Bar"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-theme_override_constants/separation = 90
+theme_override_constants/separation = 35
 alignment = 1
 
 [node name="Workout Button" type="TextureButton" parent="Navigation Bar/Buttons"]
@@ -113,6 +111,15 @@ action_mode = 0
 texture_normal = ExtResource("7_5q58h")
 texture_pressed = ExtResource("8_wr7a4")
 texture_hover = ExtResource("8_wr7a4")
+stretch_mode = 3
+
+[node name="Tutorial Button" type="TextureButton" parent="Navigation Bar/Buttons"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+texture_normal = ExtResource("9_xh8nf")
+texture_pressed = ExtResource("10_j3046")
+texture_hover = ExtResource("10_j3046")
 stretch_mode = 3
 
 [node name="Home Button" type="TextureButton" parent="Navigation Bar/Buttons"]

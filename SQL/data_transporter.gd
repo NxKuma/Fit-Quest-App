@@ -15,11 +15,14 @@ var hips: float
 var legs: float
 var neck: float
 
+var avatar_param
+
 # Person Data
 var person_id: int
 var height: float
 var weight: float
 var bmi: float
+var guild_id: int
 
 
 
@@ -44,7 +47,8 @@ func _process_avatar_data():
 
 func _process_person_data():
 	Global.person_data.person_id = person_id
-	Global.person_data.height = height;
-	Global.person_data.weight = weight;
-	Global.person_data.bmi = bmi;
+	Global.person_data.height = height
+	Global.person_data.weight = weight
+	Global.person_data.bmi = bmi
+	Global.person_data.guild_id = guild_id
 	

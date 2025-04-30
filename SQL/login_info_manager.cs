@@ -182,6 +182,7 @@ public partial class login_info_manager : Node
 		float height = -1;
 		float weight = -1;
 		float bmi = -1;
+		int guild_id = -1;
 
 		String get_person_string = "SELECT * FROM person WHERE logininfo_id = \'" + info_id  + "\' ";
 		var get_person = data_source.CreateCommand(get_person_string);
@@ -192,16 +193,20 @@ public partial class login_info_manager : Node
 			height = get_person_reader.GetFloat(get_person_reader.GetOrdinal("person_height_m"));
 			weight = get_person_reader.GetFloat(get_person_reader.GetOrdinal("person_weight_kg"));
 			bmi = get_person_reader.GetFloat(get_person_reader.GetOrdinal("person_bmi"));
+			// guild_id = get_person_reader.GetInt32(get_person_reader.GetOrdinal("guild_id"));
 		}
 
 		if (person_id == -1) {
 			return false;
 		}
 
+		
+
 		DataTransporter.Set("person_id", person_id);
 		DataTransporter.Set("height", height);
 		DataTransporter.Set("weight", weight);
-		DataTransporter.Set("person_data.bmi", bmi);
+		DataTransporter.Set("bmi", bmi);
+		DataTransporter.Set("guild_id", guild_id);
 		
 		DataTransporter.Call("_process_person_data");
 

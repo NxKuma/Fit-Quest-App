@@ -35,11 +35,10 @@ func _process(delta):
 	# print("Legs: ", avatar_params.legs)
 	# print("Neck: ", avatar_params.neck)
 
-	# print("Person ID: ", person_data.person_id)
-	# print("Height: ", person_data.height)
-	# print("Weight: ", person_data.weight)
-	# print("BMI: ", person_data.bmi)
-	pass
+	print("Person ID: ", person_data.person_id)
+	print("Height: ", person_data.height)
+	print("Weight: ", person_data.weight)
+	print("BMI: ", person_data.bmi)
 	
 func _goto_scene(path):
 	# Used in signal callback, or functions in current scene.
