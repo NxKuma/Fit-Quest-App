@@ -3,48 +3,54 @@ extends Control
 # Routine logic
 var routine: WorkoutRoutine
 var currentExercise: int = 0
+var timeFinish: Array[String]
 var doCountdown: bool = false
+var showPopup: bool = true
 
 # For stopwatch mechanic
 var time: float = 0.0
 var minutes: int = 0
 var seconds: int = 0
 var mseconds: int = 0
-var maxTime: int = 3
+var maxTime: int = 1
 
 # UI
 var title: Label
 var exerciseLabel: Label
 
-var start: Button
-var pause: Button
-var buttonGroup: HBoxContainer
-var resume: Button
-var finish: Button
 var minutesLabel: Label
 var secondsLabel: Label
 var msecondsLabel: Label
 var countdown: Label
 
+var start: Button
+var pause: Button
+var buttonGroup: HBoxContainer
+
+var donePanel: Panel
+var workoutSummary: VBoxContainer
 
 func _ready() -> void:
 	load_routine()
 	
 	# Initialize components
+	countdown = $Countdown
+	
 	title = $Header/Title
 	exerciseLabel = $"Header/Exercise Label"
 	
 	start = $Panel/Buttons/Start
 	pause = $Panel/Buttons/Pause
 	buttonGroup = $"Panel/Buttons/Secondary Buttons" 
-	resume = $"Panel/Buttons/Secondary Buttons/Resume"
-	finish = $"Panel/Buttons/Secondary Buttons/Finish"
 	
 	minutesLabel = $Panel/Stopwatch/Minutes
 	secondsLabel = $Panel/Stopwatch/Seconds
 	msecondsLabel = $Panel/Stopwatch/Milliseconds
 	
-	countdown = $Countdown
+	donePanel = $Done
+	workoutSummary = $"Done/Workout Summary"
+	
+	timeFinish = []
 	
 	# Setup header
 	title.text = routine.routine_name
@@ -61,15 +67,6 @@ func _ready() -> void:
 	# _physics_process right now is to handle stopwatch. Can migrate to physics_process later
 	# if _physics_process is needed for workout session logic 
 	set_physics_process(false)
-	#set_process(false)
-
-#func _process(delta: float) -> void:
-	#if (currentExercise >= routine.exercises.size()):
-		#countdown.visible = true
-		#countdown.text = "Done!"
-		#button.disabled = true
-		#return
-	#exerciseLabel.text = routine.exercises[currentExercise].exercise_name
 
 func _physics_process(delta: float) -> void:
 	time += delta
@@ -86,35 +83,25 @@ func _physics_process(delta: float) -> void:
 func load_routine():
 	routine = Global.get_routine_today()
 
-#func _on_start_or_finish_pressed() -> void:
-	#if (!isWorking):
-		#isWorking = true
-		#button.text = "Finish Set"
-		#exerciseDone = false
-		#set_physics_process(true)
-	#else:
-		#isWorking = false
-		#button.text = "Start Set"
-		#set_physics_process(false)
-		#print(get_time_formatted())
-		#reset_stopwatch()
-		#currentExercise += 1
-		#
-
 func play_countdown() -> void:
 	countdown.visible = true
-	countdown.text = "%d" % (maxTime - seconds)
+	if (showPopup):
+		countdown.text = "%d" % (maxTime - seconds)
+	else:
+		countdown.text = "Done!"
 	if (maxTime - seconds <= -1):
 		countdown.visible = false
 		pause.visible = true
 		time = 0
-		print("countdown done")
 		doCountdown = false
-	if (maxTime - seconds <= 0):
+		if (!showPopup):
+			show_summary()
+	if (maxTime - seconds <= 0 and showPopup):
 		countdown.text = "%s" % "Go!"
 
 func start_set() -> void:
 	doCountdown = true
+	showPopup = true
 	set_physics_process(true)
 	start.visible = false
 
@@ -129,14 +116,14 @@ func resume_set() -> void:
 	pause.visible = true
 
 func finish_set() -> void:
-	# save timer data
-	get_time_formatted()
-	reset_stopwatch()
+	timeFinish.append(get_time_formatted())
 	currentExercise += 1
+	reset_stopwatch()
 	buttonGroup.visible = false
 	if (currentExercise >= routine.exercises.size()):
-		countdown.visible = true
-		countdown.text = "Done!"
+		set_physics_process(true)
+		showPopup = false
+		doCountdown = true
 	else:
 		exerciseLabel.text = routine.exercises[currentExercise].exercise_name
 		start.visible = true
@@ -156,10 +143,20 @@ func reset_stopwatch() -> void:
 func get_time_formatted() -> String:
 	return "%02d:%02d.%02d" % [minutes, seconds, mseconds]
 
+func show_summary():
+	title.text = "Workout Summary"
+	exerciseLabel.text = ""
+	donePanel.visible = true
+	var i: int = 0
+	for exercise in routine.exercises:
+		var label = Label.new()
+		label.text = "%s - %s" % [exercise.exercise_name, timeFinish[i]]
+		label.add_theme_font_size_override("font_size", 25)
+		workoutSummary.add_child(label)
+		i += 1
 
 func _on_start_pressed() -> void:
 	start_set()
-
 
 func _on_pause_pressed() -> void:
 	pause_set()

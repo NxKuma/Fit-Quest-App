@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6xmlyob2ti21"]
+[gd_scene load_steps=12 format=3 uid="uid://6xmlyob2ti21"]
 
 [ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://Scenes/3d_avatar.tscn" id="1_iq61l"]
 [ext_resource type="Script" path="res://views/workout_session.gd" id="1_we8sx"]
@@ -55,6 +55,13 @@ corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11blc"]
+bg_color = Color(0.352941, 0.709804, 0.815686, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="Workout View" type="Control"]
 layout_mode = 3
@@ -281,7 +288,7 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_44088")
 text = "Finish"
 
-[node name="Workout Done" type="Control" parent="."]
+[node name="Done" type="Panel" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -289,20 +296,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -232.5
+offset_top = -401.5
+offset_right = 232.5
+offset_bottom = 401.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_11blc")
 
-[node name="Summary Container" type="VBoxContainer" parent="Workout Done"]
+[node name="Workout Summary" type="VBoxContainer" parent="Done"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -343.5
-offset_right = 256.0
-offset_bottom = 343.5
+offset_left = -200.0
+offset_top = -20.0
+offset_right = 200.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
