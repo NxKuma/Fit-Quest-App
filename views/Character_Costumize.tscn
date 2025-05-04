@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c814ewm2b44dl"]
 
 [ext_resource type="Script" path="res://views/character_costumize.gd" id="1_uiwjs"]
-[ext_resource type="PackedScene" uid="uid://c5lobhisccxei" path="res://character_model_scene.tscn" id="2_mekqy"]
+[ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="2_amnvi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ll0g0"]
 bg_color = Color(0.67451, 0.886275, 0.882353, 1)
@@ -45,22 +45,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="VSplitContainer"]
+[node name="Character3D" parent="VSplitContainer" instance=ExtResource("2_amnvi")]
 layout_mode = 2
-
-[node name="SubViewport" type="SubViewport" parent="VSplitContainer/SubViewportContainer"]
-transparent_bg = true
-handle_input_locally = false
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="VSplitContainer/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.945767, 1.3845)
-current = true
-
-[node name="OmniLight3D" type="OmniLight3D" parent="VSplitContainer/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81109, 4.5269)
-
-[node name="character_model_scene" parent="VSplitContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_mekqy")]
 
 [node name="Panel" type="Panel" parent="VSplitContainer"]
 layout_mode = 2
@@ -95,18 +81,17 @@ label_settings = SubResource("LabelSettings_c8pat")
 layout_mode = 2
 max_value = 1.0
 step = 0.1
-rounded = true
 
 [node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Shoulders" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer"]
+[node name="Breast" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer"]
 layout_mode = 2
-text = "Shoulders"
+text = "Breast"
 label_settings = SubResource("LabelSettings_c8pat")
 
-[node name="Shoulder_Slider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer"]
+[node name="Breast Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer"]
 layout_mode = 2
 
 [node name="HSplitContainer2" type="HSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer"]
@@ -129,12 +114,13 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Chest" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer"]
+[node name="Legs" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer"]
 layout_mode = 2
-text = "Chest"
+text = "Legs
+"
 label_settings = SubResource("LabelSettings_c8pat")
 
-[node name="Breast Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer"]
+[node name="Leg Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer"]
 layout_mode = 2
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer"]
@@ -145,24 +131,25 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Hips" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer2"]
+[node name="Hip" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer2"]
 layout_mode = 2
 text = "Hips"
 label_settings = SubResource("LabelSettings_c8pat")
 
-[node name="Hips_Slider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer2"]
+[node name="Hips Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer2"]
 layout_mode = 2
 
 [node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Legs" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer"]
+[node name="Head" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer"]
 layout_mode = 2
-text = "Legs"
+text = "Head Style
+"
 label_settings = SubResource("LabelSettings_c8pat")
 
-[node name="Legs_Slider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer"]
+[node name="Head Style" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer"]
 layout_mode = 2
 
 [node name="HSplitContainer4" type="HSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer"]
@@ -191,5 +178,8 @@ text = "Belly
 "
 label_settings = SubResource("LabelSettings_c8pat")
 
-[node name="Belly_Slider" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer"]
+[node name="Belly Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer"]
 layout_mode = 2
+
+[editable path="VSplitContainer/Character3D"]
+[editable path="VSplitContainer/Character3D/SubViewport/character_model_scene"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/home_view.gd" id="1_m3tji"]
 [ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
-[ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://views/Scenes/3d_avatar.tscn" id="1_ngulp"]
+[ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="2_iy5u8"]
 [ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="4_r56lf"]
 [ext_resource type="FontFile" uid="uid://bdaq1i7wekyk3" path="res://Fonts/Mollen Personal Use-BoldCondensed.otf" id="5_n0ivl"]
 
@@ -107,29 +107,12 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_doyt0")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_py31l")
 
-[node name="3D Avatar" parent="." instance=ExtResource("1_ngulp")]
-layout_mode = 1
-offset_left = 178.0
-offset_top = 161.0
-offset_right = 44.0
-offset_bottom = -137.0
-
-[node name="SubViewport" parent="3D Avatar" index="0"]
-size = Vector2i(406, 662)
-
-[node name="Camera3D" parent="3D Avatar/SubViewport" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.994926, 0.100605, 0, -0.100605, 0.994926, 0, 24.5498, 128.22)
-fov = 85.0
-
-[node name="OmniLight3D" parent="3D Avatar/SubViewport" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2198, 116.623, 74.7181)
-visible = false
-light_energy = 400.0
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D Avatar/SubViewport" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 156.459, 156.053)
-light_energy = 2.0
-sky_mode = 1
+[node name="SubViewportContainer" parent="." instance=ExtResource("2_iy5u8")]
+layout_mode = 2
+offset_left = 119.0
+offset_top = 234.0
+offset_right = 631.0
+offset_bottom = 746.0
 
 [node name="Man" type="Sprite2D" parent="."]
 visible = false
@@ -276,4 +259,5 @@ OF THE DAY"
 label_settings = SubResource("LabelSettings_m2ljw")
 horizontal_alignment = 1
 
-[editable path="3D Avatar"]
+[editable path="SubViewportContainer"]
+[editable path="SubViewportContainer/SubViewport/character_model_scene"]

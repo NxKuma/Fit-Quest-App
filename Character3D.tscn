@@ -1,10 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2p0u6ipvbcqg"]
+[gd_scene load_steps=3 format=3 uid="uid://b02t21sdwbeg4"]
 
-[ext_resource type="PackedScene" uid="uid://cbnomnn673uuu" path="res://character_model.glb" id="1_3kpde"]
+[ext_resource type="Script" path="res://character_3d.gd" id="1_rg6ec"]
+[ext_resource type="PackedScene" uid="uid://b2p0u6ipvbcqg" path="res://character_model_scene.tscn" id="1_xy7su"]
 
-[node name="character_model_scene" instance=ExtResource("1_3kpde")]
+[node name="Character3D" type="SubViewportContainer"]
+script = ExtResource("1_rg6ec")
 
-[node name="Skeleton3D" parent="Armature" index="0"]
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.945767, 1.3845)
+current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81109, 4.5269)
+
+[node name="character_model_scene" parent="SubViewport" instance=ExtResource("1_xy7su")]
+
+[node name="Skeleton3D" parent="SubViewport/character_model_scene/Armature" index="0"]
 bones/7/rotation = Quaternion(-0.549022, -0.442306, 0.562936, -0.431327)
 bones/8/position = Vector3(1.48318e-06, 9.84772, 3.28791e-05)
 bones/9/position = Vector3(2.62733e-07, 20.0335, -2.10391e-05)
@@ -36,5 +52,4 @@ bones/50/position = Vector3(0.00814557, 2.34909, -1.06692e-05)
 bones/52/position = Vector3(-0.00376964, 2.30541, 1.67646e-05)
 bones/55/rotation = Quaternion(-0.00051885, -0.0147879, 0.999276, -0.0350558)
 
-[node name="Adjustable Mannequin Mesh_002" parent="Armature/Skeleton3D" index="0"]
-"blend_shapes/Belly Size" = 1.0
+[editable path="SubViewport/character_model_scene"]

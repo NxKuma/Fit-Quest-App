@@ -1,18 +1,22 @@
 extends Node
 
-@onready var character_scene = $VSplitContainer/SubViewportContainer/SubViewport/test3
+@onready var character_scene = $VSplitContainer/Character3D/SubViewport/character_model_scene
+var slider_array = []
 
 var model 
 
 const blend_shapes = [
 	"Arm Size",
-	"Belly",
+	"Belly Size",
 	"Breast Size",
-	"Hips",
+	"Hips Size",
 	"Leg Size",
 	"Neck Size",
-	"Torso Size"
+	"Torso Size",
+	"Head Style"
 ]
+
+signal blend_shape_change
 
 func _ready():
 	
@@ -25,17 +29,42 @@ func _ready():
 		#print(i, ": ", model.mesh.get_blend_shape_name(i))
 	#model.set_blend_shape_value(0, 2.0)
 	
-	var sliders_container = $VSplitContainer/Panel/MarginContainer/VBoxContainer 
-	for shape_name in blend_shapes:
-		var slider = sliders_container.get_node_or_null(shape_name)
-		if slider:
-			slider.min_value = 0.0
-			slider.max_value = 1.0
-			slider.step = 0.01
-			slider.connect("value_changed", _on_slider_value_changed.bind(shape_name))
-			print(slider)
+	
+	
+	
+	var sliders_container = $VSplitContainer/Panel/MarginContainer/VBoxContainer
+	
+	for hsplit in sliders_container.get_children():
+		for vsplit in hsplit.get_children():
+			slider_array.append(vsplit.get_child(1))
+	
+	for n in blend_shapes.size():
+		
+		for m in blend_shapes.size():
+			var slider = slider_array[n]
+			if blend_shapes[m].contains(slider.get_name()) :
+				slider.min_value = 0.0
+				slider.max_value = 1.0
+				slider.set_step(0.01)
+				slider.connect("value_changed", self ,_on_slider_value_changed.bind(blend_shapes[m]) )
 
-func _on_slider_value_changed(value: float, blend_shape_name: String):
-	var index = model.mesh.get_blend_shape_index(blend_shape_name)
-	model.set_blend_shape_value(index, value)
-	print(model.get_blend_shape_name(value))
+				
+				
+		#print(slider)
+		#if slider:
+			#slider.min_value = 0.0
+			#slider.max_value = 1.0
+			#slider.step = 0.01
+			#slider.connect("value_changed", _on_slider_value_changed)
+			
+
+func _on_slider_value_changed(value: float, blend_shape: String):
+	##var index = model.mesh.get_blend_shape_index(blend_shape_name)
+	#model.set_blend_shape_value(blend_shape_index, value)
+	##print(blend_shape_name)
+	print(blend_shape)
+	pass
+
+
+func _on_neck_size_value_changed(value: float, extra_arg_0: String) -> void:
+	pass # Replace with function body.
