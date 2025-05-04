@@ -13,7 +13,13 @@ public partial class login_info_manager : Node
 	private int n;
 	private int euler_n;
 	private bool alr_run = false;
+	Node global;
+
+	[Export]
+	Node DataTransporter;
 	// Called when the node enters the scene tree for the first time.
+
+	[Signal] public delegate void OnCSharpSentDataEventHandler(string theData);
 
 
 	public int extended_euclid(int a, int b, ref int x, ref int y) {
@@ -42,6 +48,8 @@ public partial class login_info_manager : Node
 		n = p * q;
 		euler_n = (p-1) * (q-1);
 
+		global =  GetNode("/root/Global");
+
 
 	}
 
@@ -56,6 +64,8 @@ public partial class login_info_manager : Node
 		if (!alr_run) {
 			GD.Print("testing");
 			alr_run = set_current_user("thanie", "thanie");
+			bool test = transfer_avatar_info(global.Get("user_id").As<int>());
+			GD.Print("did this one run? ", test);
 		}
 	}
 
@@ -68,20 +78,88 @@ public partial class login_info_manager : Node
 		while (search_reader.Read()){
 			does_exist = search_reader.GetBoolean(0);
 		}
-
 		if (!does_exist) return false;
 
 		String command_string = "SELECT info_id FROM logininfo WHERE username = \'"+  username + "\' AND pass = \'" + password + "\';";
 		var command = data_source.CreateCommand(command_string);
 		var command_reader = command.ExecuteReader();
 		int current_id = -1;
+		GD.Print("finished?");
 		while (command_reader.Read()) {
 			current_id = command_reader.GetInt32(0);
 		}
 
-		Node global =  GetNode("/root/global");
+		Node global =  GetNode("/root/Global");
 		global.Set("user_id", current_id.ToString());
-		return true;
 
+		
+		return true;
+	}
+
+	public bool transfer_avatar_info(int user_id) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + user_id  + "\' );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+
+		if (!does_exist) return false;
+
+		int avatar_id = -1;
+		String get_person_string = "SELECT avatar_id FROM person WHERE logininfo_id = \'" + user_id  + "\' ";
+		var get_person = data_source.CreateCommand(get_person_string);
+		var get_person_reader = get_person.ExecuteReader();
+
+		GD.Print("sure ", get_person_reader.GetOrdinal("avatar_id"));
+		while (get_person_reader.Read()) {
+			avatar_id = get_person_reader.GetInt32(get_person_reader.GetOrdinal("avatar_id"));
+		}
+		GD.Print("sure");
+		if (avatar_id == -1) {
+			return false;
+		}
+
+
+		float shoulders = 0.0f, arms= 0.0f, breasts= 0.0f, torso= 0.0f, belly= 0.0f, hips= 0.0f, legs= 0.0f, neck= 0.0f;
+		String get_avatar_string = "SELECT * FROM avatar WHERE avatar_id = " + avatar_id.ToString() + ";";
+		var get_avatar = data_source.CreateCommand(get_avatar_string);
+		var get_avatar_reader = get_avatar.ExecuteReader();
+		
+		while (get_avatar_reader.Read()) {
+			shoulders = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("shoulder_param"));
+			arms = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("arms_param"));
+			breasts = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("breasts_param"));
+			torso = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("torso_param"));
+			belly = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("belly_param"));
+			hips = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("hips_param"));
+			legs = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("legs_param"));
+			neck = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("neck_param"));
+		}
+
+
+		DataTransporter.Set("shoulders", shoulders.ToString());
+		DataTransporter.Set("arms", arms.ToString());
+		DataTransporter.Set("breasts", breasts.ToString());
+		DataTransporter.Set("torso", torso.ToString());
+		DataTransporter.Set("belly", belly.ToString());
+		DataTransporter.Set("hips", hips.ToString());
+		DataTransporter.Set("legs", legs.ToString());
+		DataTransporter.Set("neck", neck.ToString());
+
+		// GD.Print("HMMM");
+		// GD.Print(shoulders);
+		// GD.Print(arms);
+		// GD.Print(breasts);
+		// GD.Print(torso);
+		// GD.Print(belly);
+		// GD.Print(hips);
+		// GD.Print(legs);
+		// GD.Print(neck);
+		DataTransporter.Call("_process_avatar_data");
+
+		return true;
 	}
 }
