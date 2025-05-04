@@ -157,13 +157,13 @@ theme_override_constants/margin_left = 25
 layout_mode = 2
 dragger_visibility = 2
 
-[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
+[node name="Day of the Week" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "TH"
 label_settings = SubResource("LabelSettings_0h30n")
 
-[node name="Label2" type="RichTextLabel" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
+[node name="Streak" type="RichTextLabel" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/line_separation = -22
@@ -221,7 +221,7 @@ layout_mode = 2
 layout_mode = 2
 texture = ExtResource("6_0uq4e")
 
-[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2/HSplitContainer"]
+[node name="Routine of the  Day" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "UPPER BODY"
@@ -277,7 +277,7 @@ theme_override_constants/separation = 30
 layout_mode = 2
 texture = ExtResource("8_c2kiu")
 
-[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2/HSplitContainer"]
+[node name="Target Muscle" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "CHEST"
