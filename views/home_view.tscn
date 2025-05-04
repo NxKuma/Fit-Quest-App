@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://hksd5fbuiqlu"]
+[gd_scene load_steps=14 format=3 uid="uid://hksd5fbuiqlu"]
 
 [ext_resource type="Script" path="res://scripts/home_view.gd" id="1_m3tji"]
-[ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
-[ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://views/Scenes/3d_avatar.tscn" id="1_ngulp"]
+[ext_resource type="PackedScene" uid="uid://car6yiecdhhp0" path="res://character_model_scene.tscn" id="2_pv6ym"]
 [ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="4_r56lf"]
 [ext_resource type="FontFile" uid="uid://bdaq1i7wekyk3" path="res://Fonts/Mollen Personal Use-BoldCondensed.otf" id="5_n0ivl"]
 
@@ -107,35 +106,21 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_doyt0")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_py31l")
 
-[node name="3D Avatar" parent="." instance=ExtResource("1_ngulp")]
-layout_mode = 1
-offset_left = 178.0
-offset_top = 161.0
-offset_right = 44.0
-offset_bottom = -137.0
+[node name="3D Character" type="SubViewportContainer" parent="."]
+layout_mode = 2
+offset_left = 139.0
+offset_top = 398.0
+offset_right = 651.0
+offset_bottom = 910.0
 
-[node name="SubViewport" parent="3D Avatar" index="0"]
-size = Vector2i(406, 662)
+[node name="SubViewport" type="SubViewport" parent="3D Character"]
+handle_input_locally = false
+render_target_update_mode = 4
 
-[node name="Camera3D" parent="3D Avatar/SubViewport" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.994926, 0.100605, 0, -0.100605, 0.994926, 0, 24.5498, 128.22)
-fov = 85.0
+[node name="character_model" parent="3D Character/SubViewport" instance=ExtResource("2_pv6ym")]
 
-[node name="OmniLight3D" parent="3D Avatar/SubViewport" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2198, 116.623, 74.7181)
-visible = false
-light_energy = 400.0
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D Avatar/SubViewport" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 156.459, 156.053)
-light_energy = 2.0
-sky_mode = 1
-
-[node name="Man" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(162, 509)
-scale = Vector2(0.411, 0.36)
-texture = ExtResource("1_ngc2x")
+[node name="Camera3D" type="Camera3D" parent="3D Character/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.993199, 0.116428, 0, -0.116428, 0.993199, 0, 1.02482, 1.50504)
 
 [node name="Side Panel Margin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -275,5 +260,3 @@ text = "WORKOUT ROUTINE
 OF THE DAY"
 label_settings = SubResource("LabelSettings_m2ljw")
 horizontal_alignment = 1
-
-[editable path="3D Avatar"]
