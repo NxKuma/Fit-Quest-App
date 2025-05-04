@@ -12,6 +12,11 @@ var days_abv = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	day_of_the_week.set_text(days_abv[time.weekday])
+	var routine_name = Global.routine_today.routine_name
+	var routine_target = Global.routine_today.routine_description.erase(0, 8)
+	
+	routine_of_the__day.set_text(routine_name.to_upper())
+	target_muscle.set_text(routine_target.to_upper())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

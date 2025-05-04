@@ -225,7 +225,6 @@ horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/margin_left = 15
 
@@ -234,6 +233,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2/HSplitContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 texture = ExtResource("6_0uq4e")
 
 [node name="Routine of the  Day" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2/HSplitContainer"]
@@ -281,7 +281,6 @@ horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2"]
@@ -290,14 +289,19 @@ theme_override_constants/separation = 30
 
 [node name="TextureRect" type="TextureRect" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2/HSplitContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 texture = ExtResource("8_c2kiu")
 
 [node name="Target Muscle" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2/HSplitContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 3
+size_flags_vertical = 1
 text = "CHEST"
 label_settings = SubResource("LabelSettings_m2ljw")
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [editable path="SubViewportContainer"]
 [editable path="SubViewportContainer/SubViewport/character_model_scene"]
