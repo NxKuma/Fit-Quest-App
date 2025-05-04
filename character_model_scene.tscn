@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5lobhisccxei"]
+
+[ext_resource type="PackedScene" uid="uid://cbnomnn673uuu" path="res://character_model.glb" id="1_3kpde"]
+
+[node name="character_model_scene" instance=ExtResource("1_3kpde")]
+
+[node name="Adjustable Mannequin Mesh_002" parent="Armature/Skeleton3D" index="0"]
+"blend_shapes/Belly Size" = 1.0
