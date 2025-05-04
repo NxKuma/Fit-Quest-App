@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://h7smx2qlj5ci"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_lmafr"]
+
+[resource]
+script = ExtResource("1_lmafr")
+exercise_name = "Burpee"
+sets = 2
+repetitions = 10
+exercise_description = "A high-intensity full-body movement combining a squat, push-up, and jump, used for building strength and endurance."

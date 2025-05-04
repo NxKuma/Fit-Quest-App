@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="WorkoutRoutine" load_steps=6 format=3 uid="uid://brjs546nk4rif"]
+[gd_resource type="Resource" script_class="WorkoutRoutine" load_steps=8 format=3 uid="uid://brjs546nk4rif"]
 
 [ext_resource type="Script" path="res://scripts/exercise.gd" id="1_p54op"]
 [ext_resource type="Script" path="res://scripts/workout_routine.gd" id="2_b0vgi"]
 [ext_resource type="Resource" uid="uid://nf18q1pi46i5" path="res://Exercise Resource/Plank.tres" id="2_f8qck"]
+[ext_resource type="Resource" uid="uid://mbk21hljurmb" path="res://Exercise Resource/JumpingJack.tres" id="2_l4hp8"]
+[ext_resource type="Resource" uid="uid://h7smx2qlj5ci" path="res://Exercise Resource/Burpee.tres" id="3_sxkua"]
 [ext_resource type="Resource" uid="uid://cgylyodhbirbh" path="res://Exercise Resource/HipThrusts.tres" id="3_vftns"]
 [ext_resource type="Resource" uid="uid://cmbmm5h73fmrx" path="res://Exercise Resource/Squats.tres" id="4_8fpuv"]
 
 [resource]
 script = ExtResource("2_b0vgi")
-exercises = Array[ExtResource("1_p54op")]([ExtResource("2_f8qck"), ExtResource("3_vftns"), ExtResource("4_8fpuv")])
+exercises = Array[ExtResource("1_p54op")]([ExtResource("2_l4hp8"), ExtResource("3_sxkua"), ExtResource("2_f8qck"), ExtResource("3_vftns"), ExtResource("4_8fpuv")])
 routine_name = "Lower Body and Core"
 routine_description = "Targets: Belly, Hips and Legs"

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_klkwt")
-exercise_name = "Lat Pulldown"
+exercise_name = "Pull up"
 sets = 3
 repetitions = 10
-exercise_description = "Sit at a lat pulldown machine, grab the bar with a wide grip, and pull it down to your chest before slowly releasing it back up."
+exercise_description = "An upper-body exercise where you hang from a bar and pull yourself up until your chin is above the bar, targeting the back, shoulders, and arms."

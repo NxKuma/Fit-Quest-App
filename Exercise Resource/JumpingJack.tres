@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://mbk21hljurmb"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_bh0io"]
+
+[resource]
+script = ExtResource("1_bh0io")
+exercise_name = "Jumping Jack"
+sets = 1
+repetitions = 30
+exercise_description = "A full-body cardio move where you jump your feet out while raising your arms overhead, then return to the starting position."
