@@ -20,6 +20,9 @@ public partial class sql_manager : Node
 	[Export]
 	public string database_string {get; set;} = "";
 
+	[Export]
+	Node DataTransporter;
+
 	public static string connectionString = "";
 	public static string setup_string = "CREATE TABLE car (car_id serial PRIMARY KEY,wheel_cnt int NOT NULL);\r\n\r\nINSERT INTO car (wheel_cnt) VALUES (10);";
 	public static string clear_string = "DROP TABLE car;";
@@ -49,7 +52,7 @@ public partial class sql_manager : Node
 		connectionString += "Database=" + database_string;
 		setup_sql_string = LoadFromFile("res://SQL//setup.SQL");
 		//GD.Print(setup_sql_string);
- 		runSql();
+		runSql();
 	}
 	
 	public void runSql()
