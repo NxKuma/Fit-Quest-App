@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpeobg6t2jjnc"]
+
+[ext_resource type="PackedScene" uid="uid://ciqajqop8oflj" path="res://Art Asset/3D Assets/anim.tscn" id="1_6mv35"]
+
+[node name="3D Avatar" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(540, 960)
+render_target_update_mode = 4
+
+[node name="AuxScene" parent="SubViewport" instance=ExtResource("1_6mv35")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.948644, 0.316345, 0, -0.316345, 0.948644, 0, 61.41, 150.08)
+current = true
+
+[node name="OmniLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25665, 102.664, 214.032)
