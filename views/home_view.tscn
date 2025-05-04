@@ -1,10 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://hksd5fbuiqlu"]
+[gd_scene load_steps=18 format=3 uid="uid://hksd5fbuiqlu"]
 
 [ext_resource type="Script" path="res://scripts/home_view.gd" id="1_m3tji"]
 [ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
 [ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="2_iy5u8"]
 [ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="4_r56lf"]
 [ext_resource type="FontFile" uid="uid://bdaq1i7wekyk3" path="res://Fonts/Mollen Personal Use-BoldCondensed.otf" id="5_n0ivl"]
+[ext_resource type="FontFile" uid="uid://d07kg4o6voepx" path="res://Fonts/Mollen Personal Use-Narrow.otf" id="5_pv2x2"]
+[ext_resource type="Texture2D" uid="uid://bpwhve0u0igph" path="res://Art Asset/Icon/calendar.png" id="6_0uq4e"]
+[ext_resource type="Texture2D" uid="uid://ry2ovn5fgx8s" path="res://Art Asset/Icon/goal.png" id="8_c2kiu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doyt0"]
 
@@ -29,7 +32,7 @@ thickness = 2
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u74vy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pkwtc"]
-font = ExtResource("5_n0ivl")
+font = ExtResource("5_pv2x2")
 font_size = 30
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
@@ -40,17 +43,7 @@ font_color = Color(0.968627, 0.933333, 0.866667, 1)
 outline_size = 15
 outline_color = Color(0.117647, 0.521569, 0.737255, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jar2x"]
-bg_color = Color(0.67451, 0.886275, 0.882353, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.117647, 0.521569, 0.737255, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plga5"]
 
 [node name="Home View" type="Control"]
 layout_mode = 3
@@ -63,6 +56,7 @@ mouse_filter = 1
 script = ExtResource("1_m3tji")
 
 [node name="Background-Top" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,7 +71,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -320.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -157,8 +150,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = 10.0
 offset_top = -284.5
-offset_right = 266.0
+offset_right = 276.0
 offset_bottom = 274.5
 grow_vertical = 2
 
@@ -178,13 +172,13 @@ theme_override_constants/margin_left = 25
 layout_mode = 2
 dragger_visibility = 2
 
-[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
+[node name="Day of the Week" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "TH"
 label_settings = SubResource("LabelSettings_0h30n")
 
-[node name="Label2" type="RichTextLabel" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
+[node name="Streak" type="RichTextLabel" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/line_separation = -22
@@ -231,10 +225,18 @@ horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/margin_left = 15
 
-[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2"]
+[node name="HSplitContainer" type="HSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("6_0uq4e")
+
+[node name="Routine of the  Day" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "UPPER BODY"
@@ -248,7 +250,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_147ja")
 [node name="Panel2" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_jar2x")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_plga5")
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2"]
 layout_mode = 1
@@ -263,33 +265,43 @@ offset_right = 110.5
 offset_bottom = 78.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_top = 15
 
 [node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "WORKOUT ROUTINE 
-OF THE DAY"
+text = "TARGET MUSCLE"
 label_settings = SubResource("LabelSettings_pkwtc")
 horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2"]
+[node name="HSplitContainer" type="HSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2"]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "WORKOUT ROUTINE 
-OF THE DAY"
+theme_override_constants/separation = 30
+
+[node name="TextureRect" type="TextureRect" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("8_c2kiu")
+
+[node name="Target Muscle" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "CHEST"
 label_settings = SubResource("LabelSettings_m2ljw")
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [editable path="SubViewportContainer"]
 [editable path="SubViewportContainer/SubViewport/character_model_scene"]

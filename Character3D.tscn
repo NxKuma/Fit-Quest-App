@@ -21,7 +21,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81109, 4.5269)
 [node name="character_model_scene" parent="SubViewport" instance=ExtResource("1_xy7su")]
 
 [node name="Skeleton3D" parent="SubViewport/character_model_scene/Armature" index="0"]
-bones/7/rotation = Quaternion(-0.549022, -0.442306, 0.562936, -0.431327)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/position = Vector3(1.37091e-06, 9.84772, 6.27488e-05)
 bones/8/rotation = Quaternion(-0.0776131, -0.000536654, 0.00689251, 0.99696)
