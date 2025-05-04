@@ -46,7 +46,7 @@ func _ready():
 				slider.min_value = 0.0
 				slider.max_value = 1.0
 				slider.set_step(0.01)
-				slider.connect("value_changed", self ,_on_slider_value_changed.bind(blend_shapes[m]) )
+				#slider.connect("value_changed", self ,_on_slider_value_changed.bind(blend_shapes[m]) )
 
 				
 				
@@ -67,4 +67,5 @@ func _on_slider_value_changed(value: float, blend_shape: String):
 
 
 func _on_neck_size_value_changed(value: float, extra_arg_0: String) -> void:
-	pass # Replace with function body.
+	model.set_blend_shape_value()
+	
