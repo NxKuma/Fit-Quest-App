@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://lp6hxt0j5ikc"]
+[gd_scene load_steps=17 format=3 uid="uid://lp6hxt0j5ikc"]
 
 [ext_resource type="Script" path="res://scripts/sign_in_view.gd" id="1_csfkp"]
+[ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="2_p1v35"]
+[ext_resource type="FontFile" uid="uid://olhlma2g12pf" path="res://Fonts/Mollen Personal Use-Regular.otf" id="3_de5eb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hlr18"]
 content_margin_top = 10.0
@@ -52,6 +54,47 @@ corner_radius_bottom_left = 10
 font_size = 60
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_rahxy"]
+font = ExtResource("2_p1v35")
+font_size = 60
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjhg1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fekr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 2
+border_color = Color(0.881937, 0.881937, 0.881936, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mypde"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 2
+border_color = Color(0.882353, 0.882353, 0.882353, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_6ndss"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axkjh"]
+content_margin_left = 100.0
+content_margin_top = 10.0
+content_margin_right = 100.0
+content_margin_bottom = 10.0
+bg_color = Color(0.117647, 0.521569, 0.737255, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_yndyq"]
+font = ExtResource("2_p1v35")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jr68n"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ag0x5"]
+thickness = 2
+
 [node name="SignIn View" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -70,9 +113,9 @@ offset_right = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.990096, 1.00869)
-color = Color(0.67451, 0.886275, 0.882353, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -153,6 +196,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vcar4")
 text = "Submit"
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -167,3 +211,116 @@ grow_vertical = 2
 text = "SIGN UP"
 label_settings = SubResource("LabelSettings_xsywa")
 horizontal_alignment = 1
+
+[node name="Login" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -362.0
+offset_right = 417.0
+offset_bottom = 138.0
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Login"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Login/VBoxContainer"]
+layout_mode = 2
+text = "Join FitQuest"
+label_settings = SubResource("LabelSettings_rahxy")
+
+[node name="Panel" type="Panel" parent="Login/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tjhg1")
+
+[node name="Username" type="LineEdit" parent="Login/VBoxContainer"]
+custom_minimum_size = Vector2(470, 70)
+layout_mode = 2
+theme_override_colors/font_placeholder_color = Color(0.813257, 0.813258, 0.813257, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_de5eb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fekr")
+placeholder_text = "Username"
+
+[node name="Password" type="LineEdit" parent="Login/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_colors/font_placeholder_color = Color(0.811765, 0.811765, 0.811765, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_de5eb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_mypde")
+placeholder_text = "Password"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Login/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="Height" type="LineEdit" parent="Login/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(220, 70)
+layout_mode = 2
+theme_override_colors/font_placeholder_color = Color(0.813257, 0.813258, 0.813257, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_de5eb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fekr")
+placeholder_text = "Height (cm)"
+
+[node name="Weight" type="LineEdit" parent="Login/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(220, 70)
+layout_mode = 2
+theme_override_colors/font_placeholder_color = Color(0.813257, 0.813258, 0.813257, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_de5eb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fekr")
+placeholder_text = "Weight (kg)"
+
+[node name="Panel2" type="Panel" parent="Login/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tjhg1")
+
+[node name="Signup Button" type="Button" parent="Login/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_6ndss")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_axkjh")
+text = "Sign In"
+
+[node name="Prompt" type="HBoxContainer" parent="Login/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="Login/VBoxContainer/Prompt"]
+layout_mode = 2
+text = "Already have an account?"
+label_settings = SubResource("LabelSettings_yndyq")
+
+[node name="ToLogin" type="Button" parent="Login/VBoxContainer/Prompt"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_p1v35")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jr68n")
+text = "Login"
+flat = true
+
+[node name="Panel3" type="Panel" parent="Login/VBoxContainer/Prompt/ToLogin"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 24.0
+offset_right = 50.0
+offset_bottom = 24.0
+theme_override_styles/panel = SubResource("StyleBoxLine_ag0x5")
+
+[connection signal="pressed" from="Login/VBoxContainer/Signup Button" to="." method="_on_signup_button_pressed"]
+[connection signal="pressed" from="Login/VBoxContainer/Prompt/ToLogin" to="." method="_on_to_login_pressed"]

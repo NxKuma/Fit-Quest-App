@@ -28,6 +28,8 @@ var routine_today: WorkoutRoutine
 var workout_data: Array[String]
 var is_workout_finished_today: bool = false
 
+var is_splash_screen_done: bool = false
+
 func _ready():
 	avatar_params = AvatarParams.new()
 	
@@ -82,6 +84,6 @@ func _deferred_goto_scene(path):
 	
 	get_tree().current_scene = current_scene
 
-func get_routine():
-	pass
-	
+func splash_screen_done():
+	is_splash_screen_done = true
+	print("splash done!")
