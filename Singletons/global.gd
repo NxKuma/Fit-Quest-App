@@ -5,15 +5,19 @@ var current_scene = null
 var info_id: int = -1
 var person_id: int = -1
 var avatar_id: int = -1
+var alr_run: bool = false
 
 @export var databaseManager: Node
 @export var loginManager: Node
 
 
-
+var did_setup = false
 	
 var avatar_params: AvatarParam
 var person_data: PersonData
+var guild_data: GuildData
+var login_info: LoginInfo
+var data_transporter
 
 func _ready():
 	var root = get_tree().root
@@ -22,9 +26,57 @@ func _ready():
 	current_scene = root.get_child(-1)
 	avatar_params = AvatarParam.new()
 	person_data = PersonData.new()
+	guild_data = GuildData.new()
+	login_info = LoginInfo.new()
+	
+	login_info.username = "okay"
+	login_info.password = "ready"
+	
+	person_data.height = 169
+	person_data.weight = 70
+	person_data.login_id = 1
+	
+	person_id = 1
+	
+	avatar_params.shoulders = 1
+	avatar_params.arms = 1.1
+	avatar_params.breasts = 1.2
+	avatar_params.torso = 1.3
+	avatar_params.belly = 1.4
+	avatar_params.hips = 1.5
+	avatar_params.legs = 1.6
+	avatar_params.neck = 1.7
 	
 	
+	
+func _add_info_to_database():
+	data_transporter.login_info = login_info
+	
+	data_transporter._add_user()
+	pass
+	
+
+func _add_person_to_database():
+	data_transporter.person_data = person_data
+	data_transporter._add_person()
+	pass
+
+func _add_avatar_to_database():
+	data_transporter.avatar_params = avatar_params
+	data_transporter._add_avatar()
+	pass
+
+
 func _process(delta):
+	if get_tree() != null and !did_setup:
+		data_transporter = get_tree().get_first_node_in_group("DataTransporter")
+
+	if data_transporter != null and !alr_run:
+		if data_transporter.safe_run:
+			_add_info_to_database()
+			_add_person_to_database()
+			_add_avatar_to_database()
+			alr_run = true
 	# print(info_id);
 	# print("Shoulders: ", avatar_params.shoulders)
 	# print("Arms: ", avatar_params.arms)
@@ -35,12 +87,13 @@ func _process(delta):
 	# print("Legs: ", avatar_params.legs)
 	# print("Neck: ", avatar_params.neck)
 
-	print("Person ID: ", person_data.person_id)
-	print("Height: ", person_data.height)
-	print("Weight: ", person_data.weight)
-	print("BMI: ", person_data.bmi)
-	
-func _goto_scene(path):
+	# print("Person ID: ", person_data.person_id)
+	# print("Height: ", person_data.height)
+	# print("Weight: ", person_data.weight)
+	# print("BMI: ", person_data.bmi)
+	pass
+
+func _goto_scene(path): 
 	# Used in signal callback, or functions in current scene.
 	
 	# The point in creating this goto_scene() func is to call the deferred version defined below

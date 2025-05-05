@@ -4,6 +4,9 @@ class_name DataTransporter
 
 
 var alr_run: bool
+var safe_run: bool
+var login_info_manager
+
 
 # Avatar Param Data
 var shoulders: float
@@ -24,16 +27,52 @@ var weight: float
 var bmi: float
 var guild_id: int
 
+# Login info Data
+var username: String
+var password: String
 
+var person_data: PersonData
+var avatar_params: AvatarParam
+var guild_data: GuildData
+var login_info: LoginInfo
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	alr_run = false
+	username = "test"
+	password = "test"
+	safe_run = false
+	
+	person_data = PersonData.new()
+	avatar_params = AvatarParam.new()
+	guild_data = GuildData.new()
+	login_info = LoginInfo.new()
+	
+	
 	pass # Replace with function body.
 
+func _process(delta: float):
+	if get_tree() != null and !alr_run:
+		alr_run = true
+		login_info_manager = get_tree().get_first_node_in_group("DataManagers")
+		safe_run = true
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func _add_user():
+	login_info_manager.add_user(login_info.username, login_info.password)
+	
+func _add_person():
+	login_info_manager.add_person(person_data.height, person_data.weight, person_data.login_id)
+
+func _add_avatar():
+	if Global.person_id == -1:
+		return
+	
+	login_info_manager.add_avatar(Global.person_id, avatar_params.shoulders, avatar_params.arms, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.hips, avatar_params.legs, avatar_params.neck)
+
 
 func _process_avatar_data():
 	Global.avatar_params.shoulders = shoulders

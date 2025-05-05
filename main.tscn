@@ -153,10 +153,10 @@ stretch_mode = 3
 script = ExtResource("17_fbvr2")
 DataTransporter = NodePath("../Data Transporter")
 
-[node name="Login Info Manager" type="Node" parent="." node_paths=PackedStringArray("sql_Manager", "DataTransporter")]
+[node name="Login Info Manager" type="Node" parent="." node_paths=PackedStringArray("sql_Manager", "DataTransporter") groups=["DataManagers"]]
 script = ExtResource("18_d06fr")
 sql_Manager = NodePath("../SQL Manager")
 DataTransporter = NodePath("../Data Transporter")
 
-[node name="Data Transporter" type="Node" parent="."]
+[node name="Data Transporter" type="Node" parent="." groups=["DataTransporter"]]
 script = ExtResource("19_7624g")
