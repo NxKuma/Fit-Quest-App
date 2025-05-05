@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://hksd5fbuiqlu"]
+[gd_scene load_steps=15 format=3 uid="uid://hksd5fbuiqlu"]
 
 [ext_resource type="Script" path="res://scripts/home_view.gd" id="1_m3tji"]
 [ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
@@ -96,10 +96,10 @@ text = "Home"
 
 [node name="Shadow" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 255.0
-offset_top = 699.0
-offset_right = 288.0
-offset_bottom = 739.0
+offset_left = 274.0
+offset_top = 688.0
+offset_right = 307.0
+offset_bottom = 728.0
 scale = Vector2(7.47572, 3.13738)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_doyt0")
 
@@ -109,10 +109,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_py31l")
 
 [node name="SubViewportContainer" parent="." instance=ExtResource("2_iy5u8")]
 layout_mode = 2
-offset_left = 119.0
-offset_top = 234.0
-offset_right = 631.0
-offset_bottom = 746.0
+offset_left = 133.0
+offset_top = 253.0
+offset_right = 645.0
+offset_bottom = 765.0
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/character_model_scene/Armature" index="0"]
 bones/7/rotation = Quaternion(-0.496699, -0.477721, 0.638781, -0.3421)
@@ -145,6 +145,9 @@ bones/49/position = Vector3(0.00413567, 2.62422, 8.52181e-06)
 bones/50/position = Vector3(0.00814171, 2.34909, 3.0607e-05)
 bones/52/position = Vector3(-0.00376749, 2.30541, -4.54367e-06)
 bones/55/rotation = Quaternion(0.110909, 0.0878494, 0.985954, -0.0887545)
+
+[node name="OmniLight3D" parent="SubViewportContainer/SubViewport" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81109, 0.820992)
 
 [node name="Man" type="Sprite2D" parent="."]
 visible = false
