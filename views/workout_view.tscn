@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://6xmlyob2ti21"]
+[gd_scene load_steps=12 format=3 uid="uid://vxmxbu1s0u8p"]
 
 [ext_resource type="Script" path="res://views/workout_session.gd" id="1_we8sx"]
 [ext_resource type="StyleBox" uid="uid://mfdqnkmggf3c" path="res://views/button_light.tres" id="3_3tff7"]
@@ -81,13 +81,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.968627, 0.933333, 0.866667, 1)
-
-[node name="Character3D" parent="." instance=ExtResource("3_prtan")]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 61.0
-offset_right = 529.0
-offset_bottom = 573.0
 
 [node name="Header" type="VBoxContainer" parent="."]
 z_index = 1

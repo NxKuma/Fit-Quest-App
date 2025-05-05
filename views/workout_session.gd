@@ -84,7 +84,7 @@ func _ready() -> void:
 		countdown.visible = false
 	#anim_player.play("Jogging")
 	var anim_player = character_3d.get_node("SubViewport/character_model_scene/AnimationPlayer")
-	anim_player.play("Bicep Curl")
+
 	
 	# _physics_process right now is to handle stopwatch. Can migrate to physics_process later
 	# if _physics_process is needed for workout session logic 
