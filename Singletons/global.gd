@@ -24,6 +24,10 @@ var day: int
 var workout_plan: WeeklyWorkoutPlan
 var routine_today: WorkoutRoutine
 
+var day: int
+var workout_plan: WeeklyWorkoutPlan
+var routine_today: WorkoutRoutine
+
 func _ready():
 	avatar_params = AvatarParams.new()
 	
@@ -31,6 +35,18 @@ func _ready():
 	
 	# Get the child at the end
 	current_scene = root.get_child(-1)
+	
+	# For workout plan logic
+	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
+	day = Time.get_datetime_dict_from_system()["weekday"]
+	routine_today = workout_plan.get_workout_today(day)
+
+func get_routine_today():
+	return routine_today
+
+func _process(delta):
+	#print(user_id);
+	pass
 	
 	# For workout plan logic
 	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
@@ -71,5 +87,7 @@ func _deferred_goto_scene(path):
 	# Optional (Make it compatible with the SceneTree.change_scene_to_file() API Not sure if we need this but putting it here anyways)
 	
 	get_tree().current_scene = current_scene
-	
+
+func get_routine():
+	pass
 	

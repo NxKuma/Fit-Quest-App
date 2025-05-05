@@ -9,10 +9,10 @@
 [resource]
 script = ExtResource("1_y50yf")
 monday_workout_plan = ExtResource("2_fxq8g")
-tuesday_workout_pan = ExtResource("1_cukra")
+tuesday_workout_plan = ExtResource("1_cukra")
 wednesday_workout_plan = ExtResource("3_pki3x")
-thursday_workout_pan = ExtResource("2_fxq8g")
+thursday_workout_plan = ExtResource("2_fxq8g")
 friday_workout_plan = ExtResource("1_cukra")
-saturday_workout_pan = ExtResource("3_pki3x")
+saturday_workout_plan = ExtResource("3_pki3x")
 sunday_workout_plan = ExtResource("5_ixhpi")
 routine_description = "A form of exercise that involves lifting weights to build muscle strength, endurance, and tone. It includes exercises using dumbbells, barbells, resistance machines, or body weight to target specific muscle groups. Regular weight training improves muscle definition, bone density, metabolism, and overall physical performance."
