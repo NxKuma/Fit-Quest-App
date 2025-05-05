@@ -1,18 +1,25 @@
-[gd_scene load_steps=14 format=3 uid="uid://bl4y6jd2d3nrt"]
+[gd_scene load_steps=15 format=3 uid="uid://bl4y6jd2d3nrt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_bhc7n"]
 [ext_resource type="PackedScene" uid="uid://hksd5fbuiqlu" path="res://views/home_view.tscn" id="2_s1anr"]
-[ext_resource type="PackedScene" uid="uid://6xmlyob2ti21" path="res://views/workout_view.tscn" id="3_wvkul"]
+[ext_resource type="PackedScene" uid="uid://vxmxbu1s0u8p" path="res://views/workout_view.tscn" id="3_wvkul"]
 [ext_resource type="PackedScene" uid="uid://c0nggtkx5i15l" path="res://views/guilds_view.tscn" id="4_pypkf"]
 [ext_resource type="PackedScene" uid="uid://dghtag0kp8owr" path="res://views/profile_view.tscn" id="5_wrjgc"]
-[ext_resource type="Texture2D" uid="uid://dq7v710s7mqgh" path="res://Art Asset/Icon/gym.png" id="7_5q58h"]
-[ext_resource type="Texture2D" uid="uid://cg6bhu3j3bb4s" path="res://Art Asset/Icon_Selected/gym-selected.png" id="8_wr7a4"]
-[ext_resource type="Texture2D" uid="uid://dadcmpu8tpuy7" path="res://Art Asset/Icon/house.png" id="11_obs4w"]
+[ext_resource type="Texture2D" uid="uid://cd4bchyx1p7ur" path="res://Assets/dumbell-normal.png" id="6_y5aq6"]
+[ext_resource type="Texture2D" uid="uid://yeafwvfgixx2" path="res://Assets/dumbell-pressed.png" id="7_88lb8"]
+[ext_resource type="Texture2D" uid="uid://y4com2vlk3qd" path="res://Assets/guild-normal.png" id="8_ao2ki"]
+[ext_resource type="Texture2D" uid="uid://bvm4f3t51wjj5" path="res://Assets/guild-pressed.png" id="9_1df64"]
+[ext_resource type="Texture2D" uid="uid://cdrh8v3bdv0pq" path="res://Assets/home-normal.png" id="10_87pif"]
 [ext_resource type="Texture2D" uid="uid://bm7007a3wm0f0" path="res://Art Asset/Icon_Selected/house-select.png" id="12_eht0t"]
-[ext_resource type="Texture2D" uid="uid://4t8kn6s3gk47" path="res://Art Asset/Icon/trophy.png" id="13_4po7v"]
-[ext_resource type="Texture2D" uid="uid://htcuxqktgiyx" path="res://Art Asset/Icon_Selected/trophy-selected.png" id="14_p3k7d"]
-[ext_resource type="Texture2D" uid="uid://b75a50fxh5bmi" path="res://Art Asset/Icon/analytics.png" id="15_q5vhq"]
-[ext_resource type="Texture2D" uid="uid://dnm8o7ceswivk" path="res://Art Asset/Icon_Selected/analytics-selected.png" id="16_p6t4e"]
+[ext_resource type="Texture2D" uid="uid://cmhme1rkj5x1p" path="res://Assets/profile-normal.png" id="14_4bc2d"]
+[ext_resource type="Texture2D" uid="uid://s6dk3kn2m206" path="res://Assets/profile-pressed.png" id="15_1g88h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r623s"]
+bg_color = Color(0.911094, 0.928988, 0.938267, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -37,30 +44,32 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Workout View" parent="Views" instance=ExtResource("3_wvkul")]
-layout_mode = 1
-
-[node name="Home View2" parent="Views" instance=ExtResource("2_s1anr")]
+visible = false
 layout_mode = 1
 
 [node name="Guilds View" parent="Views" instance=ExtResource("4_pypkf")]
 visible = false
 layout_mode = 1
 
+[node name="Home View2" parent="Views" instance=ExtResource("2_s1anr")]
+layout_mode = 1
+offset_left = 3.0
+offset_right = 3.0
+
 [node name="Profile View" parent="Views" instance=ExtResource("5_wrjgc")]
 visible = false
 layout_mode = 1
 
-[node name="Top" type="ColorRect" parent="."]
-visible = false
-layout_direction = 1
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = -2.0
-offset_right = 538.0
-offset_bottom = 90.0
-mouse_filter = 2
-color = Color(0.670588, 0.890196, 0.886275, 1)
+offset_left = 55.0
+offset_top = 874.0
+offset_right = 493.0
+offset_bottom = 933.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_r623s")
 
 [node name="Bottom" type="ColorRect" parent="."]
+visible = false
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 7
@@ -83,8 +92,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -110.0
-offset_bottom = 15.0
+offset_left = 98.0
+offset_top = -112.0
+offset_right = -87.0
+offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -97,44 +108,52 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-theme_override_constants/separation = 90
+theme_override_constants/separation = 65
 alignment = 1
 
 [node name="Workout Button" type="TextureButton" parent="Navigation Bar/Buttons"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 action_mode = 0
-texture_normal = ExtResource("7_5q58h")
-texture_pressed = ExtResource("8_wr7a4")
-texture_hover = ExtResource("8_wr7a4")
-stretch_mode = 3
-
-[node name="Home Button" type="TextureButton" parent="Navigation Bar/Buttons"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-action_mode = 0
-texture_normal = ExtResource("11_obs4w")
-texture_pressed = ExtResource("12_eht0t")
-texture_hover = ExtResource("12_eht0t")
-stretch_mode = 3
+texture_normal = ExtResource("6_y5aq6")
+texture_pressed = ExtResource("7_88lb8")
+texture_hover = ExtResource("7_88lb8")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Guilds Button" type="TextureButton" parent="Navigation Bar/Buttons"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 action_mode = 0
-texture_normal = ExtResource("13_4po7v")
-texture_pressed = ExtResource("14_p3k7d")
-texture_hover = ExtResource("14_p3k7d")
-stretch_mode = 3
+texture_normal = ExtResource("8_ao2ki")
+texture_pressed = ExtResource("9_1df64")
+texture_hover = ExtResource("9_1df64")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Home Button" type="TextureButton" parent="Navigation Bar/Buttons"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+texture_normal = ExtResource("10_87pif")
+texture_pressed = ExtResource("12_eht0t")
+texture_hover = ExtResource("12_eht0t")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Profile Button" type="TextureButton" parent="Navigation Bar/Buttons"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 action_mode = 0
-texture_normal = ExtResource("15_q5vhq")
-texture_pressed = ExtResource("16_p6t4e")
-texture_hover = ExtResource("16_p6t4e")
-stretch_mode = 3
+texture_normal = ExtResource("14_4bc2d")
+texture_pressed = ExtResource("15_1g88h")
+texture_hover = ExtResource("15_1g88h")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="SQL Manager" type="Node" parent="."]
 
