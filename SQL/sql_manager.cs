@@ -12,6 +12,7 @@ public partial class sql_manager : Node
 	public string username_string {get; set;} = "";
 	public string password_string {get; set;} = "";
 	public string database_string {get; set;} = "";
+	public string port_string {get; set;} = "";
 
 	[Export]
 	Node DataTransporter;
@@ -57,7 +58,7 @@ public partial class sql_manager : Node
 			lines.Add(cur);
 		}
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 5; i++) {
 			string line = lines[i];
 
 			bool did_start = false;
@@ -85,15 +86,20 @@ public partial class sql_manager : Node
 				password_string = output;
 			} else if (i == 3) {
 				database_string = output;
+			} else if (i == 4) {
+				port_string = output;
 			}
 
 		}
 
 
 		connectionString += "Host=" + host_string + ";";
+		connectionString += "Port=" + port_string + ";";
 		connectionString += "Username=" + username_string + ";";
 		connectionString += "Password=" + password_string + ";";
-		connectionString += "Database=" + database_string;
+		connectionString += "Database=" + database_string + ";";
+		connectionString += "SslMode=Require;";
+		connectionString += "Pooling=false;";
 		setup_sql_string = LoadFromFile("res://SQL//setup.SQL");
 		//GD.Print(setup_sql_string);
 		runSql();
@@ -179,6 +185,8 @@ public partial class sql_manager : Node
 		while (bool_reader.Read()) {
 			does_exist = bool_reader.GetBoolean(0);
 		}
+		bool_reader.Close();
+		data_source.Clear();
 		return does_exist;
 	}
 
@@ -196,6 +204,8 @@ public partial class sql_manager : Node
 		while (count_reader.Read()) {
 			entry_count = count_reader.GetInt32(0);
 		}
+		count_reader.Close();
+		data_source.Clear();
 		return entry_count;
 	}
 }

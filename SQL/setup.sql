@@ -37,7 +37,7 @@ CREATE TABLE person (
     person_id SERIAL PRIMARY KEY,
     person_height_cm REAL NOT NULL,
     person_weight_kg REAL NOT NULL,
-    person_bmi REAL GENERATED ALWAYS AS (person_weight_kg / (person_height_cm * person_height_cm)) STORED,
+    person_bmi REAL GENERATED ALWAYS AS (person_weight_kg / (person_height_cm/100 * person_height_cm/100)) STORED,
     logininfo_id SERIAL REFERENCES logininfo(info_id),
     avatar_id INT REFERENCES avatar(avatar_id),
     guild_id INT REFERENCES guild(guild_id)
@@ -46,7 +46,6 @@ CREATE TABLE person (
 CREATE TABLE workout_instance (
     instance_id SERIAL PRIMARY KEY,
     workout_name VARCHAR(50) NOT NULL
-
 );
 
 

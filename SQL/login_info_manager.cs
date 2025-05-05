@@ -50,7 +50,11 @@ public partial class login_info_manager : Node
 		while (search_reader.Read()){
 			does_exist = search_reader.GetBoolean(0);
 		}
-		if (!does_exist) return false;
+		search_reader.Close();
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
 
 		String command_string = "SELECT info_id FROM logininfo WHERE username = \'"+  username + "\' AND pass = \'" + password + "\';";
 		var command = data_source.CreateCommand(command_string);
@@ -59,13 +63,15 @@ public partial class login_info_manager : Node
 		while (command_reader.Read()) {
 			current_id = command_reader.GetInt32(0);
 		}
+		command_reader.Close();
 
 		Node global =  GetNode("/root/Global");
 		global.Set("info_id", current_id.ToString());
 
 		transfer_avatar_info(current_id);
 		transfer_person_info(current_id);
-
+		
+		data_source.Clear();
 		return true;
 	}
 
@@ -78,8 +84,11 @@ public partial class login_info_manager : Node
 		while (person_reader.Read()) {
 			does_exist = person_reader.GetBoolean(0);
 		}
-
-		if (!does_exist) return false;
+		person_reader.Close();
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
 
 		int avatar_id = -1;
 		String get_person_string = "SELECT avatar_id FROM person WHERE logininfo_id = \'" + info_id  + "\' ";
@@ -90,8 +99,10 @@ public partial class login_info_manager : Node
 		while (get_person_reader.Read()) {
 			avatar_id = get_person_reader.GetInt32(get_person_reader.GetOrdinal("avatar_id"));
 		}
+		get_person_reader.Close();
 		GD.Print("sure");
 		if (avatar_id == -1) {
+			data_source.Clear();
 			return false;
 		}
 
@@ -111,6 +122,7 @@ public partial class login_info_manager : Node
 			legs = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("legs_param"));
 			neck = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("neck_param"));
 		}
+		get_avatar_reader.Close();
 
 
 		DataTransporter.Set("shoulders", shoulders.ToString());
@@ -132,7 +144,7 @@ public partial class login_info_manager : Node
 		// GD.Print(legs);
 		// GD.Print(neck);
 		DataTransporter.Call("_process_avatar_data");
-
+		data_source.Clear();
 		return true;
 	}
 
@@ -145,8 +157,12 @@ public partial class login_info_manager : Node
 		while (person_reader.Read()) {
 			does_exist = person_reader.GetBoolean(0);
 		}
+		person_reader.Close();
 
-		if (!does_exist) return false;
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
 
 		int person_id = -1;
 		float height = -1;
@@ -165,7 +181,9 @@ public partial class login_info_manager : Node
 			bmi = get_person_reader.GetFloat(get_person_reader.GetOrdinal("person_bmi"));
 			// guild_id = get_person_reader.GetInt32(get_person_reader.GetOrdinal("guild_id"));
 		}
+		get_person_reader.Close();
 		if (person_id == -1) {
+			data_source.Clear();
 			return false;
 		}
 
@@ -177,6 +195,7 @@ public partial class login_info_manager : Node
 	
 		DataTransporter.Call("_process_person_data");
 		GD.Print("ok bro");
+		data_source.Clear();
 		return true;
 	}
 
@@ -191,8 +210,12 @@ public partial class login_info_manager : Node
 		while (person_reader.Read()) {
 			does_exist = person_reader.GetBoolean(0);
 		}
+		person_reader.Close();
 		GD.Print("DID IT EXIST? " + does_exist.ToString());
-		if (does_exist) return -1;
+		if (does_exist) {
+			data_source.Clear();
+			return -1;
+		}
 
 		GD.Print("sure");
 		String create_new_user_string = "INSERT INTO logininfo (username, pass) VALUES (\'" + username + "\', \'" + password + "\');";
@@ -210,7 +233,7 @@ public partial class login_info_manager : Node
 		while (command_reader.Read()) {
 			current_id = command_reader.GetInt32(0);
 		}
-
+		command_reader.Close();
 		return current_id;
 	}
 
@@ -227,8 +250,12 @@ public partial class login_info_manager : Node
 		while (person_reader.Read()) {
 			does_exist = person_reader.GetBoolean(0);
 		}
+		person_reader.Close();
 		GD.Print("whut");
-		if (!does_exist) return -1;
+		if (!does_exist) {
+			data_source.Clear();
+			return -1;
+		}
 
 		String insert_string = "INSERT INTO avatar (shoulder_param, arms_param, breasts_param, torso_param, belly_param, hips_param, legs_param, neck_param) VALUES (";
 		insert_string += shoulder + ", ";
@@ -246,7 +273,7 @@ public partial class login_info_manager : Node
 		String set_avatar_to_person = "UPDATE person SET avatar_id = " + avatar_id + " WHERE person_id = " + person_id + ";";
 		var set_cmd = data_source.CreateCommand(set_avatar_to_person);
 		var execute_set = set_cmd.ExecuteNonQuery();
-		
+		data_source.Clear();
 		return avatar_id;
 
 	}
@@ -263,7 +290,11 @@ public partial class login_info_manager : Node
 		while (person_reader.Read()) {
 			does_exist = person_reader.GetBoolean(0);
 		}
-		if (!does_exist) return -1;
+		person_reader.Close();
+		if (!does_exist){
+			data_source.Clear();
+			return -1;
+		}
 
 		String insert_person_string = "INSERT INTO person (person_height_cm, person_weight_kg, logininfo_id) VALUES (";
 		insert_person_string += height + ",";
@@ -271,7 +302,7 @@ public partial class login_info_manager : Node
 		insert_person_string += logininfo_id + ") RETURNING person_id;";
 		var insert_cmd = data_source.CreateCommand(insert_person_string);
 		int person_id = (int)insert_cmd.ExecuteScalar();
-
+		data_source.Clear();
 		return person_id;
 
 	}
@@ -288,8 +319,12 @@ public partial class login_info_manager : Node
 		while (person_reader.Read()) {
 			does_exist = person_reader.GetBoolean(0);
 		}
+		person_reader.Close();
 		GD.Print("DID IT EXIST? " + does_exist.ToString());
-		if (!does_exist) return false;
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
 
 		// check if guild exists
 		String select_string_guild = "SELECT EXISTS(SELECT FROM guild WHERE guild_id = \'" + guild_id  + "\' );";
@@ -298,11 +333,21 @@ public partial class login_info_manager : Node
 		while (guild_reader.Read()) {
 			does_exist = guild_reader.GetBoolean(0);
 		}
+		guild_reader.Close();
 		GD.Print("DID IT EXIST? " + does_exist.ToString());
-		if (!does_exist) return false;
-		String update_guild_string = "UPDATE person SET guild_id = " + guild_id + " WHERE person_id = " + person_id + ";";
+		if (!does_exist && guild_id != -1) {
+			data_source.Clear();
+			return false;
+		}
+		String update_guild_string;
+		if (guild_id == -1) {
+			update_guild_string = "UPDATE person SET guild_id = NULL WHERE person_id = " + person_id + ";";
+		} else {
+			update_guild_string = "UPDATE person SET guild_id = " + guild_id + " WHERE person_id = " + person_id + ";";
+		}
 		var execute_update = data_source.CreateCommand(update_guild_string);
 		var execute = execute_update.ExecuteNonQuery();
+		data_source.Clear();
 		return true;
 	}	
 
@@ -317,12 +362,17 @@ public partial class login_info_manager : Node
 		while (guild_reader.Read()) {
 			does_exist = guild_reader.GetBoolean(0);
 		}
+		guild_reader.Close();
 		GD.Print("DID IT EXIST? " + does_exist.ToString());
-		if (does_exist) return -1;
+		if (does_exist) {
+			data_source.Clear();
+			return -1;
+		}
 
 		String create_guild_string = "INSERT INTO guild (guild_name) VALUES (\'" + guild_name + "\') RETURNING guild_id;";
 		var execute_insert = data_source.CreateCommand(create_guild_string);
 		int execute = (int)execute_insert.ExecuteScalar();
+		data_source.Clear();
 		return execute;
 	}
 }
