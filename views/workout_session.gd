@@ -37,7 +37,10 @@ var infoLabel: Label
 
 var donePanel: Panel
 var workoutSummary: VBoxContainer
-@onready var character_3d: SubViewportContainer = $Character3D
+
+var character_3d: SubViewportContainer
+var anim_player: AnimationPlayer
+var curr_exercise_name: String
 
 func _ready() -> void:
 	load_routine()
@@ -67,6 +70,9 @@ func _ready() -> void:
 	donePanel = $Done
 	workoutSummary = $"Done/Workout Summary"
 	
+	character_3d = $Character3D
+	anim_player = character_3d.get_node("SubViewport/character_model_scene/AnimationPlayer")
+	print(anim_player.get_animation_list())
 	timeFinish = []
 	
 	# Setup header
@@ -80,12 +86,11 @@ func _ready() -> void:
 		start.disabled = true
 	else:
 		exerciseLabel.text = routine.exercises[currentExercise].exercise_name
-		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].current_sets, routine.exercises[currentExercise].current_sets]
+		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].sets, routine.exercises[currentExercise].repetitions]
 		countdown.visible = false
-	#anim_player.play("Jogging")
-	var anim_player = character_3d.get_node("SubViewport/character_model_scene/AnimationPlayer")
 
-	
+	anim_player.play(_get_anim_name("Idle"))
+
 	# _physics_process right now is to handle stopwatch. Can migrate to physics_process later
 	# if _physics_process is needed for workout session logic 
 	set_physics_process(false)
@@ -106,6 +111,7 @@ func load_routine():
 	routine = Global.get_routine_today()
 
 func play_countdown() -> void:
+	anim_player.play(_get_anim_name("Warm Up"))
 	countdown.visible = true
 	if (showPopup):
 		countdown.text = "%d" % (maxTime - seconds)
@@ -118,6 +124,8 @@ func play_countdown() -> void:
 		doCountdown = false
 		if (!showPopup):
 			show_summary()
+		else:
+			anim_player.play(_get_anim_name(routine.exercises[currentExercise].exercise_name))
 		
 	if (maxTime - seconds <= 0 and showPopup):
 		countdown.text = "%s" % "Go!"
@@ -129,16 +137,19 @@ func start_set() -> void:
 	start.visible = false
 
 func pause_set() -> void:
+	anim_player.play(_get_anim_name("Warm Up"))
 	set_physics_process(false)
 	pause.visible = false
 	buttonGroup.visible = true
 
 func resume_set() -> void:
+	anim_player.play(_get_anim_name(routine.exercises[currentExercise].exercise_name))
 	set_physics_process(true)
 	buttonGroup.visible = false
 	pause.visible = true
 
 func finish_set() -> void:
+	anim_player.play(_get_anim_name("Idle"))
 	timeFinish.append(get_time_formatted())
 	currentExercise += 1
 	reset_stopwatch()
@@ -149,7 +160,7 @@ func finish_set() -> void:
 		doCountdown = true
 	else:
 		exerciseLabel.text = routine.exercises[currentExercise].exercise_name
-		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].current_sets, routine.exercises[currentExercise].current_sets]
+		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].sets, routine.exercises[currentExercise].repetitions]
 		start.visible = true
 
 func start_rest_timer() -> void:
@@ -191,6 +202,29 @@ func _on_resume_pressed() -> void:
 
 func _on_finish_pressed() -> void:
 	finish_set()
+
+func _get_anim_name(exercise_name: String) -> String :
+	match exercise_name:
+		"Idle":
+			return "Breathing Idle"
+		"Bicep Curls":
+			return "Bicep Curl"
+		"Jogging":
+			return "Jogging"
+		"Plank":
+			return "Plank"
+		"Push-Ups":
+			return "Push-up"
+		"Squats":
+			return "Back Squat"
+		"Warm Up":
+			return "Warming Up"
+		"Jumping Jacks":
+			return "Jumping Jacks"
+		"Lat Pulldown":
+			return "Front-Raises"
+	return ""
+
 
 #func _on_info_button_toggled(toggled_on: bool) -> void:
 	#if infoPopup.visible:
