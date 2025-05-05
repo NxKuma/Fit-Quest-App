@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dghtag0kp8owr"]
+[gd_scene load_steps=6 format=3 uid="uid://dghtag0kp8owr"]
 
 [ext_resource type="StyleBox" uid="uid://b4tcgvd4x43cm" path="res://views/panel_box.tres" id="1_g66y1"]
+[ext_resource type="Script" path="res://views/profile_view.gd" id="1_x7pm7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wvmok"]
 font_size = 25
@@ -46,6 +47,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("1_x7pm7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

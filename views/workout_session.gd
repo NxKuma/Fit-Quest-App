@@ -30,6 +30,7 @@ var buttonGroup: HBoxContainer
 var donePanel: Panel
 var workoutSummary: VBoxContainer
 
+
 func _ready() -> void:
 	load_routine()
 	
@@ -38,7 +39,7 @@ func _ready() -> void:
 	
 	title = $Header/Title
 	exerciseLabel = $"Header/Exercise Label"
-	
+
 	start = $Panel/Buttons/Start
 	pause = $Panel/Buttons/Pause
 	buttonGroup = $"Panel/Buttons/Secondary Buttons" 
@@ -54,6 +55,7 @@ func _ready() -> void:
 	
 	# Setup header
 	title.text = routine.routine_name
+
 	if (routine.routine_name == "Rest"):
 		set_process(false)
 		countdown.visible = true
@@ -63,11 +65,12 @@ func _ready() -> void:
 	else:
 		exerciseLabel.text = routine.exercises[currentExercise].exercise_name
 		countdown.visible = false
+
 	
 	# _physics_process right now is to handle stopwatch. Can migrate to physics_process later
 	# if _physics_process is needed for workout session logic 
 	set_physics_process(false)
-
+  
 func _physics_process(delta: float) -> void:
 	time += delta
 	minutes = fmod(time, 3600) / 60

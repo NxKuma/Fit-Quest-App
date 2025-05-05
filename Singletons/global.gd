@@ -8,14 +8,15 @@ var user_id: int = -1
 @export var loginManager: Node
 
 class AvatarParams:
-	var shoulders: float
-	var arms: float
-	var breasts: float
-	var torso: float
-	var belly: float
-	var hips: float
-	var legs: float
-	var neck: float
+	var shoulders: float = 0
+	var arms: float = 0
+	var breasts: float = 0
+	var torso: float = 0
+	var belly: float = 0
+	var hips: float = 0
+	var legs: float = 0
+	var neck: float = 0
+		
 	
 var avatar_params: AvatarParams
 
@@ -23,7 +24,13 @@ var day: int
 var workout_plan: WeeklyWorkoutPlan
 var routine_today: WorkoutRoutine
 
+var day: int
+var workout_plan: WeeklyWorkoutPlan
+var routine_today: WorkoutRoutine
+
 func _ready():
+	avatar_params = AvatarParams.new()
+	
 	var root = get_tree().root
 	
 	# Get the child at the end
@@ -32,7 +39,19 @@ func _ready():
 	# For workout plan logic
 	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
 	day = Time.get_datetime_dict_from_system()["weekday"]
-	routine_today = workout_plan.get_workout_today(1)
+	routine_today = workout_plan.get_workout_today(day)
+
+func get_routine_today():
+	return routine_today
+
+func _process(delta):
+	#print(user_id);
+	pass
+	
+	# For workout plan logic
+	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
+	day = Time.get_datetime_dict_from_system()["weekday"]
+	routine_today = workout_plan.get_workout_today(day)
 
 func get_routine_today():
 	return routine_today
@@ -68,5 +87,7 @@ func _deferred_goto_scene(path):
 	# Optional (Make it compatible with the SceneTree.change_scene_to_file() API Not sure if we need this but putting it here anyways)
 	
 	get_tree().current_scene = current_scene
-	
+
+func get_routine():
+	pass
 	
