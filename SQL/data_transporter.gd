@@ -5,8 +5,10 @@ class_name DataTransporter
 
 var alr_run: bool
 var safe_run: bool
-var login_info_manager
+var did_setup: bool = false
 
+@export var login_info_manager: Node
+@export var sql_manager: Node
 
 # Avatar Param Data
 var shoulders: float
@@ -53,10 +55,9 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta: float):
-	if get_tree() != null and !alr_run:
-		alr_run = true
-		login_info_manager = get_tree().get_first_node_in_group("DataManagers")
-		safe_run = true
+	if !did_setup:
+		if sql_manager.did_setup:
+			did_setup = true
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,6 +74,9 @@ func _add_avatar():
 	
 	login_info_manager.add_avatar(Global.person_id, avatar_params.shoulders, avatar_params.arms, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.hips, avatar_params.legs, avatar_params.neck)
 
+func _setup_user(username: String, password: String) -> bool:
+	var completed: bool = login_info_manager.set_current_user(username, password)
+	return completed
 
 func _process_avatar_data():
 	Global.avatar_params.shoulders = shoulders

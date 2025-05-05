@@ -20,6 +20,7 @@ public partial class sql_manager : Node
 	public static string setup_string = "CREATE TABLE car (car_id serial PRIMARY KEY,wheel_cnt int NOT NULL);\r\n\r\nINSERT INTO car (wheel_cnt) VALUES (10);";
 	public static string clear_string = "DROP TABLE car;";
 	public static string setup_sql_string = "";
+	public bool did_setup = false;
 	
 	string setup = "";
 
@@ -163,6 +164,8 @@ public partial class sql_manager : Node
 				var command_reader = command.ExecuteNonQuery();
 			}
 		}
+		
+		did_setup = true;
 	}
 
 	public bool check_if_table_exists(String table) {

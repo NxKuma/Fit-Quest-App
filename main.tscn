@@ -158,5 +158,7 @@ script = ExtResource("18_d06fr")
 sql_Manager = NodePath("../SQL Manager")
 DataTransporter = NodePath("../Data Transporter")
 
-[node name="Data Transporter" type="Node" parent="." groups=["DataTransporter"]]
+[node name="Data Transporter" type="Node" parent="." node_paths=PackedStringArray("login_info_manager", "sql_manager") groups=["DataTransporter"]]
 script = ExtResource("19_7624g")
+login_info_manager = NodePath("../Login Info Manager")
+sql_manager = NodePath("../SQL Manager")

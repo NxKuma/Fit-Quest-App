@@ -43,6 +43,12 @@ CREATE TABLE person (
     guild_id INT REFERENCES guild(guild_id)
 );
 
+CREATE TABLE workout_instance (
+    instance_id SERIAL PRIMARY KEY,
+    workout_name VARCHAR(50) NOT NULL
+
+);
+
 
 -- CREATE TABLE streak(
 --     streak_id SERIAL NOT NULL,
