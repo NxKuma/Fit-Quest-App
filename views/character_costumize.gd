@@ -32,8 +32,9 @@ func _ready():
 	
 	
 	for hsplit in sliders_container.get_children():
-		for vsplit in hsplit.get_children():
-			slider_array.append(vsplit.get_child(1))
+		if hsplit is HSplitContainer:
+			for vsplit in hsplit.get_children():
+				slider_array.append(vsplit.get_child(1))
 	
 	for n in blend_shapes.size():
 		var slider = slider_array[n]
@@ -51,11 +52,21 @@ func _on_slider_value_changed(value: float, blend_shape: String):
 	##var index = model.mesh.get_blend_shape_index(blend_shape_name)
 	#model.set_blend_shape_value(blend_shape_index, value)
 	##print(blend_shape_name)
-	print(blend_shape)
 	pass
 
 
 
 func _on_neck_size_value_changed(value: float, extra_arg_0: int) -> void:
-	print(blend_shapes[extra_arg_0])
 	model.set_blend_shape_value(extra_arg_0, value)
+
+
+func _on_button_pressed() -> void:
+	#print(slider_array[0].get_value())
+	Global.avatar_params.arms = slider_array[0].get_value()
+	Global.avatar_params.neck = slider_array[1].get_value()
+	Global.avatar_params.breasts = slider_array[2].get_value()
+	Global.avatar_params.torso = slider_array[3].get_value()
+	Global.avatar_params.legs = slider_array[4].get_value()
+	Global.avatar_params.hips = slider_array[5].get_value()
+	Global.avatar_params.belly = slider_array[6].get_value()
+	

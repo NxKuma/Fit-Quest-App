@@ -8,14 +8,15 @@ var user_id: int = -1
 @export var loginManager: Node
 
 class AvatarParams:
-	var shoulders: float
-	var arms: float
-	var breasts: float
-	var torso: float
-	var belly: float
-	var hips: float
-	var legs: float
-	var neck: float
+	var shoulders: float = 0
+	var arms: float = 0
+	var breasts: float = 0
+	var torso: float = 0
+	var belly: float = 0
+	var hips: float = 0
+	var legs: float = 0
+	var neck: float = 0
+		
 	
 var avatar_params: AvatarParams
 
@@ -24,6 +25,8 @@ var workout_plan: WeeklyWorkoutPlan
 var routine_today: WorkoutRoutine
 
 func _ready():
+	avatar_params = AvatarParams.new()
+	
 	var root = get_tree().root
 	
 	# Get the child at the end
