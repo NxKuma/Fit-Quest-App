@@ -21,7 +21,7 @@ func _ready() -> void:
 	target_muscle.set_text(routine_target.to_upper())
 	
 	var anim_player = character_3d.get_node("SubViewport/character_model_scene/AnimationPlayer")
-	anim_player.play("Jogging")
+	anim_player.play("Breathing Idle")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -43,8 +43,7 @@ func get_routine_today():
 	return routine_today
 
 func _process(delta):
-	#print(user_id);
-	pass
+
 
 	if character_changed:
 		change_character.emit(avatar_params.arms, avatar_params.neck, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.legs, avatar_params.hips)
