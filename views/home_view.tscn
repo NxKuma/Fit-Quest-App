@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://hksd5fbuiqlu"]
+[gd_scene load_steps=17 format=3 uid="uid://hksd5fbuiqlu"]
 
 [ext_resource type="Script" path="res://scripts/home_view.gd" id="1_m3tji"]
-[ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
 [ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="2_iy5u8"]
 [ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="4_r56lf"]
 [ext_resource type="FontFile" uid="uid://bdaq1i7wekyk3" path="res://Fonts/Mollen Personal Use-BoldCondensed.otf" id="5_n0ivl"]
@@ -100,50 +99,12 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_doyt0")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_py31l")
 
-[node name="SubViewportContainer" parent="." instance=ExtResource("2_iy5u8")]
+[node name="Character3D" parent="." instance=ExtResource("2_iy5u8")]
 layout_mode = 2
-offset_left = 119.0
-offset_top = 234.0
-offset_right = 631.0
-offset_bottom = 746.0
-
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/character_model_scene/Armature" index="0"]
-bones/7/rotation = Quaternion(-0.496699, -0.477721, 0.638781, -0.3421)
-bones/8/position = Vector3(3.18349e-06, 9.84773, 2.31501e-05)
-bones/9/position = Vector3(-3.257e-06, 20.0335, -4.74545e-06)
-bones/12/position = Vector3(-0.618778, 3.00254, 1.0699e-05)
-bones/14/position = Vector3(0.662147, 2.84941, -1.06692e-05)
-bones/15/position = Vector3(-2.85499, 9.05612, -0.0320864)
-bones/16/position = Vector3(0.0154499, 3.32167, -3.4611e-06)
-bones/19/position = Vector3(-0.991723, 8.69378, -0.199157)
-bones/20/position = Vector3(0.0168119, 3.5739, 1.0958e-05)
-bones/21/position = Vector3(-0.00443944, 3.33629, -8.43461e-06)
-bones/22/position = Vector3(-0.0123754, 3.09891, 2.28882e-05)
-bones/23/position = Vector3(1.08027, 8.82786, -0.0239722)
-bones/25/position = Vector3(0.000880808, 2.6406, -1.09431e-05)
-bones/26/position = Vector3(-0.0236661, 2.19839, 4.05312e-05)
-bones/27/position = Vector3(2.76645, 8.466, -0.181628)
-bones/29/position = Vector3(0.00144432, 1.91652, -6.91255e-06)
-bones/33/position = Vector3(3.61125e-06, 20.0339, -4.1714e-06)
-bones/34/position = Vector3(-1.38671e-06, 19.4586, 6.39284e-06)
-bones/36/position = Vector3(0.737313, 3.18763, -5.06183e-06)
-bones/38/position = Vector3(-0.782544, 2.80795, -1.04308e-05)
-bones/41/position = Vector3(0.000745336, 3.2088, -2.10131e-06)
-bones/43/position = Vector3(0.959661, 8.96442, -0.167131)
-bones/44/position = Vector3(-0.0162883, 3.44884, 5.4209e-06)
-bones/46/position = Vector3(0.0124727, 3.18815, 3.69549e-06)
-bones/47/position = Vector3(-1.07527, 9.16658, -0.14071)
-bones/48/position = Vector3(-0.0122808, 2.79027, 5.60163e-06)
-bones/49/position = Vector3(0.00413567, 2.62422, 8.52181e-06)
-bones/50/position = Vector3(0.00814171, 2.34909, 3.0607e-05)
-bones/52/position = Vector3(-0.00376749, 2.30541, -4.54367e-06)
-bones/55/rotation = Quaternion(0.110909, 0.0878494, 0.985954, -0.0887545)
-
-[node name="Man" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(162, 509)
-scale = Vector2(0.411, 0.36)
-texture = ExtResource("1_ngc2x")
+offset_left = 127.0
+offset_top = 261.0
+offset_right = 639.0
+offset_bottom = 773.0
 
 [node name="Side Panel Margin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -302,6 +263,3 @@ label_settings = SubResource("LabelSettings_m2ljw")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-
-[editable path="SubViewportContainer"]
-[editable path="SubViewportContainer/SubViewport/character_model_scene"]
