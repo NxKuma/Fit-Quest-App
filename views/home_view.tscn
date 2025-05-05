@@ -108,7 +108,6 @@ offset_right = 645.0
 offset_bottom = 765.0
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/character_model_scene/Armature" index="0"]
-bones/7/rotation = Quaternion(-0.496699, -0.477721, 0.638781, -0.3421)
 bones/8/position = Vector3(3.18349e-06, 9.84773, 2.31501e-05)
 bones/9/position = Vector3(-3.257e-06, 20.0335, -4.74545e-06)
 bones/12/position = Vector3(-0.618778, 3.00254, 1.0699e-05)

@@ -24,10 +24,6 @@ var day: int
 var workout_plan: WeeklyWorkoutPlan
 var routine_today: WorkoutRoutine
 
-var day: int
-var workout_plan: WeeklyWorkoutPlan
-var routine_today: WorkoutRoutine
-
 func _ready():
 	avatar_params = AvatarParams.new()
 	
@@ -43,22 +39,6 @@ func _ready():
 
 func get_routine_today():
 	return routine_today
-
-func _process(delta):
-	#print(user_id);
-	pass
-	
-	# For workout plan logic
-	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
-	day = Time.get_datetime_dict_from_system()["weekday"]
-	routine_today = workout_plan.get_workout_today(day)
-
-func get_routine_today():
-	return routine_today
-
-func _process(delta):
-	#print(user_id);
-	pass
 
 func _goto_scene(path):
 	# Used in signal callback, or functions in current scene.
