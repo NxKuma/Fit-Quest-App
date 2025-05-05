@@ -19,9 +19,6 @@ var title: Label
 var exerciseLabel: Label
 var setsLabel: Label
 
-#var model
-#var anim_player
-
 var minutesLabel: Label
 var secondsLabel: Label
 var msecondsLabel: Label
@@ -72,7 +69,7 @@ func _ready() -> void:
 	
 	character_3d = $Character3D
 	anim_player = character_3d.get_node("SubViewport/character_model_scene/AnimationPlayer")
-	print(anim_player.get_animation_list())
+	
 	timeFinish = []
 	
 	# Setup header
@@ -89,7 +86,7 @@ func _ready() -> void:
 		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].sets, routine.exercises[currentExercise].repetitions]
 		countdown.visible = false
 
-	anim_player.play(_get_anim_name("Idle"))
+	anim_player.play("Warming Up")
 
 	# _physics_process right now is to handle stopwatch. Can migrate to physics_process later
 	# if _physics_process is needed for workout session logic 
@@ -111,7 +108,6 @@ func load_routine():
 	routine = Global.get_routine_today()
 
 func play_countdown() -> void:
-	anim_player.play(_get_anim_name("Warm Up"))
 	countdown.visible = true
 	if (showPopup):
 		countdown.text = "%d" % (maxTime - seconds)
@@ -125,7 +121,7 @@ func play_countdown() -> void:
 		if (!showPopup):
 			show_summary()
 		else:
-			anim_player.play(_get_anim_name(routine.exercises[currentExercise].exercise_name))
+			anim_player.play(routine.exercises[currentExercise].exercise_name)
 		
 	if (maxTime - seconds <= 0 and showPopup):
 		countdown.text = "%s" % "Go!"
@@ -137,19 +133,19 @@ func start_set() -> void:
 	start.visible = false
 
 func pause_set() -> void:
-	anim_player.play(_get_anim_name("Warm Up"))
+	anim_player.play("Breathing Idle")
 	set_physics_process(false)
 	pause.visible = false
 	buttonGroup.visible = true
 
 func resume_set() -> void:
-	anim_player.play(_get_anim_name(routine.exercises[currentExercise].exercise_name))
+	anim_player.play(routine.exercises[currentExercise].exercise_name)
 	set_physics_process(true)
 	buttonGroup.visible = false
 	pause.visible = true
 
 func finish_set() -> void:
-	anim_player.play(_get_anim_name("Idle"))
+	anim_player.play("Breathing Idle")
 	timeFinish.append(get_time_formatted())
 	currentExercise += 1
 	reset_stopwatch()
@@ -183,6 +179,7 @@ func show_summary():
 	exerciseLabel.text = ""
 	setsLabel.text = ""
 	donePanel.visible = true
+	set_physics_process(false)
 	var i: int = 0
 	for exercise in routine.exercises:
 		var label = Label.new()
@@ -203,27 +200,60 @@ func _on_resume_pressed() -> void:
 func _on_finish_pressed() -> void:
 	finish_set()
 
-func _get_anim_name(exercise_name: String) -> String :
-	match exercise_name:
-		"Idle":
-			return "Breathing Idle"
-		"Bicep Curls":
-			return "Bicep Curl"
-		"Jogging":
-			return "Jogging"
-		"Plank":
-			return "Plank"
-		"Push-Ups":
-			return "Push-up"
-		"Squats":
-			return "Back Squat"
-		"Warm Up":
-			return "Warming Up"
-		"Jumping Jacks":
-			return "Jumping Jacks"
-		"Lat Pulldown":
-			return "Front-Raises"
-	return ""
+func reset_workout_view():
+	for c in workoutSummary.get_children():
+		workoutSummary.remove_child(c)
+		c.queue_free()
+	timeFinish.clear()
+	currentExercise = 0
+	donePanel.visible = false
+	start.visible = true
+	pause.visible = false
+	buttonGroup.visible = false
+	reset_stopwatch()
+	_ready()
+
+func _on_reset_workout_pressed() -> void:
+	reset_workout_view()
+
+func confirm_workout():
+	for c in workoutSummary.get_children():
+		workoutSummary.remove_child(c)
+		c.queue_free()
+	Global.workout_data = timeFinish
+	Global.finish_workout_today()
+	timeFinish.clear()
+	donePanel.visible = false
+	title.text = "Workout Done"
+	start.visible = true
+	pause.visible = false
+	buttonGroup.visible = false
+	start.disabled = true
+	anim_player.play("Breathing Idle")
+
+func _on_confirm_workout_pressed() -> void:
+	confirm_workout()
+#func _get_anim_name(exercise_name: String) -> String :
+	#match exercise_name:
+		#"Idle":
+			#return "Breathing Idle"
+		#"Bicep Curls":
+			#return "Bicep Curl"
+		#"Jogging":
+			#return "Jogging"
+		#"Plank":
+			#return "Plank"
+		#"Push-Ups":
+			#return "Push-up"
+		#"Squats":
+			#return "Back Squat"
+		#"Warm Up":
+			#return "Warming Up"
+		#"Jumping Jacks":
+			#return "Jumping Jacks"
+		#"Lat Pulldown":
+			#return "Front-Raises"
+	#return ""
 
 
 #func _on_info_button_toggled(toggled_on: bool) -> void:

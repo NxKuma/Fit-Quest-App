@@ -1,6 +1,6 @@
 extends Control
 
-@export var initialView := 2
+@export var initialView := 1
 
 @onready var views: Control = %Views
 @onready var buttons: HBoxContainer = %Buttons
@@ -11,7 +11,6 @@ func _ready():
 	for button in buttons.get_children():
 		var buttonIndex = button.get_index()
 		button.pressed.connect(_set_page.bind(buttonIndex))
-		
 
 func _set_page(viewNumber):
 	#print(viewNumber)

@@ -312,6 +312,36 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Confirm Workout" type="Button" parent="Done"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -205.0
+offset_top = 328.5
+offset_right = -17.0
+offset_bottom = 374.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("3_3tff7")
+text = "Confirm Workout"
+
+[node name="Reset Workout" type="Button" parent="Done"]
+layout_mode = 2
+offset_left = 268.5
+offset_top = 730.0
+offset_right = 438.5
+offset_bottom = 776.0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_44088")
+text = "Reset Workout"
+
 [node name="Info" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -356,3 +386,5 @@ autowrap_mode = 1
 [connection signal="pressed" from="Panel/Buttons/Pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="Panel/Buttons/Secondary Buttons/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Panel/Buttons/Secondary Buttons/Finish" to="." method="_on_finish_pressed"]
+[connection signal="pressed" from="Done/Confirm Workout" to="." method="_on_confirm_workout_pressed"]
+[connection signal="pressed" from="Done/Reset Workout" to="." method="_on_reset_workout_pressed"]

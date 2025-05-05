@@ -18,13 +18,15 @@ class AvatarParams:
 	var hips: float = 0
 	var legs: float = 0
 	var neck: float = 0
-	
-	
+
+
 var avatar_params: AvatarParams
 var character_changed: bool = false
 
 var workout_plan: WeeklyWorkoutPlan
 var routine_today: WorkoutRoutine
+var workout_data: Array[String]
+var is_workout_finished_today: bool = false
 
 func _ready():
 	avatar_params = AvatarParams.new()
@@ -42,9 +44,10 @@ func _ready():
 func get_routine_today():
 	return routine_today
 
+func finish_workout_today():
+	is_workout_finished_today = true
+
 func _process(delta):
-
-
 	if character_changed:
 		change_character.emit(avatar_params.arms, avatar_params.neck, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.legs, avatar_params.hips)
 

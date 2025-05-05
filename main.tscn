@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_bhc7n"]
 [ext_resource type="PackedScene" uid="uid://hksd5fbuiqlu" path="res://views/home_view.tscn" id="2_s1anr"]
-[ext_resource type="PackedScene" uid="uid://6xmlyob2ti21" path="res://views/workout_view.tscn" id="3_wvkul"]
+[ext_resource type="PackedScene" uid="uid://vxmxbu1s0u8p" path="res://views/workout_view.tscn" id="3_wvkul"]
 [ext_resource type="PackedScene" uid="uid://c0nggtkx5i15l" path="res://views/guilds_view.tscn" id="4_pypkf"]
 [ext_resource type="PackedScene" uid="uid://dghtag0kp8owr" path="res://views/profile_view.tscn" id="5_wrjgc"]
 [ext_resource type="Texture2D" uid="uid://dq7v710s7mqgh" path="res://Art Asset/Icon/gym.png" id="7_5q58h"]
