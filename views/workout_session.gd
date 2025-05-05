@@ -75,18 +75,19 @@ func _ready() -> void:
 	# Setup header
 	title.text = routine.routine_name
 
+	anim_player.play("Warming Up")
+
 	if (routine.routine_name == "Rest"):
 		countdown.visible = true
 		countdown.text = "Rest day\ntoday!"
 		exerciseLabel.text = ""
 		setsLabel.text = ""
 		start.disabled = true
+		anim_player.play("Breathing Idle")
 	else:
 		exerciseLabel.text = routine.exercises[currentExercise].exercise_name
 		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].sets, routine.exercises[currentExercise].repetitions]
 		countdown.visible = false
-
-	anim_player.play("Warming Up")
 
 	# _physics_process right now is to handle stopwatch. Can migrate to physics_process later
 	# if _physics_process is needed for workout session logic 
