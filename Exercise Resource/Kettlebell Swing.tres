@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://effw3bk7q3vu"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_mpas8"]
+
+[resource]
+script = ExtResource("1_mpas8")
+exercise_name = "Kettlebell Swing"
+sets = 3
+repetitions = 10
+exercise_description = "Kettlebell swings are a dynamic exercise that targets the hips, glutes, hamstrings, and core. Begin by standing with feet shoulder-width apart and holding a kettlebell with both hands in front of you. Hinge at the hips and slightly bend your knees to swing the kettlebell back between your legs. Then, thrust your hips forward to swing the kettlebell up to chest height, keeping your arms straight and core engaged. Let the kettlebell swing back down naturally and repeat the motion in a controlled rhythm."
