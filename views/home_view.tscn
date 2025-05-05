@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://hksd5fbuiqlu"]
+[gd_scene load_steps=18 format=3 uid="uid://hksd5fbuiqlu"]
 
 [ext_resource type="Script" path="res://scripts/home_view.gd" id="1_m3tji"]
 [ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
-[ext_resource type="PackedScene" uid="uid://cpeobg6t2jjnc" path="res://Scenes/3d_avatar.tscn" id="1_ngulp"]
-[ext_resource type="StyleBox" uid="uid://b4tcgvd4x43cm" path="res://views/panel_box.tres" id="3_q8ahr"]
-[ext_resource type="Texture2D" uid="uid://ycjauwqa65gl" path="res://Art Asset/Icon/account.png" id="4_mkfff"]
+[ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="2_iy5u8"]
+[ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="4_r56lf"]
+[ext_resource type="FontFile" uid="uid://bdaq1i7wekyk3" path="res://Fonts/Mollen Personal Use-BoldCondensed.otf" id="5_n0ivl"]
+[ext_resource type="FontFile" uid="uid://d07kg4o6voepx" path="res://Fonts/Mollen Personal Use-Narrow.otf" id="5_pv2x2"]
+[ext_resource type="Texture2D" uid="uid://bpwhve0u0igph" path="res://Art Asset/Icon/calendar.png" id="6_0uq4e"]
+[ext_resource type="Texture2D" uid="uid://ry2ovn5fgx8s" path="res://Art Asset/Icon/goal.png" id="8_c2kiu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doyt0"]
 
@@ -15,13 +18,32 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1tp8"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ekono"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_4tgua"]
+[sub_resource type="LabelSettings" id="LabelSettings_0h30n"]
+font = ExtResource("4_r56lf")
+font_size = 120
+font_color = Color(0.117647, 0.521569, 0.737255, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_147ja"]
+color = Color(0.592157, 0.929412, 0.976471, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u74vy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pkwtc"]
+font = ExtResource("5_pv2x2")
 font_size = 30
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ekono"]
+[sub_resource type="LabelSettings" id="LabelSettings_m2ljw"]
+font = ExtResource("5_n0ivl")
+font_size = 30
+font_color = Color(0.968627, 0.933333, 0.866667, 1)
+outline_size = 15
+outline_color = Color(0.117647, 0.521569, 0.737255, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plga5"]
 
 [node name="Home View" type="Control"]
 layout_mode = 3
@@ -34,6 +56,7 @@ mouse_filter = 1
 script = ExtResource("1_m3tji")
 
 [node name="Background-Top" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +71,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -320.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -67,10 +89,10 @@ text = "Home"
 
 [node name="Shadow" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 23.0
-offset_top = 720.0
-offset_right = 56.0
-offset_bottom = 760.0
+offset_left = 255.0
+offset_top = 699.0
+offset_right = 288.0
+offset_bottom = 739.0
 scale = Vector2(7.47572, 3.13738)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_doyt0")
 
@@ -78,29 +100,44 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_doyt0")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_py31l")
 
-[node name="3D Avatar" parent="." instance=ExtResource("1_ngulp")]
-layout_mode = 1
-offset_left = -54.0
-offset_top = 182.0
-offset_right = -188.0
-offset_bottom = -116.0
+[node name="SubViewportContainer" parent="." instance=ExtResource("2_iy5u8")]
+layout_mode = 2
+offset_left = 119.0
+offset_top = 234.0
+offset_right = 631.0
+offset_bottom = 746.0
 
-[node name="SubViewport" parent="3D Avatar" index="0"]
-size = Vector2i(406, 662)
-
-[node name="Camera3D" parent="3D Avatar/SubViewport" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.994926, 0.100605, 0, -0.100605, 0.994926, 0, 24.5498, 128.22)
-fov = 85.0
-
-[node name="OmniLight3D" parent="3D Avatar/SubViewport" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2198, 116.623, 74.7181)
-visible = false
-light_energy = 400.0
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D Avatar/SubViewport" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 156.459, 156.053)
-light_energy = 2.0
-sky_mode = 1
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/character_model_scene/Armature" index="0"]
+bones/7/rotation = Quaternion(-0.496699, -0.477721, 0.638781, -0.3421)
+bones/8/position = Vector3(3.18349e-06, 9.84773, 2.31501e-05)
+bones/9/position = Vector3(-3.257e-06, 20.0335, -4.74545e-06)
+bones/12/position = Vector3(-0.618778, 3.00254, 1.0699e-05)
+bones/14/position = Vector3(0.662147, 2.84941, -1.06692e-05)
+bones/15/position = Vector3(-2.85499, 9.05612, -0.0320864)
+bones/16/position = Vector3(0.0154499, 3.32167, -3.4611e-06)
+bones/19/position = Vector3(-0.991723, 8.69378, -0.199157)
+bones/20/position = Vector3(0.0168119, 3.5739, 1.0958e-05)
+bones/21/position = Vector3(-0.00443944, 3.33629, -8.43461e-06)
+bones/22/position = Vector3(-0.0123754, 3.09891, 2.28882e-05)
+bones/23/position = Vector3(1.08027, 8.82786, -0.0239722)
+bones/25/position = Vector3(0.000880808, 2.6406, -1.09431e-05)
+bones/26/position = Vector3(-0.0236661, 2.19839, 4.05312e-05)
+bones/27/position = Vector3(2.76645, 8.466, -0.181628)
+bones/29/position = Vector3(0.00144432, 1.91652, -6.91255e-06)
+bones/33/position = Vector3(3.61125e-06, 20.0339, -4.1714e-06)
+bones/34/position = Vector3(-1.38671e-06, 19.4586, 6.39284e-06)
+bones/36/position = Vector3(0.737313, 3.18763, -5.06183e-06)
+bones/38/position = Vector3(-0.782544, 2.80795, -1.04308e-05)
+bones/41/position = Vector3(0.000745336, 3.2088, -2.10131e-06)
+bones/43/position = Vector3(0.959661, 8.96442, -0.167131)
+bones/44/position = Vector3(-0.0162883, 3.44884, 5.4209e-06)
+bones/46/position = Vector3(0.0124727, 3.18815, 3.69549e-06)
+bones/47/position = Vector3(-1.07527, 9.16658, -0.14071)
+bones/48/position = Vector3(-0.0122808, 2.79027, 5.60163e-06)
+bones/49/position = Vector3(0.00413567, 2.62422, 8.52181e-06)
+bones/50/position = Vector3(0.00814171, 2.34909, 3.0607e-05)
+bones/52/position = Vector3(-0.00376749, 2.30541, -4.54367e-06)
+bones/55/rotation = Quaternion(0.110909, 0.0878494, 0.985954, -0.0887545)
 
 [node name="Man" type="Sprite2D" parent="."]
 visible = false
@@ -108,205 +145,16 @@ position = Vector2(162, 509)
 scale = Vector2(0.411, 0.36)
 texture = ExtResource("1_ngc2x")
 
-[node name="Streak Counter" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 257.0
-grow_horizontal = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 120
-theme_override_constants/margin_right = 10
-
-[node name="PanelContainer" type="PanelContainer" parent="Streak Counter"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("3_q8ahr")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Streak Counter/PanelContainer"]
-layout_mode = 2
-
-[node name="Sunday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
-
-[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Sunday"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Sunday/VSplitContainer"]
-layout_mode = 2
-text = "S"
-label_settings = SubResource("LabelSettings_4tgua")
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Sunday/VSplitContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("4_mkfff")
-
-[node name="Monday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
-
-[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Monday"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Monday/VSplitContainer"]
-layout_mode = 2
-text = "M"
-label_settings = SubResource("LabelSettings_4tgua")
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Monday/VSplitContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("4_mkfff")
-
-[node name="Tuesday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
-
-[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Tuesday"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Tuesday/VSplitContainer"]
-layout_mode = 2
-text = "T"
-label_settings = SubResource("LabelSettings_4tgua")
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Tuesday/VSplitContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("4_mkfff")
-
-[node name="Wednesday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
-
-[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Wednesday"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Wednesday/VSplitContainer"]
-layout_mode = 2
-text = "W"
-label_settings = SubResource("LabelSettings_4tgua")
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Wednesday/VSplitContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("4_mkfff")
-
-[node name="Thursday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
-
-[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Thursday"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Thursday/VSplitContainer"]
-layout_mode = 2
-text = "TH"
-label_settings = SubResource("LabelSettings_4tgua")
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Thursday/VSplitContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("4_mkfff")
-
-[node name="Friday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
-
-[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Friday"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Friday/VSplitContainer"]
-layout_mode = 2
-text = "F"
-label_settings = SubResource("LabelSettings_4tgua")
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Friday/VSplitContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("4_mkfff")
-
-[node name="Saturday" type="Panel" parent="Streak Counter/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_o1tp8")
-
-[node name="VSplitContainer" type="VSplitContainer" parent="Streak Counter/PanelContainer/HBoxContainer/Saturday"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Streak Counter/PanelContainer/HBoxContainer/Saturday/VSplitContainer"]
-layout_mode = 2
-text = "S
-"
-label_settings = SubResource("LabelSettings_4tgua")
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Streak Counter/PanelContainer/HBoxContainer/Saturday/VSplitContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("4_mkfff")
-
 [node name="Side Panel Margin" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -266.0
-offset_top = -215.0
-offset_bottom = 354.0
-grow_horizontal = 0
+offset_left = 10.0
+offset_top = -284.5
+offset_right = 276.0
+offset_bottom = 274.5
 grow_vertical = 2
-theme_override_constants/margin_right = 10
 
 [node name="Side Panels" type="PanelContainer" parent="Side Panel Margin"]
 layout_mode = 2
@@ -315,24 +163,145 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_ekono")
 [node name="VBoxContainer" type="VBoxContainer" parent="Side Panel Margin/Side Panels"]
 layout_mode = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 25
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer"]
+layout_mode = 2
+dragger_visibility = 2
+
+[node name="Day of the Week" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "TH"
+label_settings = SubResource("LabelSettings_0h30n")
+
+[node name="Streak" type="RichTextLabel" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/line_separation = -22
+bbcode_enabled = true
+text = "[color=#3dbed6] [font_size=24px] [outline_size=16] [outline_color=1e85bc]   36 [img]res://Art Asset/Icon/propane_icon.png[/img]"
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_147ja")
+
 [node name="Panel" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("3_q8ahr")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u74vy")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -78.5
+offset_right = 110.5
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 15
+
+[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "WORKOUT ROUTINE 
+OF THE DAY"
+label_settings = SubResource("LabelSettings_pkwtc")
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("6_0uq4e")
+
+[node name="Routine of the  Day" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "UPPER BODY"
+label_settings = SubResource("LabelSettings_m2ljw")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_147ja")
 
 [node name="Panel2" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("3_q8ahr")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_plga5")
 
-[node name="Panel3" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -78.5
+offset_right = 110.5
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("3_q8ahr")
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Panel4" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("3_q8ahr")
+size_flags_horizontal = 4
+text = "TARGET MUSCLE"
+label_settings = SubResource("LabelSettings_pkwtc")
+horizontal_alignment = 1
 
-[editable path="3D Avatar"]
+[node name="MarginContainer2" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="TextureRect" type="TextureRect" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("8_c2kiu")
+
+[node name="Target Muscle" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "CHEST"
+label_settings = SubResource("LabelSettings_m2ljw")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[editable path="SubViewportContainer"]
+[editable path="SubViewportContainer/SubViewport/character_model_scene"]

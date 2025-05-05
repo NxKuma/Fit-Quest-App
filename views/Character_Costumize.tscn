@@ -1,0 +1,227 @@
+[gd_scene load_steps=5 format=3 uid="uid://c814ewm2b44dl"]
+
+[ext_resource type="Script" path="res://views/character_costumize.gd" id="1_uiwjs"]
+[ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="2_amnvi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ll0g0"]
+bg_color = Color(0.67451, 0.886275, 0.882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.117647, 0.521569, 0.737255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_c8pat"]
+font_size = 24
+font_color = Color(0.329412, 0.415686, 0.411765, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uiwjs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.968627, 0.933333, 0.866667, 1)
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Character3D" parent="VSplitContainer" instance=ExtResource("2_amnvi")]
+layout_mode = 2
+
+[node name="Skeleton3D" parent="VSplitContainer/Character3D/SubViewport/character_model_scene/Armature" index="0"]
+bones/7/rotation = Quaternion(-0.496699, -0.477721, 0.638781, -0.3421)
+bones/8/position = Vector3(3.18349e-06, 9.84773, 2.31501e-05)
+bones/9/position = Vector3(-3.257e-06, 20.0335, -4.74545e-06)
+bones/12/position = Vector3(-0.618778, 3.00254, 1.0699e-05)
+bones/14/position = Vector3(0.662147, 2.84941, -1.06692e-05)
+bones/15/position = Vector3(-2.85499, 9.05612, -0.0320864)
+bones/16/position = Vector3(0.0154499, 3.32167, -3.4611e-06)
+bones/19/position = Vector3(-0.991723, 8.69378, -0.199157)
+bones/20/position = Vector3(0.0168119, 3.5739, 1.0958e-05)
+bones/21/position = Vector3(-0.00443944, 3.33629, -8.43461e-06)
+bones/22/position = Vector3(-0.0123754, 3.09891, 2.28882e-05)
+bones/23/position = Vector3(1.08027, 8.82786, -0.0239722)
+bones/25/position = Vector3(0.000880808, 2.6406, -1.09431e-05)
+bones/26/position = Vector3(-0.0236661, 2.19839, 4.05312e-05)
+bones/27/position = Vector3(2.76645, 8.466, -0.181628)
+bones/29/position = Vector3(0.00144432, 1.91652, -6.91255e-06)
+bones/33/position = Vector3(3.61125e-06, 20.0339, -4.1714e-06)
+bones/34/position = Vector3(-1.38671e-06, 19.4586, 6.39284e-06)
+bones/36/position = Vector3(0.737313, 3.18763, -5.06183e-06)
+bones/38/position = Vector3(-0.782544, 2.80795, -1.04308e-05)
+bones/41/position = Vector3(0.000745336, 3.2088, -2.10131e-06)
+bones/43/position = Vector3(0.959661, 8.96442, -0.167131)
+bones/44/position = Vector3(-0.0162883, 3.44884, 5.4209e-06)
+bones/46/position = Vector3(0.0124727, 3.18815, 3.69549e-06)
+bones/47/position = Vector3(-1.07527, 9.16658, -0.14071)
+bones/48/position = Vector3(-0.0122808, 2.79027, 5.60163e-06)
+bones/49/position = Vector3(0.00413567, 2.62422, 8.52181e-06)
+bones/50/position = Vector3(0.00814171, 2.34909, 3.0607e-05)
+bones/52/position = Vector3(-0.00376749, 2.30541, -4.54367e-06)
+bones/55/rotation = Quaternion(0.110909, 0.0878494, 0.985954, -0.0887545)
+
+[node name="Panel" type="Panel" parent="VSplitContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ll0g0")
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+collapsed = true
+
+[node name="Arm" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer2"]
+layout_mode = 2
+text = "Arm
+"
+label_settings = SubResource("LabelSettings_c8pat")
+
+[node name="Arm Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer2"]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+collapsed = true
+
+[node name="Neck" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer"]
+layout_mode = 2
+text = "Neck"
+label_settings = SubResource("LabelSettings_c8pat")
+
+[node name="Neck Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+collapsed = true
+
+[node name="Breast" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer2"]
+layout_mode = 2
+text = "Breast"
+label_settings = SubResource("LabelSettings_c8pat")
+
+[node name="Breast Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer2"]
+layout_mode = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+collapsed = true
+
+[node name="Torso" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer"]
+layout_mode = 2
+text = "Torso"
+label_settings = SubResource("LabelSettings_c8pat")
+
+[node name="Torso Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer2/VSplitContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+collapsed = true
+
+[node name="Legs" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer2"]
+layout_mode = 2
+text = "Legs"
+label_settings = SubResource("LabelSettings_c8pat")
+
+[node name="Leg Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer2"]
+layout_mode = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+collapsed = true
+
+[node name="Hips" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer"]
+layout_mode = 2
+text = "Hips"
+label_settings = SubResource("LabelSettings_c8pat")
+
+[node name="Hips Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer4" type="HSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+collapsed = true
+
+[node name="Belly" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer2"]
+layout_mode = 2
+text = "Belly
+"
+label_settings = SubResource("LabelSettings_c8pat")
+
+[node name="Belly Size" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer2"]
+layout_mode = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+collapsed = true
+
+[node name="Head" type="Label" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer"]
+layout_mode = 2
+text = "Head
+"
+label_settings = SubResource("LabelSettings_c8pat")
+
+[node name="Head Style" type="HSlider" parent="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer4/VSplitContainer"]
+layout_mode = 2
+
+[connection signal="value_changed" from="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer2/Arm Size" to="." method="_on_neck_size_value_changed" binds= [0]]
+
+[editable path="VSplitContainer/Character3D"]
+[editable path="VSplitContainer/Character3D/SubViewport/character_model_scene"]
