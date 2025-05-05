@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://hksd5fbuiqlu"]
+[gd_scene load_steps=17 format=3 uid="uid://hksd5fbuiqlu"]
 
 [ext_resource type="Script" path="res://scripts/home_view.gd" id="1_m3tji"]
-[ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
 [ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="2_iy5u8"]
 [ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="4_r56lf"]
 [ext_resource type="FontFile" uid="uid://bdaq1i7wekyk3" path="res://Fonts/Mollen Personal Use-BoldCondensed.otf" id="5_n0ivl"]
@@ -100,8 +99,9 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_doyt0")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_py31l")
 
-[node name="SubViewportContainer" parent="." instance=ExtResource("2_iy5u8")]
+[node name="Character3D" parent="." instance=ExtResource("2_iy5u8")]
 layout_mode = 2
+
 offset_left = 119.0
 offset_top = 234.0
 offset_right = 631.0
@@ -375,6 +375,3 @@ label_settings = SubResource("LabelSettings_m2ljw")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-
-[editable path="SubViewportContainer"]
-[editable path="SubViewportContainer/SubViewport/character_model_scene"]

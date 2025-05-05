@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://views/workout_session.gd" id="1_we8sx"]
 [ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="2_e8re7"]
 [ext_resource type="StyleBox" uid="uid://mfdqnkmggf3c" path="res://views/button_light.tres" id="3_3tff7"]
+[ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="3_7o87s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jaia5"]
 font_size = 32
@@ -114,6 +115,7 @@ text = "Current Exercise
 label_settings = SubResource("LabelSettings_autka")
 horizontal_alignment = 1
 
+
 [node name="Character3D" parent="." instance=ExtResource("2_e8re7")]
 layout_mode = 0
 offset_left = 16.0
@@ -121,7 +123,9 @@ offset_top = 86.0
 offset_right = 528.0
 offset_bottom = 598.0
 
+
 [node name="Countdown" type="Label" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -139,6 +143,13 @@ text = "3"
 label_settings = SubResource("LabelSettings_ji8qd")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Character3D" parent="." instance=ExtResource("3_7o87s")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 89.0
+offset_right = 528.0
+offset_bottom = 601.0
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -303,6 +314,46 @@ offset_right = 200.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Info" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -354.0
+offset_right = -34.0
+offset_bottom = -314.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Info Button" type="Button" parent="Info"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -72.0
+offset_right = 31.0
+offset_bottom = 5.0
+theme_override_colors/font_hover_color = Color(0.82606, 0.82606, 0.82606, 1)
+theme_override_colors/font_color = Color(0.12549, 0.580392, 0.631373, 1)
+theme_override_font_sizes/font_size = 50
+text = "ⓘ"
+flat = true
+
+[node name="Info Popup" type="PopupPanel" parent="Info"]
+
+[node name="MarginContainer" type="MarginContainer" parent="Info/Info Popup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 96.0
+
+[node name="Info Label" type="Label" parent="Info/Info Popup/MarginContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+autowrap_mode = 1
 
 [connection signal="pressed" from="Panel/Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Panel/Buttons/Pause" to="." method="_on_pause_pressed"]

@@ -23,10 +23,6 @@ class AvatarParams:
 var avatar_params: AvatarParams
 var character_changed: bool = false
 
-var day: int
-var workout_plan: WeeklyWorkoutPlan
-var routine_today: WorkoutRoutine
-
 func _ready():
 	avatar_params = AvatarParams.new()
 	
@@ -46,7 +42,7 @@ func get_routine_today():
 func _process(delta):
 	#print(user_id);
 	pass
-	
+
 	# For workout plan logic
 	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
 	day = Time.get_datetime_dict_from_system()["weekday"]
@@ -57,7 +53,7 @@ func _process(delta):
 
 
 	#Global.change_character.emit(arms, neck, breast, torso, belly, legs, hips)
-
+  
 func _goto_scene(path):
 	# Used in signal callback, or functions in current scene.
 	

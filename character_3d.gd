@@ -11,14 +11,6 @@ var parent
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#parent = get_tree().get_current_scene()
-	#print(parent)
-	#print(parent.get_name())
-	if Global.current_scene.get_name() == "Home View":
-		animation_player.play("Breathing Idle")
-		if animation_player.is_playing():
-			print("Penis")
-			
 	Global.change_character.connect(change_character)
 
 
