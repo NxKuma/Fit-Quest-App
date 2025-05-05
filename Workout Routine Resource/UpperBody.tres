@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scripts/exercise.gd" id="1_btm0p"]
 [ext_resource type="Script" path="res://scripts/workout_routine.gd" id="2_6l080"]
 [ext_resource type="Resource" uid="uid://br2yd2wbq1thg" path="res://Exercise Resource/OverheadShoulderPress.tres" id="2_g2xmo"]
-[ext_resource type="Resource" uid="uid://bpwiwsb7hr4vu" path="res://Exercise Resource/BicepCurls.tres" id="3_2ytr4"]
+[ext_resource type="Resource" uid="uid://bpwiwsb7hr4vu" path="res://Exercise Resource/Bicep Curls.tres" id="3_2ytr4"]
 [ext_resource type="Resource" uid="uid://bpq57tlxa64cg" path="res://Exercise Resource/Push-Ups.tres" id="4_tbi06"]
-[ext_resource type="Resource" uid="uid://dounrak2lhn36" path="res://Exercise Resource/LatPulldown.tres" id="5_8pwdk"]
+[ext_resource type="Resource" uid="uid://dounrak2lhn36" path="res://Exercise Resource/Jumping Jacks.tres" id="5_8pwdk"]
 
 [resource]
 script = ExtResource("2_6l080")

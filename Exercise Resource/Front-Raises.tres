@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://bo5scpcnnbalq"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_5arbd"]
+
+[resource]
+script = ExtResource("1_5arbd")
+exercise_name = "Front-Raises"
+sets = 3
+repetitions = 10
+exercise_description = "Front raises are a strength-training exercise that targets the front part of the shoulder muscles (anterior deltoids). To perform them, stand with your feet shoulder-width apart, holding a dumbbell in each hand with your arms resting in front of your thighs. Keeping your arms straight but not locked, slowly lift the weights in front of you to shoulder height. Pause briefly at the top, then lower the weights back down with control. "
