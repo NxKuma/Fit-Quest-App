@@ -32,7 +32,7 @@ func _ready():
 	# For workout plan logic
 	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
 	day = Time.get_datetime_dict_from_system()["weekday"]
-	routine_today = workout_plan.get_workout_today(1)
+	routine_today = workout_plan.get_workout_today(day)
 
 func get_routine_today():
 	return routine_today
