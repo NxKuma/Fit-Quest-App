@@ -4,26 +4,28 @@ class_name SceneSwitcher
 var current_scene = null
 var user_id: int = -1
 
+signal change_character(arms: float, neck: float, breast: float, torso: float, belly: float, legs:float, hips: float)
+
 @export var databaseManager: Node
 @export var loginManager: Node
 
 class AvatarParams:
-	var shoulders: float
-	var arms: float
-	var breasts: float
-	var torso: float
-	var belly: float
-	var hips: float
-	var legs: float
-	var neck: float
+	var shoulders: float = 0
+	var arms: float = 0
+	var breasts: float = 0
+	var torso: float = 0
+	var belly: float = 0
+	var hips: float = 0
+	var legs: float = 0
+	var neck: float = 0
+		
 	
 var avatar_params: AvatarParams
-
-var day: int
-var workout_plan: WeeklyWorkoutPlan
-var routine_today: WorkoutRoutine
+var character_changed: bool = false
 
 func _ready():
+	avatar_params = AvatarParams.new()
+	
 	var root = get_tree().root
 	
 	# Get the child at the end
@@ -40,7 +42,18 @@ func get_routine_today():
 func _process(delta):
 	#print(user_id);
 	pass
+
+	# For workout plan logic
+	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
+	day = Time.get_datetime_dict_from_system()["weekday"]
+	routine_today = workout_plan.get_workout_today(day)
 	
+	if character_changed:
+		change_character.emit(avatar_params.arms, avatar_params.neck, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.legs, avatar_params.hips)
+
+
+	#Global.change_character.emit(arms, neck, breast, torso, belly, legs, hips)
+  
 func _goto_scene(path):
 	# Used in signal callback, or functions in current scene.
 	

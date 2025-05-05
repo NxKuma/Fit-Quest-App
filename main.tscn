@@ -37,11 +37,9 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Workout View" parent="Views" instance=ExtResource("3_wvkul")]
-visible = false
 layout_mode = 1
 
 [node name="Home View2" parent="Views" instance=ExtResource("2_s1anr")]
-visible = false
 layout_mode = 1
 
 [node name="Guilds View" parent="Views" instance=ExtResource("4_pypkf")]

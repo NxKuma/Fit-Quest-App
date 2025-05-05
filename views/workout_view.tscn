@@ -1,6 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://6xmlyob2ti21"]
 
 [ext_resource type="Script" path="res://views/workout_session.gd" id="1_we8sx"]
+[ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="2_e8re7"]
 [ext_resource type="StyleBox" uid="uid://mfdqnkmggf3c" path="res://views/button_light.tres" id="3_3tff7"]
 [ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="3_7o87s"]
 
@@ -114,14 +115,14 @@ text = "Current Exercise
 label_settings = SubResource("LabelSettings_autka")
 horizontal_alignment = 1
 
-[node name="SetsAndReps" type="Label" parent="Header"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 30
-text = "3 sets of 1
-"
-label_settings = SubResource("LabelSettings_autka")
-horizontal_alignment = 1
+
+[node name="Character3D" parent="." instance=ExtResource("2_e8re7")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 86.0
+offset_right = 528.0
+offset_bottom = 598.0
+
 
 [node name="Countdown" type="Label" parent="."]
 z_index = 1
@@ -358,4 +359,3 @@ autowrap_mode = 1
 [connection signal="pressed" from="Panel/Buttons/Pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="Panel/Buttons/Secondary Buttons/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Panel/Buttons/Secondary Buttons/Finish" to="." method="_on_finish_pressed"]
-[connection signal="toggled" from="Info/Info Button" to="." method="_on_info_button_toggled"]
