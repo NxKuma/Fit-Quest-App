@@ -14,7 +14,7 @@ func _ready():
 		
 
 func _set_page(viewNumber):
-	print(viewNumber)
+	#print(viewNumber)
 	for i in views.get_child_count():
 		views.get_children()[i].visible = (i == viewNumber) # set visible if i == viewNumber
 		

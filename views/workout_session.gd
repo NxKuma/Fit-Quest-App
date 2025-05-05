@@ -12,11 +12,15 @@ var time: float = 0.0
 var minutes: int = 0
 var seconds: int = 0
 var mseconds: int = 0
-var maxTime: int = 1
+var maxTime: int = 3
 
 # UI
 var title: Label
 var exerciseLabel: Label
+var setsLabel: Label
+
+#var model
+#var anim_player
 
 var minutesLabel: Label
 var secondsLabel: Label
@@ -27,9 +31,13 @@ var start: Button
 var pause: Button
 var buttonGroup: HBoxContainer
 
+var infoButton: Button
+var infoPopup: PopupPanel
+var infoLabel: Label
+
 var donePanel: Panel
 var workoutSummary: VBoxContainer
-
+@onready var character_3d: SubViewportContainer = $Character3D
 
 func _ready() -> void:
 	load_routine()
@@ -39,6 +47,9 @@ func _ready() -> void:
 	
 	title = $Header/Title
 	exerciseLabel = $"Header/Exercise Label"
+	setsLabel = $Header/SetsAndReps
+	
+	#avatar = $Avatar
 
 	start = $Panel/Buttons/Start
 	pause = $Panel/Buttons/Pause
@@ -47,6 +58,11 @@ func _ready() -> void:
 	minutesLabel = $Panel/Stopwatch/Minutes
 	secondsLabel = $Panel/Stopwatch/Seconds
 	msecondsLabel = $Panel/Stopwatch/Milliseconds
+	
+	#infoButton = $"Info/Info Button"
+	#infoPopup = $"Info/Info Popup"
+	#infoLabel = $"Info/Info Popup/MarginContainer/Info Label"
+	#infoPopup.hide()
 	
 	donePanel = $Done
 	workoutSummary = $"Done/Workout Summary"
@@ -57,15 +73,18 @@ func _ready() -> void:
 	title.text = routine.routine_name
 
 	if (routine.routine_name == "Rest"):
-		set_process(false)
 		countdown.visible = true
 		countdown.text = "Rest day\ntoday!"
 		exerciseLabel.text = ""
+		setsLabel.text = ""
 		start.disabled = true
 	else:
 		exerciseLabel.text = routine.exercises[currentExercise].exercise_name
+		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].current_sets, routine.exercises[currentExercise].current_sets]
 		countdown.visible = false
-
+	#anim_player.play("Jogging")
+	var anim_player = character_3d.get_node("SubViewport/character_model_scene/AnimationPlayer")
+	anim_player.play("Bicep Curl")
 	
 	# _physics_process right now is to handle stopwatch. Can migrate to physics_process later
 	# if _physics_process is needed for workout session logic 
@@ -99,6 +118,7 @@ func play_countdown() -> void:
 		doCountdown = false
 		if (!showPopup):
 			show_summary()
+		
 	if (maxTime - seconds <= 0 and showPopup):
 		countdown.text = "%s" % "Go!"
 
@@ -129,6 +149,7 @@ func finish_set() -> void:
 		doCountdown = true
 	else:
 		exerciseLabel.text = routine.exercises[currentExercise].exercise_name
+		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].current_sets, routine.exercises[currentExercise].current_sets]
 		start.visible = true
 
 func start_rest_timer() -> void:
@@ -149,6 +170,7 @@ func get_time_formatted() -> String:
 func show_summary():
 	title.text = "Workout Summary"
 	exerciseLabel.text = ""
+	setsLabel.text = ""
 	donePanel.visible = true
 	var i: int = 0
 	for exercise in routine.exercises:
@@ -169,3 +191,25 @@ func _on_resume_pressed() -> void:
 
 func _on_finish_pressed() -> void:
 	finish_set()
+
+#func _on_info_button_toggled(toggled_on: bool) -> void:
+	#if infoPopup.visible:
+		#infoPopup.hide()
+	#else:
+		#_show_info_popup()
+
+#func _show_info_popup():
+	#var content = "Here’s a description of the exercise. It can be arbitrarily long and will wrap appropriately."
+	#infoLabel.text = content
+#
+	#infoLabel.rect_min_size = Vector2()  # reset
+	#infoLabel.queue_sort()               # ensure layout recalculates
+#
+	#var min_size = infoLabel.get_minimum_size()
+#
+	#var padding = Vector2(20, 20)
+	#infoPopup.rect_size = min_size + padding
+	#var btn_global = infoButton.get_global_position()
+	#infoPopup.rect_global_position = btn_global + Vector2(0, infoButton.rect_size.y + 10)
+#
+	#infoPopup.popup()  # shows the popup

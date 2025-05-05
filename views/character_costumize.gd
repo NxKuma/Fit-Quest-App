@@ -39,7 +39,7 @@ func _ready():
 	for n in blend_shapes.size():
 		var slider = slider_array[n]
 		slider.connect("value_changed", _on_neck_size_value_changed.bind(n))
-		print(blend_shapes[n])
+		#print(blend_shapes[n])
 		
 		for m in blend_shapes.size():
 			if blend_shapes[m].contains(slider.get_name()) :
@@ -50,8 +50,7 @@ func _ready():
 
 func _on_slider_value_changed(value: float, blend_shape: String):
 	##var index = model.mesh.get_blend_shape_index(blend_shape_name)
-	#model.set_blend_shape_value(blend_shape_index, value)
-	##print(blend_shape_name)
+	#model.set_blend_shape_value(blend_shape_index, value
 	pass
 
 
@@ -61,12 +60,24 @@ func _on_neck_size_value_changed(value: float, extra_arg_0: int) -> void:
 
 
 func _on_button_pressed() -> void:
-	#print(slider_array[0].get_value())
-	Global.avatar_params.arms = slider_array[0].get_value()
-	Global.avatar_params.neck = slider_array[1].get_value()
-	Global.avatar_params.breasts = slider_array[2].get_value()
-	Global.avatar_params.torso = slider_array[3].get_value()
-	Global.avatar_params.legs = slider_array[4].get_value()
-	Global.avatar_params.hips = slider_array[5].get_value()
-	Global.avatar_params.belly = slider_array[6].get_value()
+	print(slider_array[0].get_value())
+	var arms = slider_array[0].get_value()
+	var neck = slider_array[1].get_value()
+	var breast = slider_array[2].get_value()
+	var torso  = slider_array[3].get_value()
+	var legs = slider_array[4].get_value()
+	var hips = slider_array[5].get_value()
+	var belly = slider_array[6].get_value()
 	
+	Global.avatar_params.arms = arms
+	Global.avatar_params.neck = neck
+	Global.avatar_params.breasts = breast
+	Global.avatar_params.torso = torso
+	Global.avatar_params.legs = legs
+	Global.avatar_params.hips = hips
+	Global.avatar_params.belly = belly
+	Global.change_character.emit(arms, neck, breast, torso, belly, legs, hips)
+
+	print("Hello")
+	Global.character_changed = true
+	Global._goto_scene("res://main.tscn")
