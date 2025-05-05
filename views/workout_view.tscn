@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://6xmlyob2ti21"]
+[gd_scene load_steps=12 format=3 uid="uid://vxmxbu1s0u8p"]
 
 [ext_resource type="Script" path="res://views/workout_session.gd" id="1_we8sx"]
 [ext_resource type="StyleBox" uid="uid://mfdqnkmggf3c" path="res://views/button_light.tres" id="3_3tff7"]
