@@ -18,10 +18,13 @@ class AvatarParams:
 	var hips: float = 0
 	var legs: float = 0
 	var neck: float = 0
-		
+	
 	
 var avatar_params: AvatarParams
 var character_changed: bool = false
+
+var workout_plan: WeeklyWorkoutPlan
+var routine_today: WorkoutRoutine
 
 func _ready():
 	avatar_params = AvatarParams.new()
@@ -33,7 +36,7 @@ func _ready():
 	
 	# For workout plan logic
 	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
-	day = Time.get_datetime_dict_from_system()["weekday"]
+	var day = Time.get_datetime_dict_from_system()["weekday"]
 	routine_today = workout_plan.get_workout_today(day)
 
 func get_routine_today():
@@ -43,11 +46,6 @@ func _process(delta):
 	#print(user_id);
 	pass
 
-	# For workout plan logic
-	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
-	day = Time.get_datetime_dict_from_system()["weekday"]
-	routine_today = workout_plan.get_workout_today(day)
-	
 	if character_changed:
 		change_character.emit(avatar_params.arms, avatar_params.neck, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.legs, avatar_params.hips)
 

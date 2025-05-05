@@ -67,12 +67,6 @@ func _ready() -> void:
 	donePanel = $Done
 	workoutSummary = $"Done/Workout Summary"
 	
-	#model = CHARACTER_3D.instantiate()
-	#avatar.add_child(model)
-	#model.set_anchors_preset(Control.PRESET_CENTER)
-	#model = $Character3D
-	#anim_player = model.get_node("SubViewport/character_model_scene/AnimationPlayer")
-	#print(anim_player.get_animation_list())
 	timeFinish = []
 	
 	# Setup header
@@ -86,7 +80,7 @@ func _ready() -> void:
 		start.disabled = true
 	else:
 		exerciseLabel.text = routine.exercises[currentExercise].exercise_name
-		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].sets, routine.exercises[currentExercise].repetitions]
+		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].current_sets, routine.exercises[currentExercise].current_sets]
 		countdown.visible = false
 	#anim_player.play("Jogging")
 	var anim_player = character_3d.get_node("SubViewport/character_model_scene/AnimationPlayer")
@@ -124,7 +118,7 @@ func play_countdown() -> void:
 		doCountdown = false
 		if (!showPopup):
 			show_summary()
-		#model.play("Jogging")
+		
 	if (maxTime - seconds <= 0 and showPopup):
 		countdown.text = "%s" % "Go!"
 
@@ -155,7 +149,7 @@ func finish_set() -> void:
 		doCountdown = true
 	else:
 		exerciseLabel.text = routine.exercises[currentExercise].exercise_name
-		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].sets, routine.exercises[currentExercise].repetitions]
+		setsLabel.text = "%d sets of %d" % [routine.exercises[currentExercise].current_sets, routine.exercises[currentExercise].current_sets]
 		start.visible = true
 
 func start_rest_timer() -> void:
