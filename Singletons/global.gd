@@ -57,7 +57,6 @@ func _ready():
 	
 	#person_id = 1
 	
-	#avatar_params.shoulders = 1
 	#avatar_params.arms = 1.1
 	#avatar_params.breasts = 1.2
 	#avatar_params.torso = 1.3
@@ -94,8 +93,7 @@ func _change_login_info(username: String, password: String):
 	login_info.password = password
 
 # Make sure this is always run on signin before calling _complete_signin()
-func _change_avatar_info(shoulder: float, arms: float, breasts: float, torso: float, belly: float, hips: float, legs: float, neck: float):
-	avatar_params.shoulder = shoulder
+func _change_avatar_info(arms: float, breasts: float, torso: float, belly: float, hips: float, legs: float, neck: float):
 	avatar_params.arms = arms
 	avatar_params.breasts = breasts
 	avatar_params.torso = torso
@@ -131,7 +129,6 @@ func _process(delta):
 
 	#Global.change_character.emit(arms, neck, breast, torso, belly, legs, hips)
 			
-	# print("Shoulders: ", avatar_params.shoulders)
 	# print("Arms: ", avatar_params.arms)
 	# print("Breasts: ", avatar_params.breasts)
 	# print("Torso: ", avatar_params.torso)

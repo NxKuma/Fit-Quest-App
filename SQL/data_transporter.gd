@@ -11,7 +11,6 @@ var did_setup: bool = false
 @export var sql_manager: Node
 
 # Avatar Param Data
-var shoulders: float
 var arms: float
 var breasts: float
 var torso: float
@@ -72,14 +71,13 @@ func _add_avatar():
 	if Global.person_id == -1:
 		return
 	
-	login_info_manager.add_avatar(Global.person_id, avatar_params.shoulders, avatar_params.arms, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.hips, avatar_params.legs, avatar_params.neck)
+	login_info_manager.add_avatar(Global.person_id, avatar_params.arms, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.hips, avatar_params.legs, avatar_params.neck)
 
 func _setup_user(username: String, password: String) -> bool:
 	var completed: bool = login_info_manager.set_current_user(username, password)
 	return completed
 
 func _process_avatar_data():
-	Global.avatar_params.shoulders = shoulders
 	Global.avatar_params.arms = arms
 	Global.avatar_params.breasts = breasts
 	Global.avatar_params.torso = torso
