@@ -75,6 +75,7 @@ func _add_workout(workout_name: String):
 
 func _setup_user(username: String, password: String) -> bool:
 	var completed: bool = data_transporter._setup_user(username, password)
+	character_changed = true
 	return completed
 
 # Make sure this is always run on login and signin before calling _execute_login() and _complete_signin() respectively
@@ -107,7 +108,6 @@ func _complete_signin() -> bool:
 	return completed_setup
 
 
-
 func _execute_login() -> bool:
 	return _setup_user(login_info.username, login_info.password)
 
@@ -126,7 +126,9 @@ func _process(delta):
 	if character_changed:
 		change_character.emit(avatar_params.arms, avatar_params.neck, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.legs, avatar_params.hips)
 
-
+	#print(avatar_params.arms, avatar_params.neck, avatar_params.breasts, avatar_params.torso, avatar_params.legs, avatar_params.hips, avatar_params.belly)
+	#print(person_data.height)
+	#print(person_data.weight)
 func get_routine_today():
 	return routine_today
 

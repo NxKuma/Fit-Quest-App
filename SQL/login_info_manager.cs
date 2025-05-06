@@ -204,7 +204,7 @@ public partial class login_info_manager : Node
 
 	public bool does_workout_yesterday_exist(int person_id) {
 		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
-		String check_exist_string = "SELECT EXIST(SELECT * FROM workout_instance WHERE person_id=" + person_id +" AND date_executed=date_trunc('day', current_timestamp) - interval '1' day;);";
+		String check_exist_string = "SELECT EXISTS(SELECT * FROM workout_instance WHERE person_id=" + person_id +" AND date_executed=date_trunc('day', current_timestamp) - interval '1' day);";
 		bool does_exist = false;
 		var exist_cmd = data_source.CreateCommand(check_exist_string);
 		var exist_reader = exist_cmd.ExecuteReader();
@@ -218,7 +218,7 @@ public partial class login_info_manager : Node
 
 	public bool does_workout_today_exist(int person_id) {
 		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
-		String check_exist_string = "SELECT EXIST(SELECT * FROM workout_instance WHERE person_id=" + person_id +" AND date_executed=date_trunc('day', current_timestamp););";
+		String check_exist_string = "SELECT EXISTS(SELECT * FROM workout_instance WHERE person_id=" + person_id +" AND date_executed=date_trunc('day', current_timestamp));";
 		bool does_exist = false;
 		var exist_cmd = data_source.CreateCommand(check_exist_string);
 		var exist_reader = exist_cmd.ExecuteReader();
@@ -248,11 +248,11 @@ public partial class login_info_manager : Node
 
 		DataTransporter.Set("streak_days", day_cnt);
 
-		String set_days_string = "UPDATE person SET streak_day = " + day_cnt + " WHERE person_id=" + person_id + ";";
+		String set_days_string = "UPDATE person SET streak_days = " + day_cnt + " WHERE person_id=" + person_id + ";";
 		var set_days_cmd = data_source.CreateCommand(set_days_string);
 		var execute = set_days_cmd.ExecuteNonQuery();
 
-		DataTransporter.Call("_update_streak()");
+		DataTransporter.Call("_update_streak");
 		data_source.Clear();
 		return true;
 	}
