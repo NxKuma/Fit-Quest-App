@@ -39,7 +39,11 @@ var character_3d: SubViewportContainer
 var anim_player: AnimationPlayer
 var curr_exercise_name: String
 
+var last_opened_date: String
+
 func _ready() -> void:
+	last_opened_date = Time.get_date_string_from_system() 
+	
 	load_routine()
 	
 	# Initialize components
@@ -92,7 +96,12 @@ func _ready() -> void:
 	# _physics_process right now is to handle stopwatch. Can migrate to physics_process later
 	# if _physics_process is needed for workout session logic 
 	set_physics_process(false)
-  
+
+func _process(delta: float):
+	if Time.get_date_string_from_system() != last_opened_date:
+		last_opened_date = Time.get_date_string_from_system() 
+		reset_workout_view()
+
 func _physics_process(delta: float) -> void:
 	time += delta
 	minutes = fmod(time, 3600) / 60
