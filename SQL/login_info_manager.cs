@@ -202,6 +202,57 @@ public partial class login_info_manager : Node
 		return true;
 	}
 
+	public bool transfer_guild_info(int person_id) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE person_id = " + person_id  + " );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
+
+		String is_null = "SELECT guild_id is null FROM person where person_id=" + person_id + ";";
+		bool is_null_bool = false;
+
+		var is_null_cmd = data_source.CreateCommand(is_null);
+		var is_null_reader = is_null_cmd.ExecuteReader();
+
+		while (is_null_reader.Read()) {
+			is_null_bool = is_null_reader.GetBoolean(0);
+		}
+
+		if (is_null_bool) {
+			return false;
+		}
+
+		String get_guild = " SELECT * FROM guild, person where person.guild_id = guild.guild_id AND person.person_id =" + person_id + ";";
+
+		var guild_cmd = data_source.CreateCommand(get_guild);
+		var guild_reader = guild_cmd.ExecuteReader();
+
+		String guild_name = "";
+		int guild_id = -1;
+
+		while (guild_reader.Read()) {
+			guild_id = guild_reader.GetInt32(guild_reader.GetOrdinal("guild_id"));
+			guild_name = guild_reader.GetString(guild_reader.GetOrdinal("guild_name"));
+
+			DataTransporter.Set("guild_id", guild_id);
+			DataTransporter.Set("guild_name", guild_name);
+			DataTransporter.Call("_set_guild");
+		}
+		guild_reader.Close();
+		data_source.Clear();
+		return true;
+	}
+
 	public bool does_workout_yesterday_exist(int person_id) {
 		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
 		String check_exist_string = "SELECT EXISTS(SELECT * FROM workout_instance WHERE person_id=" + person_id +" AND date_executed=date_trunc('day', current_timestamp) - interval '1' day);";
@@ -541,7 +592,26 @@ public partial class login_info_manager : Node
 		return execute;
 	}
 
+	public void get_guilds(){
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String get_all_guilds = "SELECT * FROM guild;";
+		var guild_cmd = data_source.CreateCommand(get_all_guilds);
+		var guild_reader = guild_cmd.ExecuteReader();
 
+		String guild_name = "";
+		int guild_id = -1;
+
+		while (guild_reader.Read()) {
+			guild_id = guild_reader.GetInt32(guild_reader.GetOrdinal("guild_id"));
+			guild_name = guild_reader.GetString(guild_reader.GetOrdinal("guild_name"));
+
+			DataTransporter.Set("guild_id", guild_id);
+			DataTransporter.Set("guild_name", guild_name);
+			DataTransporter.Call("_process_single_guild");
+		}
+		guild_reader.Close();
+		data_source.Clear();
+	}
 
 
 }

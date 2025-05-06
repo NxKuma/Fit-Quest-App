@@ -38,6 +38,8 @@ var avatar_params: AvatarParam
 var guild_data: GuildData
 var login_info: LoginInfo
 
+var guild_name: String
+
 var workout_name: String
 
 # Called when the node enters the scene tree for the first time.
@@ -69,6 +71,9 @@ func _add_user():
 func _add_person():
 	return login_info_manager.add_person(person_data.height, person_data.weight, Global.info_id)
 
+func _assign_guild(next_guild_id: int):
+	login_info_manager.assign_guild(Global.person_id, next_guild_id)
+	
 func _add_avatar():
 	if Global.person_id == -1:
 		return
@@ -88,6 +93,24 @@ func _setup_user(username: String, password: String) -> bool:
 	print(login_info_manager == null)
 	var completed: bool = login_info_manager.set_current_user(username, password)
 	return completed
+
+func _process_guilds():
+	login_info_manager.get_guilds()
+
+func _get_guild():
+	login_info_manager.transfer_guild_info(Global.person_id)
+
+func _set_guild():
+	Global.guild_data.guild_name = guild_name
+	Global.guild_data.guild_id = guild_id
+
+
+func _process_single_guild():
+	var current_guild: GuildData
+	current_guild.guild_name = guild_name
+	current_guild.guild_id = guild_id
+	Global.all_guild_data.append(current_guild)
+	
 
 func _process_avatar_data():
 	Global.avatar_params.arms = arms

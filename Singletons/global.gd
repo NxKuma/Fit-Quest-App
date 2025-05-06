@@ -78,6 +78,14 @@ func _setup_user(username: String, password: String) -> bool:
 	character_changed = true
 	return completed
 
+func _get_guild():
+	data_transporter._get_guild()
+	
+func _assign_guild(next_guild_id: int):
+	_process_guilds()
+	data_transporter._assign_guild(next_guild_id)
+	
+
 # Make sure this is always run on login and signin before calling _execute_login() and _complete_signin() respectively
 func _change_login_info(username: String, password: String):
 	login_info.username = username
@@ -107,7 +115,11 @@ func _complete_signin() -> bool:
 	var completed_setup: bool = _setup_user(login_info.username, login_info.password)
 	return completed_setup
 
-
+func _process_guilds():
+	all_guild_data = []
+	data_transporter._process_guilds();
+	
+	
 func _execute_login() -> bool:
 	return _setup_user(login_info.username, login_info.password)
 
