@@ -65,13 +65,19 @@ func _add_user():
 	return login_info_manager.add_user(login_info.username, login_info.password)
 	
 func _add_person():
-	login_info_manager.add_person(person_data.height, person_data.weight, person_data.login_id)
+	return login_info_manager.add_person(person_data.height, person_data.weight, Global.info_id)
 
 func _add_avatar():
 	if Global.person_id == -1:
 		return
 	
 	login_info_manager.add_avatar(Global.person_id, avatar_params.arms, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.hips, avatar_params.legs, avatar_params.neck)
+
+func _change_height(height: float):
+	login_info_manager.change_height(Global.person_id, height)
+
+func _change_weight(weight: float):
+	login_info_manager.change_height(Global.person_id, weight)
 
 func _setup_user(username: String, password: String) -> bool:
 	var completed: bool = login_info_manager.set_current_user(username, password)

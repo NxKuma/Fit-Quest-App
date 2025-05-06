@@ -165,6 +165,7 @@ public partial class login_info_manager : Node
 		float weight = -1;
 		float bmi = -1;
 		int guild_id = -1;
+		int streak_days = -1;
 
 		String get_person_string = "SELECT * FROM person WHERE logininfo_id = \'" + info_id  + "\' ";
 		var get_person = data_source.CreateCommand(get_person_string);
@@ -183,16 +184,90 @@ public partial class login_info_manager : Node
 			return false;
 		}
 
+		streak_days = get_days(person_id);
+		if (!does_workout_yesterday_exist(person_id)) {
+			streak_days = 0;
+		}
+
+		set_days(person_id, streak_days);
 		DataTransporter.Set("person_id", person_id);
 		DataTransporter.Set("height", height);
 		DataTransporter.Set("weight", weight);
 		DataTransporter.Set("bmi", bmi);
 		DataTransporter.Set("guild_id", guild_id);
+		DataTransporter.Set("streak_days", streak_days);
 	
 		DataTransporter.Call("_process_person_data");
-		GD.Print("ok bro");
 		data_source.Clear();
 		return true;
+	}
+
+	public bool does_workout_yesterday_exist(int person_id) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String check_exist_string = "SELECT EXIST(SELECT * FROM workout_instance WHERE person_id=" + person_id +" AND date_executed=date_trunc('day', current_timestamp) - interval '1' day;);";
+		bool does_exist = false;
+		var exist_cmd = data_source.CreateCommand(check_exist_string);
+		var exist_reader = exist_cmd.ExecuteReader();
+		while(exist_reader.Read()) {
+			does_exist = exist_reader.GetBoolean(0);
+		}
+		exist_reader.Close();
+		data_source.Clear();
+		return does_exist;
+	}
+
+	public bool set_days(int person_id, int day_cnt) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE person_id = " + person_id  + " );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
+
+		String set_days_string = "UPDATE person SET streak_day = " + day_cnt + " WHERE person_id=" + person_id + ";";
+		var set_days_cmd = data_source.CreateCommand(set_days_string);
+		var execute = set_days_cmd.ExecuteNonQuery();
+
+		data_source.Clear();
+		return true;
+	}
+
+	public int get_days(int person_id) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE person_id = " + person_id  + " );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+
+		if (!does_exist) {
+			data_source.Clear();
+			return -1;
+		}
+
+		String get_days_string = "SELECT streak_days FROM person WHERE person_id=" + person_id + ";";
+		var get_days_cmd = data_source.CreateCommand(get_days_string);
+		int output_days = -1;
+		var get_days_reader = get_days_cmd.ExecuteReader();
+		while (get_days_reader.Read()) {
+			output_days = get_days_reader.GetInt32(0);
+		}
+
+
+		get_days_reader.Close();
+		data_source.Clear();
+		return output_days;
 	}
 
 	public int add_user(string username, string password){
@@ -270,7 +345,56 @@ public partial class login_info_manager : Node
 		var execute_set = set_cmd.ExecuteNonQuery();
 		data_source.Clear();
 		return avatar_id;
+	} 
 
+	public bool change_height(int person_id, float height) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String update_string = "UPDATE person SET person_height_cm=" + height + " WHERE person_id=" + person_id ";";
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + info_id  + "\' );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
+
+		var update_cmd = data_source.CreateCommand(update_string);
+		update_cmd.ExecuteNonQuery();
+		update_cmd.Close();
+
+		data_source.Clear();
+		return true;
+	}
+
+	public bool change_height(int person_id, float weight) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String update_string = "UPDATE person SET person_weight_kg=" + weight + " WHERE person_id=" + person_id ";";
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + info_id  + "\' );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
+
+		var update_cmd = data_source.CreateCommand(update_string);
+		update_cmd.ExecuteNonQuery();
+		update_cmd.Close();
+
+		data_source.Clear();
+		return true;
 	}
 
 	public int add_person(float height, float weight, int logininfo_id) {
@@ -370,4 +494,6 @@ public partial class login_info_manager : Node
 		data_source.Clear();
 		return execute;
 	}
+
+
 }
