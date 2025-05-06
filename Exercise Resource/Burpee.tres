@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://cvfp31hthrlp2"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_ywynn"]
+
+[resource]
+script = ExtResource("1_ywynn")
+exercise_name = "Burpee"
+sets = 1
+repetitions = 30
+exercise_description = "Burpees are a high-intensity, full-body exercise that builds strength and cardiovascular endurance. Start by standing upright, then drop into a squat position with your hands on the ground. Kick your feet back into a push-up position, perform a push-up, then quickly return your feet to the squat position. Explosively jump up into the air with your arms overhead. Land softly and immediately go into the next repetition.
+"

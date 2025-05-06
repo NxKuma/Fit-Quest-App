@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://b02t21sdwbeg4"]
+
+[ext_resource type="Script" path="res://character_3d.gd" id="1_rg6ec"]
+[ext_resource type="PackedScene" uid="uid://ba5jjjwn6opiw" path="res://character_model_scene.tscn" id="1_xy7su"]
+
+[node name="Character3D" type="SubViewportContainer"]
+script = ExtResource("1_rg6ec")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+msaa_2d = 3
+msaa_3d = 3
+screen_space_aa = 1
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.945767, 1.41198)
+current = true
+
+[node name="character_model_scene" parent="SubViewport" instance=ExtResource("1_xy7su")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81109, 4.5269)
+light_energy = 0.5
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(0.715729, -0.115542, 0.688754, 5.90437e-09, 0.986219, 0.165443, -0.698378, -0.118413, 0.705866, 1.97145, 1.49071, 1.80789)
+light_energy = 1.5
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.986219, 0.165444, 0, -0.165444, 0.986219, 0, 1.20635, 1.80789)
+light_energy = 2.0
+
+[editable path="SubViewport/character_model_scene"]

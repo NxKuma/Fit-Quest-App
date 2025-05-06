@@ -7,6 +7,8 @@ var person_id: int = -1
 var avatar_id: int = -1
 var alr_run: bool = false
 
+signal change_character(arms: float, neck: float, breast: float, torso: float, belly: float, legs:float, hips: float)
+
 @export var databaseManager: Node
 @export var loginManager: Node
 
@@ -18,8 +20,18 @@ var person_data: PersonData
 var guild_data: GuildData
 var login_info: LoginInfo
 var data_transporter
+var character_changed: bool = false
+
+var workout_plan: WeeklyWorkoutPlan
+var routine_today: WorkoutRoutine
+var workout_data: Array[String]
+var is_workout_finished_today: bool = false
+
+var is_splash_screen_done: bool = false
 
 func _ready():
+	avatar_params = AvatarParams.new()
+	
 	var root = get_tree().root
 	
 	# Get the child at the end
@@ -29,23 +41,23 @@ func _ready():
 	guild_data = GuildData.new()
 	login_info = LoginInfo.new()
 	
-	login_info.username = "thanie"
-	login_info.password = "thanie"
+	#login_info.username = "thanie"
+	#login_info.password = "thanie"
 	
-	person_data.height = 169
-	person_data.weight = 70
-	person_data.login_id = 1
+	#person_data.height = 169
+	#person_data.weight = 70
+	#person_data.login_id = 1
 	
-	person_id = 1
+	#person_id = 1
 	
-	avatar_params.shoulders = 1
-	avatar_params.arms = 1.1
-	avatar_params.breasts = 1.2
-	avatar_params.torso = 1.3
-	avatar_params.belly = 1.4
-	avatar_params.hips = 1.5
-	avatar_params.legs = 1.6
-	avatar_params.neck = 1.7
+	#avatar_params.shoulders = 1
+	#avatar_params.arms = 1.1
+	#avatar_params.breasts = 1.2
+	#avatar_params.torso = 1.3
+	#avatar_params.belly = 1.4
+	#avatar_params.hips = 1.5
+	#avatar_params.legs = 1.6
+	#avatar_params.neck = 1.7
 	
 	
 	
@@ -104,14 +116,12 @@ func _execute_login() -> bool:
 func _process(delta):
 	if get_tree() != null and !did_setup:
 		data_transporter = get_tree().get_first_node_in_group("DataTransporter")
+      
+  if character_changed:
+		change_character.emit(avatar_params.arms, avatar_params.neck, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.legs, avatar_params.hips)
 
-	if data_transporter != null and !alr_run:
-		if data_transporter.did_setup:
-			_add_info_to_database()
-			_add_person_to_database()
-			_add_avatar_to_database()
-			var completed_setup: bool = _setup_user(login_info.username, login_info.password)
-			alr_run = true
+
+	#Global.change_character.emit(arms, neck, breast, torso, belly, legs, hips)
 			
 	# print("Shoulders: ", avatar_params.shoulders)
 	# print("Arms: ", avatar_params.arms)
@@ -129,6 +139,18 @@ func _process(delta):
 	pass
 
 func _goto_scene(path): 
+	# For workout plan logic
+	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
+	var day = Time.get_datetime_dict_from_system()["weekday"]
+	routine_today = workout_plan.get_workout_today(day)
+
+func get_routine_today():
+	return routine_today
+
+func finish_workout_today():
+	is_workout_finished_today = true
+  
+func _goto_scene(path):
 	# Used in signal callback, or functions in current scene.
 	
 	# The point in creating this goto_scene() func is to call the deferred version defined below
@@ -155,5 +177,7 @@ func _deferred_goto_scene(path):
 	# Optional (Make it compatible with the SceneTree.change_scene_to_file() API Not sure if we need this but putting it here anyways)
 	
 	get_tree().current_scene = current_scene
-	
-	
+
+func splash_screen_done():
+	is_splash_screen_done = true
+	print("splash done!")
