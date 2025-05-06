@@ -68,8 +68,8 @@ public partial class login_info_manager : Node
 		Node global =  GetNode("/root/Global");
 		global.Set("info_id", current_id.ToString());
 
-		// transfer_avatar_info(current_id);
-		// transfer_person_info(current_id);
+		transfer_avatar_info(current_id);
+		transfer_person_info(current_id);
 		
 		data_source.Clear();
 		return true;
@@ -540,6 +540,8 @@ public partial class login_info_manager : Node
 		data_source.Clear();
 		return execute;
 	}
+
+
 
 
 }

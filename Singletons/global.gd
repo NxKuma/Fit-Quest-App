@@ -32,6 +32,8 @@ var is_workout_finished_today: bool = false
 
 var is_splash_screen_done: bool = false
 
+var all_guild_data: Array[GuildData]
+
 func _ready():
 	avatar_params = AvatarParam.new()
 	
@@ -67,7 +69,6 @@ func _change_height(height: float):
 
 func _change_weight(weight: float):
 	data_transporter.change_weight(weight)
-
 
 func _add_workout(workout_name: String):
 	data_transporter.add_workout(workout_name)
