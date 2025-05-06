@@ -17,6 +17,7 @@ var character_customize
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.did_setup = false
 	username_field = $Signin/VBoxContainer/Username
 	password_field = $Signin/VBoxContainer/Password
 	height_field = $Signin/VBoxContainer/HBoxContainer/Height
@@ -49,17 +50,15 @@ func do_signip():
 	var signin_height = height_text.to_float()
 	var signin_weight = weight_text.to_float()
 	
+	print("TEST: " + signin_username + " " + signin_password)
 	Global.login_info.username = signin_username
 	Global.login_info.password = signin_password
-	
+	print("TEST: "+ Global.login_info.username + " " + Global.login_info.password)
 	Global.person_data.height = signin_height
 	Global.person_data.weight = signin_weight
 	
 	character_customize.visible = true
 
-
-	if can_signup:
-		get_tree().change_scene_to_file("res://main.tscn")
 
 func to_login():
 	get_tree().change_scene_to_file("res://main.tscn")

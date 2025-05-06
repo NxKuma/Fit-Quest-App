@@ -101,7 +101,7 @@ public partial class sql_manager : Node
 		connectionString += "Pooling=false;";
 		setup_sql_string = LoadFromFile("res://SQL//setup.SQL");
 		//GD.Print(setup_sql_string);
-		runSql();
+		// runSql();
 	}
 	
 	public void runSql()
