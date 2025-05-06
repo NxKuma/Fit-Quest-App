@@ -7,3 +7,4 @@ var weight: float
 var bmi: float
 var login_id: int
 var guild_id: int
+var streak_days: int

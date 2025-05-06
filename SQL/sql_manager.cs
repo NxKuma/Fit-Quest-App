@@ -89,7 +89,6 @@ public partial class sql_manager : Node
 			} else if (i == 4) {
 				port_string = output;
 			}
-
 		}
 
 
