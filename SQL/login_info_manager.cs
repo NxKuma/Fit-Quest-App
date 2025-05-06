@@ -8,10 +8,6 @@ public partial class login_info_manager : Node
 {
 	[Export]
 	sql_manager sql_Manager;
-	private int p = 62773;
-	private int q = 13967;
-	private int n;
-	private int euler_n;
 	private bool alr_run = false;
 	Node global;
 
@@ -22,37 +18,6 @@ public partial class login_info_manager : Node
 	[Signal] public delegate void OnCSharpSentDataEventHandler(string theData);
 
 
-	public int extended_euclid(int a, int b, ref int x, ref int y) {
-		if (b == 0) {
-			x = 1;
-			y = 0;
-			return a;
-		}
-		int g = extended_euclid(b, a%b, ref x, ref y);
-		int z = x - a/b*y;
-		x = y;
-		y = z;
-		return g;
-	}
-
-	public int mod_inv(int a, int m) {
-		int x = 0, y = 0;
-		int g = extended_euclid(a, m, ref x, ref y);
-		if (g == 1 || g == -1) {
-			return (x*g)%m;
-		}
-		return 0;
-	}
-	public override void _Ready()
-	{
-		n = p * q;
-		euler_n = (p-1) * (q-1);
-
-		global =  GetNode("/root/Global");
-
-
-	}
-
 	public int get_num_existing_accounts(){
 		return sql_Manager.get_entry_count("logininfo");
 	}
@@ -61,12 +26,19 @@ public partial class login_info_manager : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (!alr_run) {
-			GD.Print("testing");
-			alr_run = set_current_user("thanie", "thanie");
-			bool test = transfer_avatar_info(global.Get("user_id").As<int>());
-			GD.Print("did this one run? ", test);
-		}
+		// if (!alr_run) {
+		// 	GD.Print("testing");
+		// 	add_user("thanie", "thanie");
+		// 	alr_run = set_current_user("thanie", "thanie");
+		// 	int person = add_person(1.69f, 70f, 1);
+		// 	create_guild("revengers");	
+		// 	assign_guild(1, 1);
+		// 	int userinfo_id = global.Get("info_id").As<int>();
+		// 	bool test;	
+		// 	test = transfer_person_info(userinfo_id);
+		// 	int new_avatar = add_avatar(1, 1.0f, 1.1f, 1.2f, 1.3f, 1.4f, 1.5f, 1.6f, 1.7f);
+		// 	test = transfer_avatar_info(userinfo_id);
+		// }
 	}
 
 	public bool set_current_user(String username, String password){
@@ -78,38 +50,48 @@ public partial class login_info_manager : Node
 		while (search_reader.Read()){
 			does_exist = search_reader.GetBoolean(0);
 		}
-		if (!does_exist) return false;
+		search_reader.Close();
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
 
 		String command_string = "SELECT info_id FROM logininfo WHERE username = \'"+  username + "\' AND pass = \'" + password + "\';";
 		var command = data_source.CreateCommand(command_string);
 		var command_reader = command.ExecuteReader();
 		int current_id = -1;
-		GD.Print("finished?");
 		while (command_reader.Read()) {
 			current_id = command_reader.GetInt32(0);
 		}
+		command_reader.Close();
 
 		Node global =  GetNode("/root/Global");
-		global.Set("user_id", current_id.ToString());
+		global.Set("info_id", current_id.ToString());
 
+		transfer_avatar_info(current_id);
+		transfer_person_info(current_id);
 		
+		data_source.Clear();
 		return true;
 	}
 
-	public bool transfer_avatar_info(int user_id) {
+	public bool transfer_avatar_info(int info_id) {
 		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
-		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + user_id  + "\' );";
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + info_id  + "\' );";
 		var search_person = data_source.CreateCommand(select_string_person);
 		bool does_exist = false;
 		var person_reader = search_person.ExecuteReader();
 		while (person_reader.Read()) {
 			does_exist = person_reader.GetBoolean(0);
 		}
-
-		if (!does_exist) return false;
+		person_reader.Close();
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
 
 		int avatar_id = -1;
-		String get_person_string = "SELECT avatar_id FROM person WHERE logininfo_id = \'" + user_id  + "\' ";
+		String get_person_string = "SELECT avatar_id FROM person WHERE logininfo_id = \'" + info_id  + "\' ";
 		var get_person = data_source.CreateCommand(get_person_string);
 		var get_person_reader = get_person.ExecuteReader();
 
@@ -117,8 +99,10 @@ public partial class login_info_manager : Node
 		while (get_person_reader.Read()) {
 			avatar_id = get_person_reader.GetInt32(get_person_reader.GetOrdinal("avatar_id"));
 		}
+		get_person_reader.Close();
 		GD.Print("sure");
 		if (avatar_id == -1) {
+			data_source.Clear();
 			return false;
 		}
 
@@ -138,6 +122,7 @@ public partial class login_info_manager : Node
 			legs = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("legs_param"));
 			neck = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("neck_param"));
 		}
+		get_avatar_reader.Close();
 
 
 		DataTransporter.Set("shoulders", shoulders.ToString());
@@ -159,7 +144,235 @@ public partial class login_info_manager : Node
 		// GD.Print(legs);
 		// GD.Print(neck);
 		DataTransporter.Call("_process_avatar_data");
-
+		data_source.Clear();
 		return true;
+	}
+
+	public bool transfer_person_info(int info_id) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + info_id  + "\' );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
+
+		int person_id = -1;
+		float height = -1;
+		float weight = -1;
+		float bmi = -1;
+		int guild_id = -1;
+
+		String get_person_string = "SELECT * FROM person WHERE logininfo_id = \'" + info_id  + "\' ";
+		var get_person = data_source.CreateCommand(get_person_string);
+		var get_person_reader = get_person.ExecuteReader();
+
+		while (get_person_reader.Read()) {
+			person_id = get_person_reader.GetInt32(get_person_reader.GetOrdinal("person_id"));
+			height = get_person_reader.GetFloat(get_person_reader.GetOrdinal("person_height_cm"));
+			weight = get_person_reader.GetFloat(get_person_reader.GetOrdinal("person_weight_kg"));
+			bmi = get_person_reader.GetFloat(get_person_reader.GetOrdinal("person_bmi"));
+			// guild_id = get_person_reader.GetInt32(get_person_reader.GetOrdinal("guild_id"));
+		}
+		get_person_reader.Close();
+		if (person_id == -1) {
+			data_source.Clear();
+			return false;
+		}
+
+		DataTransporter.Set("person_id", person_id);
+		DataTransporter.Set("height", height);
+		DataTransporter.Set("weight", weight);
+		DataTransporter.Set("bmi", bmi);
+		DataTransporter.Set("guild_id", guild_id);
+	
+		DataTransporter.Call("_process_person_data");
+		GD.Print("ok bro");
+		data_source.Clear();
+		return true;
+	}
+
+	public int add_user(string username, string password){
+		GD.Print("what");
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String select_string_person = "SELECT EXISTS(SELECT FROM logininfo WHERE username = \'" + username  + "\' );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		GD.Print("what");
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+		GD.Print("DID IT EXIST? " + does_exist.ToString());
+		if (does_exist) {
+			data_source.Clear();
+			return -1;
+		}
+
+		GD.Print("sure");
+		String create_new_user_string = "INSERT INTO logininfo (username, pass) VALUES (\'" + username + "\', \'" + password + "\');";
+		GD.Print("whynot");
+		var execute_create = data_source.CreateCommand(create_new_user_string);
+		var create_query = execute_create.ExecuteNonQuery();
+
+		
+
+		String command_string = "SELECT info_id FROM logininfo WHERE username = \'"+  username + "\' AND pass = \'" + password + "\';";
+		var command = data_source.CreateCommand(command_string);
+		var command_reader = command.ExecuteReader();
+		int current_id = -1;
+	
+		while (command_reader.Read()) {
+			current_id = command_reader.GetInt32(0);
+		}
+		command_reader.Close();
+		return current_id;
+	}
+
+
+	public int add_avatar(int person_id, float shoulder, float arms, float breast, float torso, float belly, float hips, float legs, float neck) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+
+		// check if person exists
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE person_id = \'" + person_id  + "\' );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+		GD.Print("whut");
+		if (!does_exist) {
+			data_source.Clear();
+			return -1;
+		}
+
+		String insert_string = "INSERT INTO avatar (shoulder_param, arms_param, breasts_param, torso_param, belly_param, hips_param, legs_param, neck_param) VALUES (";
+		insert_string += shoulder + ", ";
+		insert_string += arms + ", ";
+		insert_string += breast + ", ";
+		insert_string += torso + ", ";
+		insert_string += belly + ", ";
+		insert_string += hips + ", ";
+		insert_string += legs + ", ";
+		insert_string += neck + ") RETURNING avatar_id;";
+		GD.Print(insert_string);
+		var insert_cmd = data_source.CreateCommand(insert_string);
+		int avatar_id = (int)insert_cmd.ExecuteScalar();
+
+		String set_avatar_to_person = "UPDATE person SET avatar_id = " + avatar_id + " WHERE person_id = " + person_id + ";";
+		var set_cmd = data_source.CreateCommand(set_avatar_to_person);
+		var execute_set = set_cmd.ExecuteNonQuery();
+		data_source.Clear();
+		return avatar_id;
+
+	}
+
+	public int add_person(float height, float weight, int logininfo_id) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+
+		// check if login_id exists
+		String select_string_person = "SELECT EXISTS(SELECT FROM logininfo WHERE info_id = " + logininfo_id  + " );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+		if (!does_exist){
+			data_source.Clear();
+			return -1;
+		}
+
+		String insert_person_string = "INSERT INTO person (person_height_cm, person_weight_kg, logininfo_id) VALUES (";
+		insert_person_string += height + ",";
+		insert_person_string += weight + ",";
+		insert_person_string += logininfo_id + ") RETURNING person_id;";
+		var insert_cmd = data_source.CreateCommand(insert_person_string);
+		int person_id = (int)insert_cmd.ExecuteScalar();
+		data_source.Clear();
+		return person_id;
+
+	}
+
+	public bool assign_guild(int person_id, int guild_id) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		
+		// check if person exists
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE person_id = \'" + person_id  + "\' );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		GD.Print("what");
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+		GD.Print("DID IT EXIST? " + does_exist.ToString());
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
+
+		// check if guild exists
+		String select_string_guild = "SELECT EXISTS(SELECT FROM guild WHERE guild_id = \'" + guild_id  + "\' );";
+		var search_guild = data_source.CreateCommand(select_string_guild);
+		var guild_reader = search_guild.ExecuteReader();
+		while (guild_reader.Read()) {
+			does_exist = guild_reader.GetBoolean(0);
+		}
+		guild_reader.Close();
+		GD.Print("DID IT EXIST? " + does_exist.ToString());
+		if (!does_exist && guild_id != -1) {
+			data_source.Clear();
+			return false;
+		}
+		String update_guild_string;
+		if (guild_id == -1) {
+			update_guild_string = "UPDATE person SET guild_id = NULL WHERE person_id = " + person_id + ";";
+		} else {
+			update_guild_string = "UPDATE person SET guild_id = " + guild_id + " WHERE person_id = " + person_id + ";";
+		}
+		var execute_update = data_source.CreateCommand(update_guild_string);
+		var execute = execute_update.ExecuteNonQuery();
+		data_source.Clear();
+		return true;
+	}	
+
+	public int create_guild(String guild_name) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		
+		// check if guild name exists
+		String select_string_guild = "SELECT EXISTS(SELECT FROM guild WHERE guild_name = \'" + guild_name  + "\' );";
+		var search_guild = data_source.CreateCommand(select_string_guild);
+		var guild_reader = search_guild.ExecuteReader();
+		bool does_exist = false;
+		while (guild_reader.Read()) {
+			does_exist = guild_reader.GetBoolean(0);
+		}
+		guild_reader.Close();
+		GD.Print("DID IT EXIST? " + does_exist.ToString());
+		if (does_exist) {
+			data_source.Clear();
+			return -1;
+		}
+
+		String create_guild_string = "INSERT INTO guild (guild_name) VALUES (\'" + guild_name + "\') RETURNING guild_id;";
+		var execute_insert = data_source.CreateCommand(create_guild_string);
+		int execute = (int)execute_insert.ExecuteScalar();
+		data_source.Clear();
+		return execute;
 	}
 }
