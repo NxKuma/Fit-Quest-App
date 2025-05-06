@@ -59,7 +59,6 @@ func do_signip():
 	
 	character_customize.visible = true
 
-
 func to_login():
 	get_tree().change_scene_to_file("res://main.tscn")
 	#get_tree().change_scene_to_file("res://views/login_view.tscn")

@@ -127,8 +127,65 @@ theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
 text = "Weight"
 label_settings = SubResource("LabelSettings_n8rs8")
 
-[node name="BMI" type="Label" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BMI" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
 text = "BMI"
 label_settings = SubResource("LabelSettings_n8rs8")
+
+[node name="Overweight" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+text = "Weight Status"
+label_settings = SubResource("LabelSettings_n8rs8")
+
+[node name="Edit Height" type="Button" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 559.0
+offset_right = 143.0
+offset_bottom = 590.0
+text = "Edit Height"
+
+[node name="Height Input" type="LineEdit" parent="."]
+layout_mode = 2
+offset_left = 155.0
+offset_top = 559.0
+offset_right = 250.0
+offset_bottom = 590.0
+
+[node name="Confirm Height" type="Button" parent="."]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 559.0
+offset_right = 386.0
+offset_bottom = 590.0
+text = "Confirm Height
+"
+
+[node name="Edit Weight" type="Button" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 610.0
+offset_right = 147.0
+offset_bottom = 641.0
+text = "Edit Weight"
+
+[node name="Weight Input" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 610.0
+offset_right = 250.0
+offset_bottom = 641.0
+
+[node name="Confirm Weight" type="Button" parent="."]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 610.0
+offset_right = 386.0
+offset_bottom = 641.0
+text = "Confirm Weight
+"
