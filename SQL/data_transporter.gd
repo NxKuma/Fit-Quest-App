@@ -27,6 +27,7 @@ var height: float
 var weight: float
 var bmi: float
 var guild_id: int
+var streak_days: int
 
 # Login info Data
 var username: String
@@ -37,6 +38,7 @@ var avatar_params: AvatarParam
 var guild_data: GuildData
 var login_info: LoginInfo
 
+var workout_name: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -73,6 +75,9 @@ func _add_avatar():
 	
 	login_info_manager.add_avatar(Global.person_id, avatar_params.arms, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.hips, avatar_params.legs, avatar_params.neck)
 
+func _add_workout(workout_name: String):
+	login_info_manager.add_person(Global.person_id, workout_name)
+
 func _change_height(height: float):
 	login_info_manager.change_height(Global.person_id, height)
 
@@ -97,5 +102,8 @@ func _process_person_data():
 	Global.person_data.height = height
 	Global.person_data.weight = weight
 	Global.person_data.bmi = bmi
+	Global.person_data.streak_days = streak_days
 	Global.person_data.guild_id = guild_id
 	
+func _update_streak():
+	Global.person_data.streak_days = streak_days
