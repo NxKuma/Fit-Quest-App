@@ -57,7 +57,6 @@ func do_signip():
 	
 	character_customize.visible = true
 
-
 	if can_signup:
 		get_tree().change_scene_to_file("res://main.tscn")
 
