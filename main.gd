@@ -13,9 +13,9 @@ func _ready():
 		var buttonIndex = button.get_index()
 		button.pressed.connect(_set_page.bind(buttonIndex))
 	
-	print("YIPPEEE")
+
 	Global.can_load = true
-	print("OH NO")
+
 	
 	if Global.did_signin:
 		login_view.visible = false

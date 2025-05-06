@@ -70,9 +70,7 @@ func _ready():
 	
 func _add_info_to_database():
 	data_transporter.login_info = login_info
-	
-	data_transporter._add_user()
-	pass
+	return data_transporter._add_user()
 	
 func _add_person_to_database():
 	data_transporter.person_data = person_data
@@ -111,7 +109,7 @@ func _change_person_info(height: float, weight: float, bmi: float):
 	person_data.bmi = bmi
 	
 func _complete_signin() -> bool:
-	_add_info_to_database()
+	info_id = _add_info_to_database()
 	_add_person_to_database()
 	_add_avatar_to_database()
 	var completed_setup: bool = _setup_user(login_info.username, login_info.password)
@@ -183,4 +181,4 @@ func _deferred_goto_scene(path):
 
 func splash_screen_done():
 	is_splash_screen_done = true
-	print("splash done!")
+	#print("splash done!")

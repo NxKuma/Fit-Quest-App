@@ -239,7 +239,6 @@ theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_ehe2p")
 text = "SAVE AVATAR"
 
-[connection signal="value_changed" from="VSplitContainer/Panel/MarginContainer/VBoxContainer/HSplitContainer3/VSplitContainer2/Arm Size" to="." method="_on_neck_size_value_changed" binds= [0]]
 [connection signal="pressed" from="VSplitContainer/Panel/MarginContainer/VBoxContainer/Panel/Button" to="." method="_on_button_pressed"]
 
 [editable path="VSplitContainer/Character3D"]

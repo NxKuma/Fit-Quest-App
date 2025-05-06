@@ -200,6 +200,8 @@ label_settings = SubResource("LabelSettings_ckbaa")
 
 [node name="ToSignup" type="Button" parent="Login/VBoxContainer/Prompt"]
 layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_rp1e0")
 theme_override_font_sizes/font_size = 20
