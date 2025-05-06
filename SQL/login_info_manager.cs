@@ -216,6 +216,20 @@ public partial class login_info_manager : Node
 		return does_exist;
 	}
 
+	public bool does_workout_today_exist(int person_id) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String check_exist_string = "SELECT EXIST(SELECT * FROM workout_instance WHERE person_id=" + person_id +" AND date_executed=date_trunc('day', current_timestamp););";
+		bool does_exist = false;
+		var exist_cmd = data_source.CreateCommand(check_exist_string);
+		var exist_reader = exist_cmd.ExecuteReader();
+		while(exist_reader.Read()) {
+			does_exist = exist_reader.GetBoolean(0);
+		}
+		exist_reader.Close();
+		data_source.Clear();
+		return does_exist;
+	}
+
 	public bool set_days(int person_id, int day_cnt) {
 		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
 		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE person_id = " + person_id  + " );";
@@ -232,10 +246,13 @@ public partial class login_info_manager : Node
 			return false;
 		}
 
+		DataTransporter.Set("streak_days", day_cnt);
+
 		String set_days_string = "UPDATE person SET streak_day = " + day_cnt + " WHERE person_id=" + person_id + ";";
 		var set_days_cmd = data_source.CreateCommand(set_days_string);
 		var execute = set_days_cmd.ExecuteNonQuery();
 
+		DataTransporter.Call("_update_streak()");
 		data_source.Clear();
 		return true;
 	}
@@ -268,6 +285,37 @@ public partial class login_info_manager : Node
 		get_days_reader.Close();
 		data_source.Clear();
 		return output_days;
+	}
+
+	public int add_workout(int person_id, String workout_name) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE person_id = " + person_id  + " );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+
+		if (!does_exist) {
+			data_source.Clear();
+			return -1;
+		}
+
+		bool any_workout_today = does_workout_today_exist(person_id);
+		int streak_count = get_days(person_id);
+		set_days(person_id, streak_count+1);
+
+		String insert_string = "INSERT INTO workout_instance (workout_name, person_id) VALUES (";
+		insert_string += workout_name + ",";
+		insert_string += person_id.ToString() + ") RETURNING instance_id;";
+
+		var insert_cmd = data_source.CreateCommand(insert_string);
+		int execute = (int)insert_cmd.ExecuteScalar();
+
+		data_source.Clear();
+		return execute;
 	}
 
 	public int add_user(string username, string password){
@@ -349,8 +397,8 @@ public partial class login_info_manager : Node
 
 	public bool change_height(int person_id, float height) {
 		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
-		String update_string = "UPDATE person SET person_height_cm=" + height + " WHERE person_id=" + person_id ";";
-		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + info_id  + "\' );";
+		String update_string = "UPDATE person SET person_height_cm=" + height + " WHERE person_id=" + person_id + ";";
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE person_id = \'" + person_id  + "\' );";
 		var search_person = data_source.CreateCommand(select_string_person);
 		bool does_exist = false;
 		var person_reader = search_person.ExecuteReader();
@@ -366,16 +414,15 @@ public partial class login_info_manager : Node
 
 		var update_cmd = data_source.CreateCommand(update_string);
 		update_cmd.ExecuteNonQuery();
-		update_cmd.Close();
 
 		data_source.Clear();
 		return true;
 	}
 
-	public bool change_height(int person_id, float weight) {
+	public bool change_weight(int person_id, float weight) {
 		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
-		String update_string = "UPDATE person SET person_weight_kg=" + weight + " WHERE person_id=" + person_id ";";
-		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + info_id  + "\' );";
+		String update_string = "UPDATE person SET person_weight_kg=" + weight + " WHERE person_id=" + person_id + ";";
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE person _id = \'" + person_id  + "\' );";
 		var search_person = data_source.CreateCommand(select_string_person);
 		bool does_exist = false;
 		var person_reader = search_person.ExecuteReader();
@@ -391,7 +438,6 @@ public partial class login_info_manager : Node
 
 		var update_cmd = data_source.CreateCommand(update_string);
 		update_cmd.ExecuteNonQuery();
-		update_cmd.Close();
 
 		data_source.Clear();
 		return true;

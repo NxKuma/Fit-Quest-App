@@ -69,6 +69,9 @@ func _change_weight(weight: float):
 	data_transporter.change_weight(weight)
 
 
+func _add_workout(workout_name: String):
+	data_transporter.add_workout(workout_name)
+
 func _setup_user(username: String, password: String) -> bool:
 	var completed: bool = data_transporter._setup_user(username, password)
 	return completed
