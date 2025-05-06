@@ -80,11 +80,8 @@ func _on_button_pressed() -> void:
 	Global.avatar_params.hips = hips
 	Global.avatar_params.belly = belly
 	
-	print(arms, neck, breast, torso, legs, hips, belly)
-	#Global.change_character.emit(arms, neck, breast, torso, legs, hips, belly)
-
 	Global.character_changed = true
 	
 	Global.did_signin = true
+	
 	get_tree().change_scene_to_file("res://main.tscn")
-	#Global._goto_scene("res://main.tscn")
