@@ -18,7 +18,6 @@ CREATE TABLE logininfo (
 
 CREATE TABLE avatar (
     avatar_id SERIAL PRIMARY KEY,
-    shoulder_param REAL NOT NULL,
     arms_param REAL NOT NULL,
     breasts_param REAL NOT NULL,
     torso_param REAL NOT NULL,

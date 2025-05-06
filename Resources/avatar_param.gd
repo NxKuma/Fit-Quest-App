@@ -1,7 +1,6 @@
 extends Resource
 class_name AvatarParam
 
-var shoulders: float
 var arms: float
 var breasts: float
 var torso: float
