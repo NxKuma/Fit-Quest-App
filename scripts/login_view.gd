@@ -15,13 +15,13 @@ func _ready() -> void:
 	username_field = $Login/VBoxContainer/Username
 	password_field = $Login/VBoxContainer/Password
 	
-	if !Global.is_splash_screen_done:
-		anim_player = $SplashScreen/AnimationPlayer
-		splash_screen = $SplashScreen
-		anim_player.play("splash_fade")
-		await anim_player.animation_finished
-		Global.splash_screen_done()
-		splash_screen.visible = false
+	#if !Global.is_splash_screen_done:
+	anim_player = $SplashScreen/AnimationPlayer
+	splash_screen = $SplashScreen
+	anim_player.play("splash_fade")
+	await anim_player.animation_finished
+	Global.splash_screen_done()
+	splash_screen.visible = false
 
 func to_main():
 	username = username_field.text

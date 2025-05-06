@@ -1,6 +1,6 @@
 extends Control
 
-@export var initialView := 1
+@export var initialView := 2
 
 @onready var views: Control = %Views
 @onready var buttons: HBoxContainer = %Buttons
