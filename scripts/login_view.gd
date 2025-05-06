@@ -10,12 +10,15 @@ var password: String
 var anim_player
 var splash_screen
 
+var error_prompt
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	username_field = $Login/VBoxContainer/Username
 	password_field = $Login/VBoxContainer/Password
 	
-	#if !Global.is_splash_screen_done:
+	error_prompt = $Login/VBoxContainer/Panel2/ErrorPrompt
+	
 	anim_player = $SplashScreen/AnimationPlayer
 	splash_screen = $SplashScreen
 	anim_player.play("splash_fade")
@@ -32,6 +35,8 @@ func to_main():
 	
 	if Global._execute_login():
 		visible = false
+	else:
+		error_prompt.visible = true
 
 func to_sign_up():
 	print("SHEEESH ", Global.did_setup)

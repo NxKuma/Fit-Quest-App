@@ -11,6 +11,7 @@ var did_setup: bool = false
 @export var sql_manager: Node
 
 # Avatar Param Data
+var avatar_id: int
 var arms: float
 var breasts: float
 var torso: float
@@ -90,7 +91,7 @@ func _change_weight(weight: float):
 	login_info_manager.change_height(Global.person_id, weight)
 
 func _setup_user(username: String, password: String) -> bool:
-	print(login_info_manager == null)
+	#print(login_info_manager == null)
 	var completed: bool = login_info_manager.set_current_user(username, password)
 	return completed
 
@@ -106,13 +107,14 @@ func _set_guild():
 
 
 func _process_single_guild():
-	var current_guild: GuildData
+	var current_guild: GuildData = GuildData.new()
 	current_guild.guild_name = guild_name
 	current_guild.guild_id = guild_id
 	Global.all_guild_data.append(current_guild)
 	
 
 func _process_avatar_data():
+	Global.avatar_id = avatar_id;
 	Global.avatar_params.arms = arms
 	Global.avatar_params.breasts = breasts
 	Global.avatar_params.torso = torso
@@ -122,7 +124,7 @@ func _process_avatar_data():
 	Global.avatar_params.neck = neck
 
 func _process_person_data():
-	Global.person_data.person_id = person_id
+	Global.person_id = person_id
 	Global.person_data.height = height
 	Global.person_data.weight = weight
 	Global.person_data.bmi = bmi

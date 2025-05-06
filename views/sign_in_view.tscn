@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://lp6hxt0j5ikc"]
+[gd_scene load_steps=17 format=3 uid="uid://lp6hxt0j5ikc"]
 
 [ext_resource type="Script" path="res://scripts/sign_in_view.gd" id="1_csfkp"]
 [ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="2_p1v35"]
@@ -45,6 +45,10 @@ corner_radius_bottom_left = 5
 font = ExtResource("2_p1v35")
 font_size = 20
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w6p8w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jls0w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jr68n"]
 
@@ -182,6 +186,8 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_p1v35")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_w6p8w")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jls0w")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_jr68n")
 text = "Login"
 flat = true

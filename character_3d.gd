@@ -26,4 +26,3 @@ func change_character(arms: float, neck: float, breast: float, torso: float, bel
 	character_model_mesh.set_blend_shape_value(4,hips)
 	character_model_mesh.set_blend_shape_value(5,legs)
 	character_model_mesh.set_blend_shape_value(6,belly)
-

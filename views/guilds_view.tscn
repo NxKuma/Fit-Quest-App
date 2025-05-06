@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0nggtkx5i15l"]
+[gd_scene load_steps=15 format=3 uid="uid://c0nggtkx5i15l"]
 
 [ext_resource type="Texture2D" uid="uid://ycjauwqa65gl" path="res://Art Asset/Icon/account.png" id="1_que34"]
 [ext_resource type="Script" path="res://scripts/guilds_view.gd" id="1_vk10f"]
+[ext_resource type="StyleBox" uid="uid://b6m7qf77ehn5e" path="res://views/panel_style.tres" id="3_yt0nv"]
+[ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="4_g6dg5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1j4l"]
 bg_color = Color(0.117647, 0.521569, 0.737255, 1)
@@ -29,6 +31,10 @@ VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_1pcqd")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42ehg"]
 bg_color = Color(0.254902, 0.788235, 0.886275, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_xf1fl"]
+font = ExtResource("4_g6dg5")
+font_size = 60
+
 [node name="Guilds View" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -49,6 +55,7 @@ grow_vertical = 2
 color = Color(0.968627, 0.933333, 0.866667, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 offset_left = 270.0
 offset_right = 743.0
@@ -57,6 +64,7 @@ rotation = 0.785398
 color = Color(0.254902, 0.788235, 0.886275, 1)
 
 [node name="VSplitContainer" type="VSplitContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -217,3 +225,49 @@ theme_override_constants/margin_left = 10
 [node name="TextureRect" type="TextureRect" parent="VSplitContainer/MarginContainer2/PanelContainer/VSplitContainer/ScrollContainer/VBoxContainer/Panel7/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("1_que34")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.5
+offset_top = -380.0
+offset_right = 213.5
+offset_bottom = -291.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_yt0nv")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -25.5
+offset_right = 59.0
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Guild
+"
+label_settings = SubResource("LabelSettings_xf1fl")
+
+[node name="Guilds List" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2

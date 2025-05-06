@@ -32,7 +32,7 @@ func _ready() -> void:
 	confirm_weight_button.connect("pressed", Callable(self, "_on_confirm_weight_pressed"))
 
 func _process(delta: float) -> void:
-	if Global.did_signin and Global.person_data != null:
+	if Global.did_signin or Global.did_setup:
 		var h = Global.person_data.height
 		var w = Global.person_data.weight
 		bmi_value = w / pow(h / 100.0, 2)
@@ -60,11 +60,12 @@ func _on_edit_height_pressed():
 	confirm_height_button.show()
 
 func _on_confirm_height_pressed():
-	var new_height = height_input.text.to_int()
+	var new_height = height_input.text.to_float()
 	if new_height > 0:
 		Global.person_data.height = new_height
 		height_input.hide()
 		confirm_height_button.hide()
+		Global._change_height(new_height)
 	else:
 		printerr("Invalid height entered.")
 		
@@ -74,10 +75,11 @@ func _on_edit_weight_pressed():
 	confirm_weight_button.show()
 
 func _on_confirm_weight_pressed():
-	var new_weight = weight_input.text.to_int()
+	var new_weight = weight_input.text.to_float()
 	if new_weight > 0:
 		Global.person_data.weight = new_weight
 		weight_input.hide()
 		confirm_weight_button.hide()
+		Global._change_weight(new_weight)
 	else:
 		printerr("Invalid weight entered.")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cox5l8my5ww7v"]
+[gd_scene load_steps=20 format=3 uid="uid://cox5l8my5ww7v"]
 
 [ext_resource type="Script" path="res://scripts/login_view.gd" id="1_i3wvy"]
 [ext_resource type="Texture2D" uid="uid://dnj87su7c3rhk" path="res://Art Asset/Icon/Fit_Quest_Logo.png" id="1_x3b3o"]
@@ -22,6 +22,11 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_bottom = 2
 border_color = Color(0.882353, 0.882353, 0.882353, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ixnbm"]
+font = ExtResource("3_rp1e0")
+font_size = 20
+font_color = Color(1, 0, 0, 1)
+
 [sub_resource type="SystemFont" id="SystemFont_cljig"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0ifn"]
@@ -40,6 +45,10 @@ corner_radius_bottom_left = 5
 font = ExtResource("3_rp1e0")
 font_size = 20
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fwfwj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5f750"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_et02o"]
 
@@ -178,6 +187,19 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_eptl5")
 
+[node name="ErrorPrompt" type="Label" parent="Login/VBoxContainer/Panel2"]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_right = 235.0
+offset_bottom = 10.0
+grow_vertical = 2
+text = "Invalid credentials"
+label_settings = SubResource("LabelSettings_ixnbm")
+
 [node name="Login Button" type="Button" parent="Login/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
@@ -205,6 +227,8 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_rp1e0")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_fwfwj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5f750")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_et02o")
 text = "Signup"
 flat = true

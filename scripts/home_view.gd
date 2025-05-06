@@ -6,6 +6,7 @@ extends Control
 @onready var routine_of_the_day: Label = $"Routine of the Day"
 @onready var target_muscle: Label = $"Target Muscle"
 @onready var character_3d: SubViewportContainer = $Character3D
+@onready var streak: Label = $Streak
 
 
 var time = Time.get_date_dict_from_system()
@@ -25,4 +26,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	#print(Global.person_data.streak_days)
+	if Global.did_setup or Global.did_signin:
+		streak.text = str(Global.person_data.streak_days)

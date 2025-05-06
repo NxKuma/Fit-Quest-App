@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c814ewm2b44dl"]
+[gd_scene load_steps=10 format=3 uid="uid://c814ewm2b44dl"]
 
 [ext_resource type="Script" path="res://views/character_costumize.gd" id="1_uiwjs"]
 [ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="2_amnvi"]
+[ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="3_nuyik"]
 [ext_resource type="FontFile" uid="uid://olhlma2g12pf" path="res://Fonts/Mollen Personal Use-Regular.otf" id="3_qdaem"]
 [ext_resource type="FontFile" uid="uid://ddh5km31owkky" path="res://Fonts/Mollen Personal Use-BoldNarrow.otf" id="4_va5x8"]
 
@@ -19,6 +20,7 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_jyx15"]
 line_spacing = 5.0
+font = ExtResource("3_nuyik")
 font_size = 35
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
 

@@ -240,6 +240,13 @@ func confirm_workout():
 	buttonGroup.visible = false
 	start.disabled = true
 	anim_player.play("Breathing Idle")
+	
+	for exercise in routine.exercises:
+		#print("ADDING WORKOUT: ", exercise.exercise_name)
+		Global._add_workout(exercise.exercise_name)
+	
+	
+	
 
 func _on_confirm_workout_pressed() -> void:
 	confirm_workout()

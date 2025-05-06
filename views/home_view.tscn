@@ -126,7 +126,7 @@ scale = Vector2(1.25, 1.25)
 texture = ExtResource("8_27ekh")
 expand_mode = 3
 
-[node name="Day of the Week2" type="Label" parent="."]
+[node name="Streak" type="Label" parent="."]
 layout_mode = 2
 offset_left = 91.0
 offset_top = 242.0

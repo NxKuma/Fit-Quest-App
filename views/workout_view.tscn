@@ -1,27 +1,28 @@
-[gd_scene load_steps=12 format=3 uid="uid://vxmxbu1s0u8p"]
+[gd_scene load_steps=13 format=3 uid="uid://vxmxbu1s0u8p"]
 
 [ext_resource type="Script" path="res://views/workout_session.gd" id="1_we8sx"]
+[ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="2_g332y"]
 [ext_resource type="StyleBox" uid="uid://mfdqnkmggf3c" path="res://views/button_light.tres" id="3_3tff7"]
 [ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="3_7o87s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jaia5"]
+font = ExtResource("2_g332y")
 font_size = 32
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_autka"]
+font = ExtResource("2_g332y")
 font_size = 32
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ji8qd"]
+font = ExtResource("2_g332y")
 font_size = 90
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
+outline_size = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjeff"]
-bg_color = Color(0.352941, 0.709804, 0.815686, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+bg_color = Color(0.117647, 0.521569, 0.737255, 1)
 border_color = Color(0.3526, 0.71094, 0.82, 0.623529)
 border_blend = true
 corner_radius_top_left = 50
@@ -30,10 +31,11 @@ corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_ro6dg"]
+font = ExtResource("2_g332y")
 font_size = 80
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81a8g"]
-bg_color = Color(0.126, 0.5796, 0.63, 1)
+bg_color = Color(0.0715774, 0.397524, 0.568854, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -223,6 +225,7 @@ offset_bottom = 38.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_g332y")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = ExtResource("3_3tff7")
 text = "Start
@@ -243,6 +246,7 @@ offset_bottom = 38.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_g332y")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_81a8g")
 text = "Pause
@@ -269,6 +273,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_g332y")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("3_3tff7")
 text = "Resume"
@@ -277,6 +282,7 @@ text = "Resume"
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_g332y")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_44088")
 text = "Finish"
@@ -289,10 +295,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -232.5
-offset_top = -401.5
-offset_right = 232.5
-offset_bottom = 401.5
+offset_left = -232.0
+offset_top = -401.0
+offset_right = 233.0
+offset_bottom = 369.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_11blc")
@@ -319,12 +325,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -205.0
-offset_top = 328.5
+offset_top = 305.0
 offset_right = -17.0
-offset_bottom = 374.5
+offset_bottom = 351.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_g332y")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("3_3tff7")
 text = "Confirm Workout"
@@ -332,11 +339,12 @@ text = "Confirm Workout"
 [node name="Reset Workout" type="Button" parent="Done"]
 layout_mode = 2
 offset_left = 268.5
-offset_top = 730.0
+offset_top = 690.0
 offset_right = 438.5
-offset_bottom = 776.0
+offset_bottom = 736.0
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_g332y")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_44088")
 text = "Reset Workout"

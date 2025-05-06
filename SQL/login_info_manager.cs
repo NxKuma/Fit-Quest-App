@@ -106,13 +106,13 @@ public partial class login_info_manager : Node
 			return false;
 		}
 
-
 		float arms= 0.0f, breasts= 0.0f, torso= 0.0f, belly= 0.0f, hips= 0.0f, legs= 0.0f, neck= 0.0f;
 		String get_avatar_string = "SELECT * FROM avatar WHERE avatar_id = " + avatar_id.ToString() + ";";
 		var get_avatar = data_source.CreateCommand(get_avatar_string);
 		var get_avatar_reader = get_avatar.ExecuteReader();
 		
 		while (get_avatar_reader.Read()) {
+			avatar_id = get_avatar_reader.GetInt32(get_avatar_reader.GetOrdinal("avatar_id"));
 			arms = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("arms_param"));
 			breasts = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("breasts_param"));
 			torso = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("torso_param"));
@@ -122,7 +122,8 @@ public partial class login_info_manager : Node
 			neck = get_avatar_reader.GetFloat(get_avatar_reader.GetOrdinal("neck_param"));
 		}
 		get_avatar_reader.Close();
-
+		
+		DataTransporter.Set("avatar_id", avatar_id);
 		DataTransporter.Set("arms", arms.ToString());
 		DataTransporter.Set("breasts", breasts.ToString());
 		DataTransporter.Set("torso", torso.ToString());
