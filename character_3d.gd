@@ -7,8 +7,6 @@ extends SubViewportContainer
 
 var parent
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.change_character.connect(change_character)
@@ -24,7 +22,7 @@ func change_character(arms: float, neck: float, breast: float, torso: float, bel
 	character_model_mesh.set_blend_shape_value(0,arms)
 	character_model_mesh.set_blend_shape_value(1,belly)
 	character_model_mesh.set_blend_shape_value(2,breast)
+	character_model_mesh.set_blend_shape_value(3,torso)
 	character_model_mesh.set_blend_shape_value(4,hips)
 	character_model_mesh.set_blend_shape_value(5,legs)
 	character_model_mesh.set_blend_shape_value(6,neck)
-	character_model_mesh.set_blend_shape_value(7,torso)

@@ -7,7 +7,7 @@ var person_id: int = -1
 var avatar_id: int = -1
 var alr_run: bool = false
 
-signal change_character(arms: float, neck: float, breast: float, torso: float, belly: float, legs:float, hips: float)
+signal change_character(arms: float, neck: float, breast: float, torso: float, legs:float, hips: float, belly: float)
 
 @export var databaseManager: Node
 @export var loginManager: Node
