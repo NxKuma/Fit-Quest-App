@@ -62,6 +62,12 @@ func _add_avatar_to_database():
 	data_transporter.avatar_params = avatar_params
 	return data_transporter._add_avatar()
 
+func _change_height(height: float):
+	data_transporter.change_height(height)
+
+func _change_weight(weight: float):
+	data_transporter.change_weight(weight)
+
 
 func _setup_user(username: String, password: String) -> bool:
 	var completed: bool = data_transporter._setup_user(username, password)
@@ -95,6 +101,8 @@ func _complete_signin() -> bool:
 	_add_avatar_to_database()
 	var completed_setup: bool = _setup_user(login_info.username, login_info.password)
 	return completed_setup
+
+
 
 func _execute_login() -> bool:
 	return _setup_user(login_info.username, login_info.password)

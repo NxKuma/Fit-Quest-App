@@ -345,8 +345,57 @@ public partial class login_info_manager : Node
 		var execute_set = set_cmd.ExecuteNonQuery();
 		data_source.Clear();
 		return avatar_id;
-
 	} 
+
+	public bool change_height(int person_id, float height) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String update_string = "UPDATE person SET person_height_cm=" + height + " WHERE person_id=" + person_id ";";
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + info_id  + "\' );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
+
+		var update_cmd = data_source.CreateCommand(update_string);
+		update_cmd.ExecuteNonQuery();
+		update_cmd.Close();
+
+		data_source.Clear();
+		return true;
+	}
+
+	public bool change_height(int person_id, float weight) {
+		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
+		String update_string = "UPDATE person SET person_weight_kg=" + weight + " WHERE person_id=" + person_id ";";
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE logininfo_id = \'" + info_id  + "\' );";
+		var search_person = data_source.CreateCommand(select_string_person);
+		bool does_exist = false;
+		var person_reader = search_person.ExecuteReader();
+		while (person_reader.Read()) {
+			does_exist = person_reader.GetBoolean(0);
+		}
+		person_reader.Close();
+
+		if (!does_exist) {
+			data_source.Clear();
+			return false;
+		}
+
+		var update_cmd = data_source.CreateCommand(update_string);
+		update_cmd.ExecuteNonQuery();
+		update_cmd.Close();
+
+		data_source.Clear();
+		return true;
+	}
 
 	public int add_person(float height, float weight, int logininfo_id) {
 		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
