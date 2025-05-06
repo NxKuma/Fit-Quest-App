@@ -1,9 +1,9 @@
+DROP TABLE workout_instance;
 DROP TABLE person;
 DROP TABLE avatar;
 DROP TABLE logininfo;
 DROP TABLE guild;
 DROP TABLE challenge_instance;
-DROP TABLE workout_instance;
 DROP TABLE streak;
 DROP TABLE currency;
 DROP TABLE badge;
@@ -18,7 +18,6 @@ CREATE TABLE logininfo (
 
 CREATE TABLE avatar (
     avatar_id SERIAL PRIMARY KEY,
-    shoulder_param REAL NOT NULL,
     arms_param REAL NOT NULL,
     breasts_param REAL NOT NULL,
     torso_param REAL NOT NULL,
@@ -28,31 +27,28 @@ CREATE TABLE avatar (
     neck_param REAL NOT NULL
 );
 
-CREATE TABLE person (
-    person_id SERIAL PRIMARY KEY,
-    person_height_m REAL NOT NULL,
-    person_weight_kg REAL NOT NULL,
-    person_bmi REAL GENERATED ALWAYS AS (person_weight_kg / (person_height_m * person_height_m)) STORED,
-    logininfo_id SERIAL REFERENCES logininfo(info_id),
-    avatar_id SERIAL REFERENCES avatar(avatar_id)
+CREATE TABLE guild (
+    guild_id SERIAL PRIMARY KEY,
+    guild_name VARCHAR(50) NOT NULL
 );
 
-INSERT INTO logininfo (username, pass) VALUES ('thanie', 'thanie');
-INSERT INTO avatar (shoulder_param, arms_param, breasts_param, torso_param, belly_param, hips_param, legs_param, neck_param) VALUES (1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7);
-INSERT INTO person (person_height_m, person_weight_kg, logininfo_id, avatar_id) VALUES (100, 100, 1, 1);
+CREATE TABLE person (
+    person_id SERIAL PRIMARY KEY,
+    person_height_cm REAL NOT NULL,
+    person_weight_kg REAL NOT NULL,
+    person_bmi REAL GENERATED ALWAYS AS (person_weight_kg / (person_height_cm/100 * person_height_cm/100)) STORED,
+    streak_days INT DEFAULT 0 NOT NULL,
+    logininfo_id SERIAL REFERENCES logininfo(info_id),
+    avatar_id INT REFERENCES avatar(avatar_id),
+    guild_id INT REFERENCES guild(guild_id)
+);
 
--- CREATE TABLE guild (
---     guild_id INT PRIMARY KEY,
---     guild_name VARCHAR(50) NOT NULL
--- );
-
--- CREATE TABLE streak(
---     streak_id SERIAL NOT NULL,
---     streak_date_start DATE,
---     streak_current_date DATE,
---     streak_multiplier REAL,
---     streak_days INT
--- );
+CREATE TABLE workout_instance (
+    instance_id SERIAL PRIMARY KEY,
+    workout_name VARCHAR(50) NOT NULL,
+    date_executed DATE DEFAULT current_date,
+    person_id INT REFERENCES person(person_id)
+);
 
 -- CREATE TABLE experience (
 --     experience_id SERIAL NOT NULL,
@@ -71,7 +67,6 @@ INSERT INTO person (person_height_m, person_weight_kg, logininfo_id, avatar_id) 
 --     badge_name VARCHAR(50),
 --     badge_unlocked BOOLEAN
 -- );
-
 
 -- CREATE TABLE rewards(
 --     reward_id SERIAL PRIMARY KEY,

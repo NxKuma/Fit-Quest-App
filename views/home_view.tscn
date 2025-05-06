@@ -1,49 +1,44 @@
-[gd_scene load_steps=18 format=3 uid="uid://hksd5fbuiqlu"]
+[gd_scene load_steps=15 format=3 uid="uid://hksd5fbuiqlu"]
 
 [ext_resource type="Script" path="res://scripts/home_view.gd" id="1_m3tji"]
-[ext_resource type="Texture2D" uid="uid://cmxrcrk0sp8qn" path="res://man.svg" id="1_ngc2x"]
 [ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="2_iy5u8"]
 [ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="4_r56lf"]
 [ext_resource type="FontFile" uid="uid://bdaq1i7wekyk3" path="res://Fonts/Mollen Personal Use-BoldCondensed.otf" id="5_n0ivl"]
-[ext_resource type="FontFile" uid="uid://d07kg4o6voepx" path="res://Fonts/Mollen Personal Use-Narrow.otf" id="5_pv2x2"]
-[ext_resource type="Texture2D" uid="uid://bpwhve0u0igph" path="res://Art Asset/Icon/calendar.png" id="6_0uq4e"]
-[ext_resource type="Texture2D" uid="uid://ry2ovn5fgx8s" path="res://Art Asset/Icon/goal.png" id="8_c2kiu"]
+[ext_resource type="Texture2D" uid="uid://cnm47iuuriejk" path="res://Assets/fire.png" id="8_27ekh"]
+[ext_resource type="PackedScene" uid="uid://djpemvtc7frfh" path="res://Assets/dumbell rack.tscn" id="8_j1p1x"]
+[ext_resource type="Texture2D" uid="uid://cd4bchyx1p7ur" path="res://Assets/dumbell-normal.png" id="9_ex6bs"]
+[ext_resource type="Texture2D" uid="uid://b52xwxy7nse43" path="res://Assets/target.png" id="10_7dp0b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doyt0"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py31l"]
-bg_color = Color(0.117647, 0.521569, 0.737255, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ekono"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0h30n"]
 font = ExtResource("4_r56lf")
 font_size = 120
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_147ja"]
-color = Color(0.592157, 0.929412, 0.976471, 1)
-thickness = 2
+[sub_resource type="LabelSettings" id="LabelSettings_n7yr8"]
+font = ExtResource("5_n0ivl")
+font_size = 35
+font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u74vy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1lfx"]
+bg_color = Color(0.876467, 0.904928, 0.920314, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="LabelSettings" id="LabelSettings_pkwtc"]
-font = ExtResource("5_pv2x2")
+[sub_resource type="LabelSettings" id="LabelSettings_vibqn"]
+font = ExtResource("5_n0ivl")
 font_size = 30
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
+outline_color = Color(0.117647, 0.521569, 0.737255, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_m2ljw"]
 font = ExtResource("5_n0ivl")
 font_size = 30
-font_color = Color(0.968627, 0.933333, 0.866667, 1)
-outline_size = 15
+font_color = Color(0.117647, 0.521569, 0.737255, 1)
 outline_color = Color(0.117647, 0.521569, 0.737255, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plga5"]
 
 [node name="Home View" type="Control"]
 layout_mode = 3
@@ -74,7 +69,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.968627, 0.933333, 0.866667, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -89,219 +83,108 @@ text = "Home"
 
 [node name="Shadow" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 255.0
-offset_top = 699.0
-offset_right = 288.0
-offset_bottom = 739.0
+offset_left = 274.0
+offset_top = 688.0
+offset_right = 307.0
+offset_bottom = 728.0
 scale = Vector2(7.47572, 3.13738)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_doyt0")
 
-[node name="Panel" type="Panel" parent="Shadow"]
+[node name="Dumbell Rack" parent="." instance=ExtResource("8_j1p1x")]
+layout_mode = 0
+offset_left = -152.0
+offset_top = 60.0
+offset_right = 360.0
+offset_bottom = 572.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Character3D" parent="." instance=ExtResource("2_iy5u8")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_py31l")
+offset_left = 41.0
+offset_top = 14.0
+offset_right = 553.0
+offset_bottom = 526.0
+scale = Vector2(1.25, 1.25)
 
-[node name="SubViewportContainer" parent="." instance=ExtResource("2_iy5u8")]
+[node name="Day of the Week" type="Label" parent="."]
 layout_mode = 2
-offset_left = 119.0
-offset_top = 234.0
-offset_right = 631.0
-offset_bottom = 746.0
-
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/character_model_scene/Armature" index="0"]
-bones/7/rotation = Quaternion(-0.496699, -0.477721, 0.638781, -0.3421)
-bones/8/position = Vector3(3.18349e-06, 9.84773, 2.31501e-05)
-bones/9/position = Vector3(-3.257e-06, 20.0335, -4.74545e-06)
-bones/12/position = Vector3(-0.618778, 3.00254, 1.0699e-05)
-bones/14/position = Vector3(0.662147, 2.84941, -1.06692e-05)
-bones/15/position = Vector3(-2.85499, 9.05612, -0.0320864)
-bones/16/position = Vector3(0.0154499, 3.32167, -3.4611e-06)
-bones/19/position = Vector3(-0.991723, 8.69378, -0.199157)
-bones/20/position = Vector3(0.0168119, 3.5739, 1.0958e-05)
-bones/21/position = Vector3(-0.00443944, 3.33629, -8.43461e-06)
-bones/22/position = Vector3(-0.0123754, 3.09891, 2.28882e-05)
-bones/23/position = Vector3(1.08027, 8.82786, -0.0239722)
-bones/25/position = Vector3(0.000880808, 2.6406, -1.09431e-05)
-bones/26/position = Vector3(-0.0236661, 2.19839, 4.05312e-05)
-bones/27/position = Vector3(2.76645, 8.466, -0.181628)
-bones/29/position = Vector3(0.00144432, 1.91652, -6.91255e-06)
-bones/33/position = Vector3(3.61125e-06, 20.0339, -4.1714e-06)
-bones/34/position = Vector3(-1.38671e-06, 19.4586, 6.39284e-06)
-bones/36/position = Vector3(0.737313, 3.18763, -5.06183e-06)
-bones/38/position = Vector3(-0.782544, 2.80795, -1.04308e-05)
-bones/41/position = Vector3(0.000745336, 3.2088, -2.10131e-06)
-bones/43/position = Vector3(0.959661, 8.96442, -0.167131)
-bones/44/position = Vector3(-0.0162883, 3.44884, 5.4209e-06)
-bones/46/position = Vector3(0.0124727, 3.18815, 3.69549e-06)
-bones/47/position = Vector3(-1.07527, 9.16658, -0.14071)
-bones/48/position = Vector3(-0.0122808, 2.79027, 5.60163e-06)
-bones/49/position = Vector3(0.00413567, 2.62422, 8.52181e-06)
-bones/50/position = Vector3(0.00814171, 2.34909, 3.0607e-05)
-bones/52/position = Vector3(-0.00376749, 2.30541, -4.54367e-06)
-bones/55/rotation = Quaternion(0.110909, 0.0878494, 0.985954, -0.0887545)
-
-[node name="Man" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(162, 509)
-scale = Vector2(0.411, 0.36)
-texture = ExtResource("1_ngc2x")
-
-[node name="Side Panel Margin" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -284.5
-offset_right = 276.0
-offset_bottom = 274.5
-grow_vertical = 2
-
-[node name="Side Panels" type="PanelContainer" parent="Side Panel Margin"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ekono")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Side Panel Margin/Side Panels"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/margin_left = 25
-
-[node name="HSplitContainer" type="HSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer"]
-layout_mode = 2
-dragger_visibility = 2
-
-[node name="Day of the Week" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
-layout_mode = 2
+offset_left = 28.0
+offset_top = 120.0
+offset_right = 189.0
+offset_bottom = 240.0
 size_flags_vertical = 1
 text = "TH"
 label_settings = SubResource("LabelSettings_0h30n")
 
-[node name="Streak" type="RichTextLabel" parent="Side Panel Margin/Side Panels/VBoxContainer/MarginContainer/HSplitContainer"]
+[node name="TextureRect3" type="TextureRect" parent="."]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/line_separation = -22
-bbcode_enabled = true
-text = "[color=#3dbed6] [font_size=24px] [outline_size=16] [outline_color=1e85bc]   36 [img]res://Art Asset/Icon/propane_icon.png[/img]"
-fit_content = true
+offset_left = 43.0
+offset_top = 233.0
+offset_right = 78.0
+offset_bottom = 268.0
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("8_27ekh")
+expand_mode = 3
 
-[node name="HSeparator" type="HSeparator" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+[node name="Day of the Week2" type="Label" parent="."]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_147ja")
+offset_left = 91.0
+offset_top = 242.0
+offset_right = 123.0
+offset_bottom = 277.0
+size_flags_vertical = 1
+text = "36
+"
+label_settings = SubResource("LabelSettings_n7yr8")
 
-[node name="Panel" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 687.0
+offset_right = 494.0
+offset_bottom = 846.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_e1lfx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_u74vy")
+offset_left = 84.0
+offset_top = 711.0
+offset_right = 104.0
+offset_bottom = 731.0
+scale = Vector2(2, 2)
+texture = ExtResource("9_ex6bs")
+expand_mode = 3
 
-[node name="VSplitContainer" type="VSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -110.5
-offset_top = -78.5
-offset_right = 110.5
-offset_bottom = 78.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer"]
+[node name="Routine of the Day" type="Label" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_top = 15
-
-[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "WORKOUT ROUTINE 
-OF THE DAY"
-label_settings = SubResource("LabelSettings_pkwtc")
-horizontal_alignment = 1
-
-[node name="MarginContainer2" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/margin_left = 15
-
-[node name="HSplitContainer" type="HSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2/HSplitContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("6_0uq4e")
-
-[node name="Routine of the  Day" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel/VSplitContainer/MarginContainer2/HSplitContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
+offset_left = 140.0
+offset_top = 721.0
+offset_right = 470.0
+offset_bottom = 751.0
 text = "UPPER BODY"
-label_settings = SubResource("LabelSettings_m2ljw")
-horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_vibqn")
+vertical_alignment = 1
+autowrap_mode = 1
+justification_flags = 160
 
-[node name="HSeparator2" type="HSeparator" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_147ja")
+offset_left = 84.0
+offset_top = 773.0
+offset_right = 104.0
+offset_bottom = 793.0
+scale = Vector2(2, 2)
+texture = ExtResource("10_7dp0b")
+expand_mode = 3
 
-[node name="Panel2" type="Panel" parent="Side Panel Margin/Side Panels/VBoxContainer"]
+[node name="Target Muscle" type="Label" parent="."]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_plga5")
-
-[node name="VSplitContainer" type="VSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -110.5
-offset_top = -78.5
-offset_right = 110.5
-offset_bottom = 78.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "TARGET MUSCLE"
-label_settings = SubResource("LabelSettings_pkwtc")
-horizontal_alignment = 1
-
-[node name="MarginContainer2" type="MarginContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="HSplitContainer" type="HSplitContainer" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="TextureRect" type="TextureRect" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2/HSplitContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture = ExtResource("8_c2kiu")
-
-[node name="Target Muscle" type="Label" parent="Side Panel Margin/Side Panels/VBoxContainer/Panel2/VSplitContainer/MarginContainer2/HSplitContainer"]
-layout_mode = 2
+offset_left = 140.0
+offset_top = 780.0
+offset_right = 450.0
+offset_bottom = 810.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "CHEST"
 label_settings = SubResource("LabelSettings_m2ljw")
-horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
-
-[editable path="SubViewportContainer"]
-[editable path="SubViewportContainer/SubViewport/character_model_scene"]

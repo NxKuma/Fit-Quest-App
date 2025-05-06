@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Exercise" load_steps=2 format=3 uid="uid://dounrak2lhn36"]
+
+[ext_resource type="Script" path="res://scripts/exercise.gd" id="1_ydtpe"]
+
+[resource]
+script = ExtResource("1_ydtpe")
+exercise_name = "Jumping Jacks"
+sets = 1
+repetitions = 50
+exercise_description = "Jumping jacks are a full-body cardio exercise that increases heart rate and improves coordination. To perform them, start by standing upright with your feet together and arms at your sides. Jump while spreading your legs shoulder-width apart and raising your arms overhead. Jump again to return to the starting position. Repeat this movement rhythmically to maintain a steady pace.
+"

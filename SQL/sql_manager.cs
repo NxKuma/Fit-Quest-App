@@ -8,17 +8,11 @@ using System.Runtime.Intrinsics.Arm;
 
 public partial class sql_manager : Node
 {
-	[Export]
 	public string host_string {get; set;} = "";
-	
-	[Export]
 	public string username_string {get; set;} = "";
-
-	[Export]
 	public string password_string {get; set;} = "";
-
-	[Export]
 	public string database_string {get; set;} = "";
+	public string port_string {get; set;} = "";
 
 	[Export]
 	Node DataTransporter;
@@ -27,6 +21,7 @@ public partial class sql_manager : Node
 	public static string setup_string = "CREATE TABLE car (car_id serial PRIMARY KEY,wheel_cnt int NOT NULL);\r\n\r\nINSERT INTO car (wheel_cnt) VALUES (10);";
 	public static string clear_string = "DROP TABLE car;";
 	public static string setup_sql_string = "";
+	public bool did_setup = false;
 	
 	string setup = "";
 
@@ -46,13 +41,67 @@ public partial class sql_manager : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		string secrets_string = LoadFromFile("res://secrets.txt");
+		List<string> lines = new List<string>();
+
+		string cur = "";
+		for (int i = 0; i < secrets_string.Length; i++) {
+			if (secrets_string[i] == '\n') {
+				lines.Add(cur);
+				cur = "";
+			} else {
+				cur += secrets_string[i];
+			} 
+		}
+
+		if (cur != "") {
+			lines.Add(cur);
+		}
+
+		for (int i = 0; i < 5; i++) {
+			string line = lines[i];
+
+			bool did_start = false;
+			string output = "";
+
+			for (int j = 0; j < line.Length; j++) {
+				if (did_start) {
+					if (line[j] == '\"') {
+						break;
+					} else {
+						output += line[j];
+					}
+				} else {
+					if (line[j] == '\"') {
+						did_start = true;
+					}
+				}
+			}
+
+			if (i == 0) {
+				host_string = output;
+			} else if (i == 1) {
+				username_string = output;
+			} else if (i == 2) {
+				password_string = output;
+			} else if (i == 3) {
+				database_string = output;
+			} else if (i == 4) {
+				port_string = output;
+			}
+		}
+
+
 		connectionString += "Host=" + host_string + ";";
+		connectionString += "Port=" + port_string + ";";
 		connectionString += "Username=" + username_string + ";";
 		connectionString += "Password=" + password_string + ";";
-		connectionString += "Database=" + database_string;
+		connectionString += "Database=" + database_string + ";";
+		connectionString += "SslMode=Require;";
+		connectionString += "Pooling=false;";
 		setup_sql_string = LoadFromFile("res://SQL//setup.SQL");
 		//GD.Print(setup_sql_string);
-		runSql();
+		// runSql();
 	}
 	
 	public void runSql()
@@ -120,6 +169,8 @@ public partial class sql_manager : Node
 				var command_reader = command.ExecuteNonQuery();
 			}
 		}
+		
+		did_setup = true;
 	}
 
 	public bool check_if_table_exists(String table) {
@@ -133,6 +184,8 @@ public partial class sql_manager : Node
 		while (bool_reader.Read()) {
 			does_exist = bool_reader.GetBoolean(0);
 		}
+		bool_reader.Close();
+		data_source.Clear();
 		return does_exist;
 	}
 
@@ -150,6 +203,8 @@ public partial class sql_manager : Node
 		while (count_reader.Read()) {
 			entry_count = count_reader.GetInt32(0);
 		}
+		count_reader.Close();
+		data_source.Clear();
 		return entry_count;
 	}
 }
