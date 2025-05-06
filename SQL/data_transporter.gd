@@ -85,6 +85,7 @@ func _change_weight(weight: float):
 	login_info_manager.change_height(Global.person_id, weight)
 
 func _setup_user(username: String, password: String) -> bool:
+	print(login_info_manager == null)
 	var completed: bool = login_info_manager.set_current_user(username, password)
 	return completed
 
