@@ -218,7 +218,7 @@ public partial class login_info_manager : Node
 
 	public bool set_days(int person_id, int day_cnt) {
 		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
-
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE person_id = " + person_id  + " );";
 		var search_person = data_source.CreateCommand(select_string_person);
 		bool does_exist = false;
 		var person_reader = search_person.ExecuteReader();
@@ -232,9 +232,9 @@ public partial class login_info_manager : Node
 			return false;
 		}
 
-		String set_days_string = "UPDATE person SET streak_day = " + day_cnt + " WHERE person_id=" + person + ";";
+		String set_days_string = "UPDATE person SET streak_day = " + day_cnt + " WHERE person_id=" + person_id + ";";
 		var set_days_cmd = data_source.CreateCommand(set_days_string);
-		var execute = set_cmd.ExecuteNonQuery();
+		var execute = set_days_cmd.ExecuteNonQuery();
 
 		data_source.Clear();
 		return true;
@@ -242,7 +242,7 @@ public partial class login_info_manager : Node
 
 	public int get_days(int person_id) {
 		var data_source = NpgsqlDataSource.Create(sql_manager.connectionString);
-
+		String select_string_person = "SELECT EXISTS(SELECT FROM person WHERE person_id = " + person_id  + " );";
 		var search_person = data_source.CreateCommand(select_string_person);
 		bool does_exist = false;
 		var person_reader = search_person.ExecuteReader();
@@ -253,11 +253,11 @@ public partial class login_info_manager : Node
 
 		if (!does_exist) {
 			data_source.Clear();
-			return false;
+			return -1;
 		}
 
-		String get_days_string = "SELECT streak_days FROM person WHERE person_id=" + person_id + ";"
-		var get_days_cmd = data_source.CreateCommand(set_days_string);
+		String get_days_string = "SELECT streak_days FROM person WHERE person_id=" + person_id + ";";
+		var get_days_cmd = data_source.CreateCommand(get_days_string);
 		int output_days = -1;
 		var get_days_reader = get_days_cmd.ExecuteReader();
 		while (get_days_reader.Read()) {

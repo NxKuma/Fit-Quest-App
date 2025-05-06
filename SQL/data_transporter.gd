@@ -65,7 +65,7 @@ func _add_user():
 	return login_info_manager.add_user(login_info.username, login_info.password)
 	
 func _add_person():
-	login_info_manager.add_person(person_data.height, person_data.weight, person_data.login_id)
+	return login_info_manager.add_person(person_data.height, person_data.weight, Global.info_id)
 
 func _add_avatar():
 	if Global.person_id == -1:

@@ -56,13 +56,12 @@ func _add_info_to_database():
 	
 func _add_person_to_database():
 	data_transporter.person_data = person_data
-	data_transporter._add_person()
-	pass
+	return data_transporter._add_person()
 
 func _add_avatar_to_database():
 	data_transporter.avatar_params = avatar_params
-	data_transporter._add_avatar()
-	pass
+	return data_transporter._add_avatar()
+
 
 func _setup_user(username: String, password: String) -> bool:
 	var completed: bool = data_transporter._setup_user(username, password)
@@ -92,7 +91,7 @@ func _change_person_info(height: float, weight: float, bmi: float):
 func _complete_signin() -> bool:
 	print("SURE: " + login_info.username + " " + login_info.password)
 	info_id = _add_info_to_database()
-	_add_person_to_database()
+	person_id = _add_person_to_database()
 	_add_avatar_to_database()
 	var completed_setup: bool = _setup_user(login_info.username, login_info.password)
 	return completed_setup
