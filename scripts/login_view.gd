@@ -34,11 +34,12 @@ func to_main():
 		visible = false
 
 func to_sign_up():
-	Global.did_setup = false
+	print("SHEEESH ", Global.did_setup)
 	get_tree().change_scene_to_file("res://views/sign_in_view.tscn")
 
 func _on_login_button_pressed() -> void:
 	to_main()
 
 func _on_to_signup_pressed() -> void:
+	print("MAMA YOUR MIA")
 	to_sign_up()
