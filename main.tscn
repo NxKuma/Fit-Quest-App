@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bl4y6jd2d3nrt"]
+[gd_scene load_steps=19 format=3 uid="uid://bl4y6jd2d3nrt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_bhc7n"]
 [ext_resource type="PackedScene" uid="uid://hksd5fbuiqlu" path="res://views/home_view.tscn" id="2_s1anr"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" path="res://SQL/data_transporter.gd" id="14_kk8nt"]
 [ext_resource type="Texture2D" uid="uid://s6dk3kn2m206" path="res://Assets/profile-pressed.png" id="15_1g88h"]
 [ext_resource type="Script" path="res://SQL/login_info_manager.cs" id="15_i7tnx"]
-[ext_resource type="PackedScene" uid="uid://lp6hxt0j5ikc" path="res://views/sign_in_view.tscn" id="17_02oj0"]
 [ext_resource type="PackedScene" uid="uid://cox5l8my5ww7v" path="res://views/login_view.tscn" id="18_ohs8t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r623s"]
@@ -173,10 +172,6 @@ DataTransporter = NodePath("../Data Transporter")
 script = ExtResource("14_kk8nt")
 login_info_manager = NodePath("../Login Manager")
 sql_manager = NodePath("../SQL Manager")
-
-[node name="SignIn View" parent="." instance=ExtResource("17_02oj0")]
-visible = false
-layout_mode = 1
 
 [node name="Login View" parent="." instance=ExtResource("18_ohs8t")]
 layout_mode = 1

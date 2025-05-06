@@ -26,11 +26,15 @@ func _ready() -> void:
 func to_main():
 	username = username_field.text
 	password = password_field.text
-	# try login
-	if(can_login):
-		get_tree().change_scene_to_file("res://main.tscn")
+	
+	Global.login_info.username = username
+	Global.login_info.password = password
+	
+	if Global._execute_login():
+		visible = false
 
 func to_sign_up():
+	Global.did_setup = false
 	get_tree().change_scene_to_file("res://views/sign_in_view.tscn")
 
 func _on_login_button_pressed() -> void:

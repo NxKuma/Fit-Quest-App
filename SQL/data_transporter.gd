@@ -62,7 +62,7 @@ func _process(delta: float):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _add_user():
-	login_info_manager.add_user(login_info.username, login_info.password)
+	return login_info_manager.add_user(login_info.username, login_info.password)
 	
 func _add_person():
 	login_info_manager.add_person(person_data.height, person_data.weight, person_data.login_id)

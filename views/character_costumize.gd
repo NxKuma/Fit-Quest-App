@@ -60,7 +60,6 @@ func _on_neck_size_value_changed(value: float, extra_arg_0: int) -> void:
 
 
 func _on_button_pressed() -> void:
-	print(slider_array[0].get_value())
 	var arms = slider_array[0].get_value()
 	var neck = slider_array[1].get_value()
 	var breast = slider_array[2].get_value()
@@ -76,8 +75,10 @@ func _on_button_pressed() -> void:
 	Global.avatar_params.legs = legs
 	Global.avatar_params.hips = hips
 	Global.avatar_params.belly = belly
-	Global.change_character.emit(arms, neck, breast, torso, belly, legs, hips)
+	Global.change_character.emit(arms, neck, breast, torso, legs, hips, belly)
 
-	print("Hello")
 	Global.character_changed = true
-	Global._goto_scene("res://main.tscn")
+	
+	Global.did_signin = true
+	get_tree().change_scene_to_file("res://main.tscn")
+	#Global._goto_scene("res://main.tscn")

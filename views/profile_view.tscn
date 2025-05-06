@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dghtag0kp8owr"]
+[gd_scene load_steps=8 format=3 uid="uid://dghtag0kp8owr"]
 
 [ext_resource type="Script" path="res://views/profile_view.gd" id="1_x7pm7"]
 [ext_resource type="Texture2D" uid="uid://dnns68ph8v38d" path="res://Assets/circle_mask.png" id="2_2p32w"]
 [ext_resource type="PackedScene" uid="uid://b02t21sdwbeg4" path="res://Character3D.tscn" id="3_fuahy"]
+[ext_resource type="FontFile" uid="uid://dle2rypg88xuk" path="res://Fonts/Mollen Personal Use-Bold.otf" id="4_jrbx0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0e52"]
 content_margin_left = 120.0
@@ -25,6 +26,7 @@ font_size = 25
 font_color = Color(0.117647, 0.521569, 0.737255, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_n8rs8"]
+font = ExtResource("4_jrbx0")
 font_size = 30
 font_color = Color(0.67451, 0.886275, 0.882353, 1)
 
@@ -92,7 +94,7 @@ offset_bottom = 843.0
 size_flags_horizontal = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_n0e52")
 
-[node name="Label" type="Label" parent="."]
+[node name="Username" type="Label" parent="."]
 layout_mode = 2
 offset_left = 85.0
 offset_top = 319.0
@@ -100,17 +102,33 @@ offset_right = 438.0
 offset_bottom = 354.0
 pivot_offset = Vector2(1, 1)
 theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
-text = "User Name 
+text = "Username
 "
 label_settings = SubResource("LabelSettings_wvmok")
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 417.0
+offset_right = 84.0
+offset_bottom = 457.0
+theme_override_constants/separation = 10
+
+[node name="Height" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-offset_left = 45.0
-offset_top = 414.0
-offset_right = 390.0
-offset_bottom = 456.0
 theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
-text = "Sample Text Here"
+text = "Height"
+label_settings = SubResource("LabelSettings_n8rs8")
+
+[node name="Weight" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+text = "Weight"
+label_settings = SubResource("LabelSettings_n8rs8")
+
+[node name="BMI" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.117647, 0.521569, 0.737255, 1)
+text = "BMI"
 label_settings = SubResource("LabelSettings_n8rs8")
