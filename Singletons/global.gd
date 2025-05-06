@@ -7,7 +7,8 @@ var person_id: int = -1
 var avatar_id: int = -1
 var alr_run: bool = false
 
-signal change_character(arms: float, neck: float, breast: float, torso: float, belly: float, legs:float, hips: float)
+
+signal change_character(arms: float, neck: float, breast: float, torso: float, legs:float, hips: float, belly: float)
 
 @export var databaseManager: Node
 @export var loginManager: Node
@@ -48,25 +49,7 @@ func _ready():
 	var day = Time.get_datetime_dict_from_system()["weekday"]
 	routine_today = workout_plan.get_workout_today(day)
 	
-	#login_info.username = "thanie"
-	#login_info.password = "thanie"
-	
-	#person_data.height = 169
-	#person_data.weight = 70
-	#person_data.login_id = 1
-	
-	#person_id = 1
-	
-	#avatar_params.arms = 1.1
-	#avatar_params.breasts = 1.2
-	#avatar_params.torso = 1.3
-	#avatar_params.belly = 1.4
-	#avatar_params.hips = 1.5
-	#avatar_params.legs = 1.6
-	#avatar_params.neck = 1.7
-	
-	
-	
+
 func _add_info_to_database():
 	data_transporter.login_info = login_info
 	return data_transporter._add_user()
@@ -107,6 +90,7 @@ func _change_person_info(height: float, weight: float, bmi: float):
 	person_data.bmi = bmi
 	
 func _complete_signin() -> bool:
+	print("SURE: " + login_info.username + " " + login_info.password)
 	info_id = _add_info_to_database()
 	_add_person_to_database()
 	_add_avatar_to_database()
@@ -118,29 +102,19 @@ func _execute_login() -> bool:
 
 func _process(delta):
 	#print(can_load)
-	if get_tree() != null and !did_setup and can_load:
-		data_transporter = get_tree().get_first_node_in_group("DataTransporter")
-		did_setup = true
+	
+	if get_tree() != null and !did_setup and can_load and get_tree().current_scene != null:
+		if get_tree().current_scene.name == "Main":
+			data_transporter = get_tree().get_first_node_in_group("DataTransporter")
+			did_setup = true
+		
+	if get_tree() != null and !alr_run and did_setup and did_signin:
+		alr_run = true
+		_complete_signin()
 	
 	if character_changed:
 		change_character.emit(avatar_params.arms, avatar_params.neck, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.legs, avatar_params.hips)
 
-	#Global.change_character.emit(arms, neck, breast, torso, belly, legs, hips)
-			
-	# print("Arms: ", avatar_params.arms)
-	# print("Breasts: ", avatar_params.breasts)
-	# print("Torso: ", avatar_params.torso)
-	# print("Belly: ", avatar_params.belly)
-	# print("Hips: ", avatar_params.hips)
-	# print("Legs: ", avatar_params.legs)
-	# print("Neck: ", avatar_params.neck)
-
-	# print("Person ID: ", person_data.person_id)
-	# print("Height: ", person_data.height)
-	# print("Weight: ", person_data.weight)
-	# print("BMI: ", person_data.bmi)
-
-	
 
 func get_routine_today():
 	return routine_today
