@@ -14,6 +14,8 @@ signal change_character(arms: float, neck: float, breast: float, torso: float, b
 
 
 var did_setup = false
+var can_load = false
+var did_signin = false
 	
 var avatar_params: AvatarParam
 var person_data: PersonData
@@ -30,7 +32,7 @@ var is_workout_finished_today: bool = false
 var is_splash_screen_done: bool = false
 
 func _ready():
-	avatar_params = AvatarParams.new()
+	avatar_params = AvatarParam.new()
 	
 	var root = get_tree().root
 	
@@ -40,6 +42,11 @@ func _ready():
 	person_data = PersonData.new()
 	guild_data = GuildData.new()
 	login_info = LoginInfo.new()
+	
+	# For workout plan logic
+	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
+	var day = Time.get_datetime_dict_from_system()["weekday"]
+	routine_today = workout_plan.get_workout_today(day)
 	
 	#login_info.username = "thanie"
 	#login_info.password = "thanie"
@@ -114,12 +121,13 @@ func _execute_login() -> bool:
 	return _setup_user(login_info.username, login_info.password)
 
 func _process(delta):
-	if get_tree() != null and !did_setup:
+	#print(can_load)
+	if get_tree() != null and !did_setup and can_load:
 		data_transporter = get_tree().get_first_node_in_group("DataTransporter")
-      
-  if character_changed:
+		did_setup = true
+	
+	if character_changed:
 		change_character.emit(avatar_params.arms, avatar_params.neck, avatar_params.breasts, avatar_params.torso, avatar_params.belly, avatar_params.legs, avatar_params.hips)
-
 
 	#Global.change_character.emit(arms, neck, breast, torso, belly, legs, hips)
 			
@@ -136,13 +144,8 @@ func _process(delta):
 	# print("Height: ", person_data.height)
 	# print("Weight: ", person_data.weight)
 	# print("BMI: ", person_data.bmi)
-	pass
 
-func _goto_scene(path): 
-	# For workout plan logic
-	workout_plan = preload("res://Weekly Routine Resource/WeightTraining.tres")
-	var day = Time.get_datetime_dict_from_system()["weekday"]
-	routine_today = workout_plan.get_workout_today(day)
+	
 
 func get_routine_today():
 	return routine_today

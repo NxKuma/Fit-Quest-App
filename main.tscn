@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bl4y6jd2d3nrt"]
+[gd_scene load_steps=20 format=3 uid="uid://bl4y6jd2d3nrt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_bhc7n"]
 [ext_resource type="PackedScene" uid="uid://hksd5fbuiqlu" path="res://views/home_view.tscn" id="2_s1anr"]
@@ -10,10 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://y4com2vlk3qd" path="res://Assets/guild-normal.png" id="8_ao2ki"]
 [ext_resource type="Texture2D" uid="uid://bvm4f3t51wjj5" path="res://Assets/guild-pressed.png" id="9_1df64"]
 [ext_resource type="Texture2D" uid="uid://cdrh8v3bdv0pq" path="res://Assets/home-normal.png" id="10_87pif"]
-
 [ext_resource type="Texture2D" uid="uid://bm7007a3wm0f0" path="res://Art Asset/Icon_Selected/house-select.png" id="12_eht0t"]
 [ext_resource type="Texture2D" uid="uid://cmhme1rkj5x1p" path="res://Assets/profile-normal.png" id="14_4bc2d"]
+[ext_resource type="Script" path="res://SQL/sql_manager.cs" id="14_c0nko"]
+[ext_resource type="Script" path="res://SQL/data_transporter.gd" id="14_kk8nt"]
 [ext_resource type="Texture2D" uid="uid://s6dk3kn2m206" path="res://Assets/profile-pressed.png" id="15_1g88h"]
+[ext_resource type="Script" path="res://SQL/login_info_manager.cs" id="15_i7tnx"]
+[ext_resource type="PackedScene" uid="uid://lp6hxt0j5ikc" path="res://views/sign_in_view.tscn" id="17_02oj0"]
+[ext_resource type="PackedScene" uid="uid://cox5l8my5ww7v" path="res://views/login_view.tscn" id="18_ohs8t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r623s"]
 bg_color = Color(0.911094, 0.928988, 0.938267, 1)
@@ -27,6 +31,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -45,7 +51,6 @@ mouse_filter = 1
 [node name="Workout View" parent="Views" instance=ExtResource("3_wvkul")]
 visible = false
 layout_mode = 1
-
 
 [node name="Guilds View" parent="Views" instance=ExtResource("4_pypkf")]
 visible = false
@@ -71,10 +76,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_r623s")
 [node name="Bottom" type="ColorRect" parent="."]
 visible = false
 layout_direction = 1
-layout_mode = 2
-offset_top = 870.0
-offset_right = 540.0
-offset_bottom = 960.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -270.0
+offset_top = -60.0
+offset_right = 270.0
+grow_horizontal = 2
+grow_vertical = 0
 mouse_filter = 2
 color = Color(0.670588, 0.890196, 0.886275, 1)
 
@@ -94,15 +106,13 @@ grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_top = 35
 
 [node name="Buttons" type="HBoxContainer" parent="Navigation Bar"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-theme_override_constants/separation = 35
 theme_override_constants/separation = 65
 alignment = 1
 
@@ -116,6 +126,7 @@ texture_pressed = ExtResource("7_88lb8")
 texture_hover = ExtResource("7_88lb8")
 ignore_texture_size = true
 stretch_mode = 5
+
 [node name="Guilds Button" type="TextureButton" parent="Navigation Bar/Buttons"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
@@ -143,23 +154,29 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 action_mode = 0
-
 texture_normal = ExtResource("14_4bc2d")
 texture_pressed = ExtResource("15_1g88h")
 texture_hover = ExtResource("15_1g88h")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SQL Manager" type="Node" parent="." node_paths=PackedStringArray("DataTransporter")]
-script = ExtResource("17_fbvr2")
+[node name="SQL Manager" type="Node" parent="." node_paths=PackedStringArray("DataTransporter") groups=["DataManagers"]]
+script = ExtResource("14_c0nko")
 DataTransporter = NodePath("../Data Transporter")
 
-[node name="Login Info Manager" type="Node" parent="." node_paths=PackedStringArray("sql_Manager", "DataTransporter") groups=["DataManagers"]]
-script = ExtResource("18_d06fr")
+[node name="Login Manager" type="Node" parent="." node_paths=PackedStringArray("sql_Manager", "DataTransporter") groups=["DataManagers"]]
+script = ExtResource("15_i7tnx")
 sql_Manager = NodePath("../SQL Manager")
 DataTransporter = NodePath("../Data Transporter")
 
 [node name="Data Transporter" type="Node" parent="." node_paths=PackedStringArray("login_info_manager", "sql_manager") groups=["DataTransporter"]]
-script = ExtResource("19_7624g")
-login_info_manager = NodePath("../Login Info Manager")
+script = ExtResource("14_kk8nt")
+login_info_manager = NodePath("../Login Manager")
 sql_manager = NodePath("../SQL Manager")
+
+[node name="SignIn View" parent="." instance=ExtResource("17_02oj0")]
+visible = false
+layout_mode = 1
+
+[node name="Login View" parent="." instance=ExtResource("18_ohs8t")]
+layout_mode = 1
